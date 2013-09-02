@@ -2,22 +2,25 @@ function start_app() {
   console.log('app started');
 
 
-  $('#map').on('pageinit', function(event) {
+  $('#map').on('pageshow', function(event) {
     //get devices geographical location and return a position object
-    navigator.geolocation.getCurrentPosition(on_success, on_error);
+    //navigator.geolocation.getCurrentPosition(on_success, on_error);
 
-    function on_success(position) { 
-      var my_location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var my_location = new google.maps.LatLng(41.556653,-72.657355);
+      
+    //function on_success(position) { 
+      //my_location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    //}
+    
+    //function on_error(e) {}
 
-    }
 
     //if the location could not be found we set it to the admissions office
-    function on_error() {
-      alert('Could not establish location');
-      var my_location = new google.maps.LatLng(41.556653,-72.657355);
-    }
+    //function on_error() {
+      //alert('Could not establish location');
+    //}
 
-    map  = new google.maps.Map(document.getElementById('geoLocation'), {
+    map  = new google.maps.Map(document.getElementById('map_canvas'), {
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       center: my_location,
       zoom: 15
