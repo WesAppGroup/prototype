@@ -1,15 +1,21 @@
 (function() {
-  var device_ready = false;
-  var jqm_mobile_init = false;
+  var deviceReady = false;
+  var jqmInit = false;
 
   var initApp = function() {
-    if (device_ready && jqm_mobile_init) {
-      start_app();
+    if (deviceReady && jqmInit) {
+      startApp();
+      startMap();
+      startEvents();
+      startWescard();
+      startWesmaps();
+      startRss();
+      startDonate();
     }
   };
 
   var onDeviceReady = function() {
-    device_ready = true;
+    deviceReady = true;
 		console.log('device ready');
     //alert('dev ready');
     initApp();
@@ -26,7 +32,7 @@
   var onMobileInit = function() {
     $.support.cors = true;
     $.mobile.allowCrossDomainPages = true;
-    jqm_mobile_init = true;
+    jqmInit = true;
     //alert('jqm ready');
 		console.log('jqm ready');
     initApp();
