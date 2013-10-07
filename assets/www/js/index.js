@@ -1,6 +1,6 @@
 /* Index page javascript
  */
-function start_app() {
+function startApp() {
   console.log('app started');
 
 }

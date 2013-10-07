@@ -1,11 +1,11 @@
 (function() {
+  
   var deviceReady = false;
   var jqmInit = false;
 
   var initApp = function() {
     if (deviceReady && jqmInit) {
       startApp();
-      startMap();
       startEvents();
       startWescard();
       startWesmaps();

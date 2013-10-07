@@ -1,6 +1,6 @@
 /* WesCard javscript.
  */
-function startWesCard() {
+function startWescard() {
   $('#wescard').on('pageinit', function() {
     console.log('pageinit fired on wescard page');
   });
