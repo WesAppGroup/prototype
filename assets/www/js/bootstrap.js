@@ -7,9 +7,8 @@
     if (deviceReady && jqmInit) {
       startApp();
       startEvents();
-      startWescard();
       startWesmaps();
-      startRss();
+      startHours();
       startDonate();
     }
   };
