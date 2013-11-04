@@ -12,7 +12,8 @@
 
     <!-- Custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-     <link rel="stylesheet" type="text/css" href="css/events.css" />
+    <link rel="stylesheet" type="text/css" href="css/events.css" />
+    <link rel="stylesheet" type="text/css" href="css/wesmaps.css" />
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
@@ -57,16 +58,75 @@
     <!-- ========== WESMAPS PAGE =========== -->
     <div data-role="page" id="wesmaps">
       <div data-role="header" id="wesmaps_header">
+        <h1>WesMaps Mobile</h1>
       </div>
 
       <div data-role="content" id="wesmaps_content">
+        <form id="wm_search_bar">
+          <input type="search" placeholder="Search for courses">
+        </form>
+        <ul id="wm_courses">
+        </ul>
       </div>
 
       <div data-role="footer" id="wesmaps_footer" data-position="fixed">
         <a href="#home">HOME</a>
+        <a href="#wesmaps_schedule">SCHEDULE</a>
       </div>
     </div>
 
+    <!-- WESMAPS SCHEDULE PAGE-->
+    <div data-role="page" id="wesmaps_schedule">
+      <div data-role="header">
+        <h1>Schedule</h1>
+      </div>
+
+      <div data-role="content">
+        <div class="wm_schedule">
+          <div class="wm_day">
+            <div class="wm_day_name">
+              <p>MON</p>
+            </div>
+            <div class="wm_day_time">
+              <div class="wm_mtg" style="top:76.4%; height: 5.9%; background-color: #1fff00;">
+              </div>
+            </div>
+          </div>
+          <div class="wm_day">
+            <div class="wm_day_name">
+              <p>TUE</p>
+            </div>
+            <div class="wm_day_time">
+            </div>
+          </div>
+          <div class="wm_day">
+            <div class="wm_day_name">
+              <p>WED</p>
+            </div>
+            <div class="wm_day_time">
+            </div>
+          </div>
+          <div class="wm_day">
+            <div class="wm_day_name">
+              <p>THU</p>
+            </div>
+            <div class="wm_day_time">
+            </div>
+          </div>
+          <div class="wm_day">
+            <div class="wm_day_name">
+              <p>FRI</p>
+            </div>
+            <div class="wm_day_time">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <a href="#wesmaps">WESMAPS</a>
+        <a href="#home">HOME</a>
+      </div>
+    </div>
     <!-- ========== EVENTS PAGE =========== -->
     <div data-role="page" id="events">
 

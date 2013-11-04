@@ -2,3 +2,37 @@
 .wm_day {
   display: inline;
 }
+.wm_schedule {
+  position: fixed;
+  top: 43px;
+  bottom: 32px;
+  left: 0px;
+  right: 0px;
+}
+.wm_day {
+  display: inline-block;
+  width:18.6%;
+  height:100%;
+  border-left: 1px solid #dddddd;
+}
+
+.wm_day_name {
+  font-size: 10px;
+  text-align: center;
+}
+
+.wm_mtg {
+  position: absolute;
+  width: 18.6%;
+  margin-left: 2px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#wm_courses li {
+  border-bottom: 1px solid #000000;
+  margin:5px;
+  padding:5px;
+}
