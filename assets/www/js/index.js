@@ -5,6 +5,36 @@ function startApp() {
 
 }
 
+/* Links buttons */
+$(".goto_page").on("click", function() {
+  if (this.value === "home") {
+    $(".page").addClass("hidden");
+    $("#home").removeClass("hidden");
+  }
+  else if (this.value === "wesmaps") {
+    $(".page").addClass("hidden");
+    $("#wesmaps").removeClass("hidden");
+  }
+  else if (this.value === "wm_schedule") {
+    $(".page").addClass("hidden");
+    $("#wm_schedule").removeClass("hidden");
+  }
+  else if (this.value === "events") {
+    $(".page").addClass("hidden");
+    $("#events").removeClass("hidden");
+  }
+  else if (this.value === "hours") { 
+    $(".page").addClass("hidden");
+    $("#hours").removeClass("hidden");
+  }
+  else if (this.value === "donate") {
+    $(".page").addClass("hidden");
+    $("#donate").removeClass("hidden");
+  }
+});
+
+
+
 // make clicking home page buttons actually work
 $(document).ready(function() {
   $('#home_content ul li .ui-li').each(function() {

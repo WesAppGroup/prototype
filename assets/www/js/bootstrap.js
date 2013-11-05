@@ -1,10 +1,9 @@
 (function() {
   
   var deviceReady = false;
-  var jqmInit = false;
 
   var initApp = function() {
-    if (deviceReady && jqmInit) {
+    if (deviceReady) {
       startApp();
       startEvents();
       startWesmaps();
@@ -28,15 +27,6 @@
 		receivedElement.setAttribute('style', 'display:block;');
   };
 
-  var onMobileInit = function() {
-    $.support.cors = true;
-    $.mobile.allowCrossDomainPages = true;
-    jqmInit = true;
-    //alert('jqm ready');
-		console.log('jqm ready');
-    initApp();
-  };
 
-  $(document).bind('mobileinit', onMobileInit);
   document.addEventListener("deviceready", onDeviceReady, false);
 })();
