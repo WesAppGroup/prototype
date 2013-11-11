@@ -4,7 +4,8 @@ function startApp() {
   console.log('app started');
 
   /* Links buttons */
-  $(".goto_page").on("click", function() {
+  $(".goto_page").on("click", function(e) {
+    e.preventDefault();
     console.log("page change");
     if (this.value === "home") {
       $(".page").addClass("hidden");
@@ -33,18 +34,3 @@ function startApp() {
   });
 }
 
-
-
-
-/* make clicking home page buttons actually work
-$(document).ready(function() {
-  $('#home_content ul li .ui-li').each(function() {
-    $(this).on('click', function(e) {
-      // prevent an endless loop of click propagation
-      if(!$(e.target).is($(this).find('a'))) {
-        $(this).find('a').trigger('click');
-      }
-    }); 
-  });
-});
-*/
