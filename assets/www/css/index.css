@@ -170,19 +170,19 @@ body {
   left: 20px;
 }
 
-#home_content ul li a[href] .fance#wesmaps {
+#home_content ul li a[href] .fance.wesmaps {
   background-color: #833b3e;
 }
-#home_content ul li a[href] .fance#events {
+#home_content ul li a[href] .fance.events {
   background-color: #458179;
 }
-#home_content ul li a[href] .fance#hours {
+#home_content ul li a[href] .fance.hours {
   background-color: #457380;
 }
-#home_content ul li a[href] .fance#landmarks {
+#home_content ul li a[href] .fance.landmarks {
   background-color: #46647c;
 }
-#home_content ul li a[href] .fance#donate {
+#home_content ul li a[href] .fance.donate {
   background-color: #46647c;
 }
 

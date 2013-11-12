@@ -2,35 +2,41 @@
  */
 function startApp() {
   console.log('app started');
+}
+
+$(document).ready(function() {
 
   /* Links buttons */
   $(".goto_page").on("click", function(e) {
     e.preventDefault();
     console.log("page change");
-    if (this.value === "home") {
+    console.log($(this).attr('value'));
+    if ($(this).attr('value') === "home") {
       $(".page").addClass("hidden");
       $("#home").removeClass("hidden");
     }
-    else if (this.value === "wesmaps") {
+    else if ($(this).attr('value') === "wesmaps") {
       $(".page").addClass("hidden");
+      console.log($("#wesmaps"));
       $("#wesmaps").removeClass("hidden");
     }
-    else if (this.value === "wm_schedule") {
+    else if ($(this).attr('value') === "wm_schedule") {
       $(".page").addClass("hidden");
       $("#wm_schedule").removeClass("hidden");
     }
-    else if (this.value === "events") {
+    else if ($(this).attr('value') === "events") {
       $(".page").addClass("hidden");
       $("#events").removeClass("hidden");
     }
-    else if (this.value === "hours") { 
+    else if ($(this).attr('value') === "hours") { 
       $(".page").addClass("hidden");
       $("#hours").removeClass("hidden");
     }
-    else if (this.value === "donate") {
+    else if ($(this).attr('value') === "donate") {
       $(".page").addClass("hidden");
       $("#donate").removeClass("hidden");
     }
   });
-}
+
+});
 
