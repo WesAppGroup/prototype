@@ -91,7 +91,8 @@
     <!-- ========== WESMAPS PAGE =========== -->
     <div class="page hidden" id="wesmaps">
       <div class="header" id="wesmaps_header">
-        <h1>WesMaps Mobile</h1>
+        <img src="img/logo.png" />
+        <span>WesMaps Mobile</span>
       </div>
 
       <div class="content" id="wesmaps_content">
@@ -102,15 +103,19 @@
         </ul>
       </div>
 
-      <div class="footer" id="wesmaps_footer" data-position="fixed">
-        <button type="button" class="goto_page" value="home">Home</button>
-        <button type="button" class="goto_page" value="wm_schedule">SCHEDULE</button>
+      <div class="footer" id="wesmaps_footer">
+        <div id="wesmaps_go_home">
+          <button type="button" class="goto_page" value="home">Home</button>
+        </div>
+        <div id="wesmaps_go_schedule">
+          <button type="button" class="goto_page" value="wm_schedule">SCHEDULE</button>
+        </div>
       </div>
     </div>
 
     <!-- WESMAPS SCHEDULE PAGE-->
     <div class="page hidden" id="wm_schedule">
-      <div -role="header">
+      <div class="header">
         <h1>Schedule</h1>
       </div>
 
@@ -199,7 +204,7 @@
       <div class="content" id="hours_content">
       </div>
 
-      <div class="footer" id="hours_footer" data-position="fixed">
+      <div class="footer" id="hours_footer">
         <button type="button" class="goto_page" value="home">HOME</button>
       </div>
     </div>
@@ -210,7 +215,8 @@
       </div>
       <div class="content" id="donate_content">
       </div>
-      <div class="footer" id="donate_footer" data-position="fixed">
+      <div class="footer" id="donate_footer">
+        <button type="button" class="goto_page" value="home">HOME</button>
       </div>
     </div>
 
