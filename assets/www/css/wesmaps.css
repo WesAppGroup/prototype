@@ -97,3 +97,13 @@ ul {
   width: 48%;
 }
 
+/* SEARCH BAR */
+#wm_search_bar input{
+  width: 96%;
+  font-family: Raleway;
+  font-size: 14px;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 1%;
+  border-radius: 5px;
+}
