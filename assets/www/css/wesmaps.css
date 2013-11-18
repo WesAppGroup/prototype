@@ -1,13 +1,11 @@
 /* ===========  WESMAPS SCHEDULE =========== */ 
-.wm_day {
-  display: inline;
-}
-.wm_schedule {
+#wesmaps_schedule {
   position: fixed;
-  top: 43px;
-  bottom: 32px;
+  top: 10%;
+  bottom: 10%;
   left: 0px;
   right: 0px;
+  background-color:#c5c7d3;
 }
 .wm_day {
   display: inline-block;
