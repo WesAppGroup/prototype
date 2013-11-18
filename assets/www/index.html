@@ -90,12 +90,12 @@
 
     <!-- ========== WESMAPS PAGE =========== -->
     <div class="page hidden" id="wesmaps">
-      <div class="header" id="wesmaps_header">
+      <div class="wesmaps_header">
         <img src="img/logo.png" />
         <span>WesMaps Mobile</span>
       </div>
 
-      <div class="content" id="wesmaps_content">
+      <div class="wesmaps_content">
         <form id="wm_search_bar">
           <input type="search" placeholder="Search for courses">
         </form>
@@ -103,15 +103,15 @@
         </ul>
       </div>
 
-      <div class="footer" id="wesmaps_footer">
+      <div class="wesmaps_footer">
         <a href="#" class="goto_page" value="home">
-          <div id="wesmaps_go_home">
+          <div class="wesmaps_go_home">
             <i class="fa fa-home fa-3x"></i>
             <span>HOME</span>
           </div>
         </a>
         <a href="#" class="goto_page" value="wm_schedule">
-          <div id="wesmaps_go_schedule">
+          <div class="wesmaps_go_other">
             <i class="fa fa-calendar fa-3x"></i>
             <span>SCHEDULE</span>
           </div>
@@ -121,11 +121,12 @@
 
     <!-- WESMAPS SCHEDULE PAGE-->
     <div class="page hidden" id="wm_schedule">
-      <div class="header">
-        <h1>Schedule</h1>
+      <div class="wesmaps_header">
+        <img src="img/logo.png" />
+        <span>WesMaps Schedule</span>
       </div>
 
-      <div class="content">
+      <div class="wesmaps_content">
         <div class="wm_schedule">
           <div class="wm_day">
             <div class="wm_day_name">
@@ -166,9 +167,19 @@
           </div>
         </div>
       </div>
-      <div class="footer" data-position="fixed">
-        <button type="button" class="goto_page" value="wesmaps">WesMaps</button>
-        <button type="button" class="goto_page" value="home">Home</button>
+      <div class="wesmaps_footer">
+        <a href="#" class="goto_page" value="home">
+          <div class="wesmaps_go_home">
+            <i class="fa fa-home fa-3x"></i>
+            <span>HOME</span>
+          </div>
+        </a>
+        <a href="#" class="goto_page" value="wesmaps">
+          <div class="wesmaps_go_other">
+            <i class="fa fa-search fa-3x"></i>
+            <span>SEARCH</span>
+          </div>
+        </a>
       </div>
     </div>
     <!-- ========== EVENTS PAGE =========== -->
