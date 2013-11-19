@@ -1,0 +1,37 @@
+/* HOURS AND MENUS CSS */
+#hours_content {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 10%;
+  background-color:#c5c7d3;
+  height: 83%;
+  width: 100%;
+}
+ 
+#hours_footer {
+  background-color:#242833;
+  position: absolute;
+  height: 7%;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+#hours_footer_text {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+#hours_footer_text i {
+  text-decoration: none;
+  color: #ffffff;
+  margin-right: 20px;
+}
+#hours_footer_text div {
+  color: #ffffff;
+  font-family: Raleway;
+  font-weight: 300;
+  font-size: 30px;
+  margin-left: 20px;
+  display: inline-block;
+}
