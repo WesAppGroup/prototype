@@ -7,7 +7,7 @@ html, body
 body
 {
 	/*font-family: 'monoton', sans-serif;*/
-	font-family: MyWebFont;
+	/*font-family: MyWebFont;*/
 	/*font-family: 'Erica One', cursive;*/
 	/*font-family: 'Chivo', sans-serif;*/
 	/*font-family: 'Open Sans', sans-serif;*/
@@ -30,8 +30,10 @@ body
 }
 #map-canvas {
   position: absolute;
-  left: 0;
-  right: 0;
+  /*left: 0;*/
+  /*right: 0;*/
+  /*top: 10%;*/
+  /*bottom: 10%;*/
   top: 10%;
   bottom: 10%;
   width: 100%;
@@ -84,6 +86,15 @@ a, a:hover
 	background-color: #242833;
   height: 6%;
   color: #ffffff;
+}
+#e_header{
+	background-color: #242833;
+	position: absolute;
+	height: 10%;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	right:0px;
 }
 
 #e_header img {
