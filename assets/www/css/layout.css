@@ -94,8 +94,29 @@ a, a:hover
   width: 100%;
 	background-color: #242833;
   height: 6%;
-  color: #ffffff;
 }
+#e_home_button {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #ffffff;
+  font-family: Raleway;
+  font-weight: 300;
+  font-size: 16px;
+}
+#e_home_button i {
+  margin-right: 20px;
+  padding-top: 5px;
+}
+#e_home_button div {
+  display: inline-block;
+  margin-left: 20px;
+  font-family: Raleway;
+  font-weight: 300;
+  font-size: 30px;
+  text-decoration: none;
+}
+
 #e_header{
 	background-color: #242833;
 	position: absolute;
