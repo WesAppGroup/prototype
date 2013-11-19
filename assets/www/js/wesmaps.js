@@ -39,6 +39,5 @@ function startWesmaps() {
   $("#wm_courses").append("<li><span class='course_title'>Functional Javascript </span><span class='course_prof'>Michael Fogus</span><p>Mon, Wed, Fri 9:00-10:00am</p></li>");
   $("#wm_courses").append("<li><span class='course_title'>Javascript: The Good Parts </span><span class='course_prof'>Douglas Crawford</span><p>Tue, Thu 9:00-10:20am</p></li>");
   $("#wm_courses").append("<li><span class='course_title'>Javascript: The Definitive Guide </span><span class='course_prof'>David Flanagan</span><p>Mon, Wed 1:10-2:30pm</p></li>");
-    });
 };
 
