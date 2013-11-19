@@ -18,19 +18,30 @@
 
     <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>    
 
-    <!-- Custom Scripts -->
-    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <!-- Events Scripts -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="js/oms.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="http://mmenu.frebsite.nl/examples/tooltips/css/jquery.mmenu.all.css" />
+    <link type="text/css" rel="stylesheet" href="css/layout.css" />
+    <script type="text/javascript" src="http://jawj.github.io/OverlappingMarkerSpiderfier/bin/oms.min.js"></script>
+    <link type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="http://use.edgefonts.net/abril-fatface;lancelot;paytone-one;passion-one;megrim;plaster;geo;codystar;geostar;monoton.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Erica+One|Monofett|Chivo:400,400italic,900|Open+Sans:400,800|Orbitron:400,900,700,500' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://mmenu.frebsite.nl/examples/tooltips/js/jquery.mmenu.min.all.js"></script>
+    
 
+     <!-- Custom Scripts -->
+    <script type="text/javascript" src="js/parse_events.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/wesmaps.js"></script>
     <script type="text/javascript" src="js/events.js"></script>
     <script type="text/javascript" src="js/hours.js"></script>
     <script type="text/javascript" src="js/donate.js"></script>
-     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="js/oms.min.js"></script>
 
 
-    <title>Prototype</title>
+
+  <title>Prototype</title>
   </head>
   <body>
     <div class="page" id="home">
@@ -53,7 +64,7 @@
             </a>
           </li>
           <li>
-            <a href="#" class="goto_page" value="events">
+            <a href="#" id="event_nav" class="goto_page" value="events">
               <div class="fance events"><img src="img/events.png" /></div>
               <div class="button-text">Events</div>
             </a>
@@ -181,31 +192,94 @@
         </a>
       </div>
     </div>
+
     <!-- ========== EVENTS PAGE =========== -->
     <div class="page hidden" id="events">
 
       <div class="content" id="events_content">
-       <!--  <div id="side-menu">
-        <div id="search_div">
-          <form id="search_form">
-            <label id="search_label" for="search_bar"></label>
-            <input type="text" id="search_input" placeholder="See what's happening!">
-          </form>
-        </div>
-        <ul id="event_list">
-        </ul>
-    </div>
+         <div id="e_page">
+          <div>
+            <div id="e_header">
+             <a href="#event_list">
+              <span id="openSidebar"></span>
+             </a>
+             <span style="
+                margin-left: 36px;
+              padding-top: 2px;
+              color: rgba(223, 39, 39, 0.92);
+              text-shadow: .5px .5px rgba(0, 0, 0, 1);
+              font-size: 35px;
+            ">MORE</span>
+             <img src="http://willdurney.com/sandbox/assets/www/img/logo.png">
+            </div>
+            <div id="map_area">
+                <div id="map-canvas">
+                </div>
+            </div>
+            <div id="e_footer">
+              <span id="home-button">
+                <a href="#" class="goto_page" value="home">
+                  HOME
+                </a>
+              </span>
+              
+               <div style="
+                  margin-left: 36px;
+                margin-top: -17px;
+                display: inline;
+                text-align: center;
+                color: rgba(223, 39, 39, 0.92);
+                text-shadow: .5px .5px rgba(0, 0, 0, 1);
+                font-size: 35px;
+              ">EVENTS
+              </div>
+          </div>
+          
 
-    <div class="page" id="about-the-band" data-title="Page Title" data-theme="b" class="pages">
-        <div class="header" data-theme="b"> <a href="#" class="showMenu" class="button" data-icon="grid" data-iconpos="notext">Menu</a>
-            <h1>Event Map</h1>
-        </div> -->
-        <div class="content" id="map_area">
-            <div id="map-canvas">
+          <div id="tooltips">
+            <div id="event_list" class="tip">
+              <div>
+                <div>
+                  <a href="#page">x</a>
+                  <h4>Events List</h4>
+                  <div id="input-div">
+                    <label>Search By</label>
+                    <input type="text" id="search_input"></input>
+                  </div>
+                  <div id="filter_options">
+                    <input type="radio" name="group1" id="time" checked>Time
+                    <input type="radio" name="group1" id="category" >Category
+                    <input type="radio" name="group1" id="location">Location
+                    <input type="checkbox" name="old" id="old">Old Events
+                  </div>
+                  <ul id="events">
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div id="popup-1" class="tip">
+              <div>
+                <a href="#page">x</a>
+                <h4 id="name"></h4>
+                <div id="morecontent"></div>
+              </div>
+            <div id="tooltip-2" class="tip">
+              <div>
+                <div>
+                  <a href="#page">x</a>
+                  <h4>Tooltips on mobile devices</h4>
+                  <p><em>The tooltip is a common graphical user interface element used in conjunction with a cursor. The user hovers the cursor over an item, without clicking it, and a tooltip may appear.<br />
+                    <strong>Tooltips do not appear on mobile operating systems, since there is no cursor.</strong></em></p>
+                  <p>Wikipedia<br />
+                    http://en.wikipedia.org/wiki/Tooltip</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
-       
     </div>
+  </div>
     
 
       </div>
