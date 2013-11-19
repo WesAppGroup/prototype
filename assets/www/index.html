@@ -11,6 +11,7 @@
     <!--link rel="stylesheet" type="text/css" href="css/home.css" /-->
     <link rel="stylesheet" type="text/css" href="css/events.css" />
     <link rel="stylesheet" type="text/css" href="css/wesmaps.css" />
+    <link rel="stylesheet" type="text/css" href="css/donate.css" />
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
@@ -226,12 +227,20 @@
 
     <!-- ========== DONATE PAGE =========== -->
     <div class="page hidden" id="donate">
-      <div class="header" id="donate_header">
+      <div class="wesmaps_header">
+        <img src="img/logo.png" />
+        <span>DONATE</span>
       </div>
-      <div class="content" id="donate_content">
+      <div id="donate_content">
+        <iframe src="http://thisiswhy.wesleyan.edu/waystogive"></iframe>
       </div>
-      <div class="footer" id="donate_footer">
-        <button type="button" class="goto_page" value="home">HOME</button>
+      <div id="donate_footer">
+        <a href="#" class="goto_page" value="home">
+          <div>
+            <i class="fa fa-home fa-3x"></i>
+            <span>HOME</span>
+          </div>
+        </a>
       </div>
     </div>
 
