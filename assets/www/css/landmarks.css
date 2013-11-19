@@ -1,0 +1,39 @@
+/* LANDMARKS CSS */
+#landmarks_content {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 10%;
+  bottom: 7%;
+  height: 83%;
+  background-color: #c5c7d3;
+}
+
+#landmarks_footer {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 7%;
+  background-color: #242833;
+}
+#landmarks_footer_text {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+#landmarks_footer_text i {
+  color: #ffffff;
+  margin-right: 20px;
+  margin-top: 5px;
+  text-decoration: none;
+}
+#landmarks_footer_text div {
+  display: inline-block;
+  margin-left: 20px;
+  font-family: Raleway;
+  font-weight: 300;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 30px;
+}

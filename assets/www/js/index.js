@@ -36,6 +36,10 @@ $(document).ready(function() {
       $(".page").addClass("hidden");
       $("#donate").removeClass("hidden");
     }
+    else if ($(this).attr('value') === "landmarks") {
+      $(".page").addClass("hidden");
+      $("#landmarks").removeClass("hidden");
+    }
   });
 
 });
