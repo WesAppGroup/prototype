@@ -1,10 +1,6 @@
 /* Index page javascript
  */
 function startApp() {
-  console.log('app started');
-}
-
-$(document).ready(function() {
 
   /* Links buttons */
   $(".goto_page").on("click", function(e) {
@@ -42,5 +38,5 @@ $(document).ready(function() {
     }
   });
 
-});
+}
 
