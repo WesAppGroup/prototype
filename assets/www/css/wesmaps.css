@@ -2,7 +2,7 @@
 #wesmaps_schedule {
   position: fixed;
   top: 10%;
-  bottom: 10%;
+  bottom: 7%;
   left: 0px;
   right: 0px;
   background-color:#c5c7d3;
@@ -61,7 +61,7 @@ ul {
   left: 0px;
   right: 0px;
   top: 10%;
-  bottom: 10%;
+  bottom: 7%;
   background-color: #c5c7d3;
 }
 
@@ -71,7 +71,7 @@ ul {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  height: 10%;
+  height: 7%;
   background-color: #242833;
 }
 .wesmaps_go_home {
