@@ -3,9 +3,12 @@
 /* AJAX request */
 var httpRequest;
 var coursesJSON;
+var coursesArray = [];
+
 var SERVER_URL = "http://stumobile0.wesleyan.edu/courses/all"
 
-function startWesmaps() {};
+function startWesmaps() {}
+
 $(document).ready(function() {
   $("#wm_search_button").on("click", function(e) {
     console.log("search submitted");
@@ -26,21 +29,45 @@ $(document).ready(function() {
   function alertContents() {
     if (httpRequest.readyState === 4) {
       if (httpRequest.status === 200) {
-        coursesJSON = httpRequest.responseText;
-        console.log(coursesJSON); 
+        coursesJSON = $.parseJSON(httpRequest.responseText);
+        var counter = 0;
+        for (var c in coursesJSON) {
+          console.log(coursesJSON[c].value);
+          createCourse(coursesJSON[c].value);
+           /* for testing only write first 10 */
+          if (counter < 10) {
+            writeCourse(coursesJSON[c].value); 
+          }
+          counter++;
+        }
       }
       else {
-        alert("Failed");
+        alert("Failed")
       }
     }
   }
-});
-/*
-    $("wm_courses").append("<li><h3>" + course.name + "</h3><p>" + course.prof + "</p></li>");
-  }
-  $("#wm_courses").append("<li><span class='course_title'>Functional Javascript </span><span class='course_prof'>Michael Fogus</span><p>Mon, Wed, Fri 9:00-10:00am</p></li>");
-  $("#wm_courses").append("<li><span class='course_title'>Javascript: The Good Parts </span><span class='course_prof'>Douglas Crawford</span><p>Tue, Thu 9:00-10:20am</p></li>");
-  $("#wm_courses").append("<li><span class='course_title'>Javascript: The Definitive Guide </span><span class='course_prof'>David Flanagan</span><p>Mon, Wed 1:10-2:30pm</p></li>");
-};
 
-  */
+  function writeCourse(c) {
+    $("#wm_courses").append("<li><p>" + c.courseTitle + "</p></li>");
+  }
+
+  function createCourse(course) {
+    coursesArray.push({ id   : course.courseCourseid,
+                   dep  : course.courseDepartment,
+                   desc : course.courseDescription,
+                   genEd: course.courseGenEdArea,
+                   cnum : course.courseNumber,
+                   sem  : course.courseSemester,
+                   title: course.courseTitle
+                  });
+
+    console.log(course.courseCourseid);
+    console.log(course.courseDepartment);
+    console.log(course.courseDescription);
+    console.log(course.courseGenEdArea);
+    console.log(course.courseNumber);
+    console.log(course.courseSemester);
+    console.log(course.courseTitle);
+    
+  }
+});
