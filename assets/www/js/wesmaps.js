@@ -3,10 +3,12 @@
 /* AJAX request */
 var httpRequest;
 var coursesJSON;
+var SERVER_URL = "http://stumobile0.wesleyan.edu/courses/all"
 
-function startWesmaps() {
-  $("#wm_search_bar").submit(function() {
-    console.log("form submitted");
+function startWesmaps() {};
+$(document).ready(function() {
+  $("#wm_search_button").on("click", function(e) {
+    console.log("search submitted");
 
     httpRequest = new XMLHttpRequest();
 
@@ -16,7 +18,7 @@ function startWesmaps() {
     }
 
     httpRequest.onreadystatechange = alertContents;
-    httpRequest.open("GET", SERVER_URL)
+    httpRequest.open("GET", SERVER_URL, true)
     httpRequest.send();
 
   });
@@ -32,8 +34,8 @@ function startWesmaps() {
       }
     }
   }
-
-  function writeCourse(course) {
+});
+/*
     $("wm_courses").append("<li><h3>" + course.name + "</h3><p>" + course.prof + "</p></li>");
   }
   $("#wm_courses").append("<li><span class='course_title'>Functional Javascript </span><span class='course_prof'>Michael Fogus</span><p>Mon, Wed, Fri 9:00-10:00am</p></li>");
@@ -41,3 +43,4 @@ function startWesmaps() {
   $("#wm_courses").append("<li><span class='course_title'>Javascript: The Definitive Guide </span><span class='course_prof'>David Flanagan</span><p>Mon, Wed 1:10-2:30pm</p></li>");
 };
 
+  */

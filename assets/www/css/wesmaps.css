@@ -115,12 +115,18 @@ ul {
   color: #ffffff;
 }
 /* SEARCH BAR */
+#wm_search_bar {
+  display: inline-block;
+  width: 90%;
+}
 #wm_search_bar input{
-  width: 96%;
+  width: 100%;
   font-family: Raleway;
   font-size: 14px;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-top: 1%;
   border-radius: 5px;
+}
+#wm_search_button {
+  display: inline-block;
+  width: 9%;
+  text-align: center;
 }
