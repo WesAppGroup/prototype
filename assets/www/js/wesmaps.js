@@ -1,45 +1,39 @@
 /* Javascript for WesMaps 
  */
 /* AJAX request */
-var httpRequest;
+var wmHttpRequest;
 var coursesJSON;
 var wmScroll;
+var coursesCounter = 0;
 
 var SERVER_URL = "http://stumobile0.wesleyan.edu/courses/all"
 
-function startWesmaps() {}
+function startWesmaps() {
 
-$(document).ready(function() {
-  $("#wm_search_button").on("click", function(e) {
-    console.log("search submitted");
+  var wmScroll = new iScroll('wm_wrapper', { hScrollBar : false,
+                                             vScrollBar : false,
+                                             hScroll    : false,
+                                             bounce     : true
+                                            });
+  /* AJAX request for all the course information */
+  console.log("search submitted");
 
-    httpRequest = new XMLHttpRequest();
+  wmHttpRequest = new XMLHttpRequest();
 
-    if (!httpRequest) {
-      alert("Failed");
-      return false;
-    }
+  if (!wmHttpRequest) {
+    alert("Failed");
+    return false;
+  }
 
-    httpRequest.onreadystatechange = alertContents;
-    httpRequest.open("GET", SERVER_URL, true)
-    httpRequest.send();
-
-  });
+  wmHttpRequest.onreadystatechange = alertContents;
+  wmHttpRequest.open("GET", SERVER_URL, true)
+  wmHttpRequest.send();
 
   function alertContents() {
-    if (httpRequest.readyState === 4) {
-      if (httpRequest.status === 200) {
-        coursesJSON = $.parseJSON(httpRequest.responseText);
-        var counter = 0;
-        for (var c in coursesJSON) {
-          console.log(coursesJSON[c].value);
-          createCourse(coursesJSON[c].value);
-           /* for testing only write first 10 */
-          if (counter < 10) {
-            writeCourse(coursesJSON[c].value); 
-          }
-          counter++;
-        }
+    if (wmHttpRequest.readyState === 4) {
+      if (wmHttpRequest.status === 200) {
+        coursesJSON = $.parseJSON(wmHttpRequest.responseText);
+        console.log(coursesJSON);
       }
       else {
         alert("Failed")
@@ -47,7 +41,45 @@ $(document).ready(function() {
     }
   }
 
+  $(document).on("keyup","#wm_search_bar > input", function() {
+    console.log(this.value);
+    if (this.value.length > 2) {
+      var search = new RegExp(this.value, 'i');
+      console.log(coursesJSON);
+      for (var c in coursesJSON) {
+
+        if (coursesCounter < 50) {  //limit to 50 results
+          console.log(c);
+          console.log(coursesJSON[c].value);
+          console.log(coursesJSON[c].value.courseTitle);
+          if (search.test(coursesJSON[c].value.courseTitle) ||
+              search.test(coursesJSON[c].value.courseNumber) ||
+              search.test(coursesJSON[c].value.courseDepartment) ||
+              search.test(coursesJSON[c].value.courseProfessor)) {
+
+            writeCourse(coursesJSON[c]);
+          }
+        }
+        else {
+          break
+        }
+      }
+      
+      for 
+    }
+  });
+
+  function removeCourse(c) {
+    coursesCounter--;
+
+
+    setTimeout(function() {
+      wmScroll.refresh();
+    }, 0);
+  }
+
   function writeCourse(c) {
+    coursesCounter++;
     $("#wm_courses").append("<li><div class='wm_dep_num'>" +
                               "<div class='wm_dep'>" +
                               c.value.courseDepartment +
@@ -73,4 +105,4 @@ $(document).ready(function() {
       wmScroll.refresh();
     }, 0);
   }
-});
+}

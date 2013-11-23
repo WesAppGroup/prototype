@@ -1,22 +1,12 @@
 (function() {
   
-  var deviceReady = false;
-
-  var initApp = function() {
-    if (deviceReady) {
-      startApp();
-      startEvents();
-      startWesmaps();
-      startHours();
-      startDonate();
-    }
-  };
-
   var onDeviceReady = function() {
-    deviceReady = true;
 		console.log('device ready');
-    //alert('dev ready');
-    initApp();
+    startApp();
+    startEvents();
+    startWesmaps();
+    startHours();
+    startDonate();
 		
 		/*makes bar at bottom blink to indicate device is ready
 		var parentElement = document.getElementById('deviceready');
