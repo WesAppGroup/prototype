@@ -3,7 +3,7 @@
 /* AJAX request */
 var httpRequest;
 var coursesJSON;
-var coursesArray = [];
+var wmScroll;
 
 var SERVER_URL = "http://stumobile0.wesleyan.edu/courses/all"
 
@@ -48,26 +48,29 @@ $(document).ready(function() {
   }
 
   function writeCourse(c) {
-    $("#wm_courses").append("<li><p>" + c.courseTitle + "</p></li>");
-  }
-
-  function createCourse(course) {
-    coursesArray.push({ id   : course.courseCourseid,
-                   dep  : course.courseDepartment,
-                   desc : course.courseDescription,
-                   genEd: course.courseGenEdArea,
-                   cnum : course.courseNumber,
-                   sem  : course.courseSemester,
-                   title: course.courseTitle
-                  });
-
-    console.log(course.courseCourseid);
-    console.log(course.courseDepartment);
-    console.log(course.courseDescription);
-    console.log(course.courseGenEdArea);
-    console.log(course.courseNumber);
-    console.log(course.courseSemester);
-    console.log(course.courseTitle);
-    
+    $("#wm_courses").append("<li><div class='wm_dep_num'>" +
+                              "<div class='wm_dep'>" +
+                              c.value.courseDepartment +
+                              "</div>" + 
+                              "<div class='wm_num'>" +
+                              c.value.courseNumber +
+                              "</div>" +
+                              "</div>" +
+                              "<div class='wm_course_info'>" +
+                              "<div class='wm_course_title'" +
+                              c.value.courseTitle + 
+                              "</div>" +
+                              "<div class='wm_course_prof'>" +
+                              c.value.courseProfessor +
+                              "</div>" +
+                              "<div class='wm_course_time'>" +
+                              c.value.courseTime +
+                              "</div>" +
+                              "</div>" + 
+                              "</li>"
+                            );
+    setTimeout(function() {
+      wmScroll.refresh();
+    }, 0);
   }
 });
