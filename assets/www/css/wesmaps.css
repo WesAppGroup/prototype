@@ -82,15 +82,17 @@
 }
 .wm_course_title {
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
+  height: 35%;
+  overflow: hidden;
 }
 .wm_course_prof {
-  display: inline-block;
-  font-size: 18px;
+  display: block;
+  font-size: 13px;
 }
 .wm_course_time {
-  display: inline-block;
-  font-size: 18px;
+  display: block;
+  font-size: 13px;
 }
 
 ul {
