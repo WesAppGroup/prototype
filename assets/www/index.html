@@ -9,7 +9,7 @@
     <!-- Custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <!--link rel="stylesheet" type="text/css" href="css/home.css" /-->
-    <link rel="stylesheet" type="text/css" href="css/events.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="css/events.css" /> -->
     <link rel="stylesheet" type="text/css" href="css/wesmaps.css" />
     <link rel="stylesheet" type="text/css" href="css/donate.css" />
     <link rel="stylesheet" type="text/css" href="css/hours.css" />
@@ -26,13 +26,13 @@
     <!-- Events Scripts -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript" src="js/oms.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="http://mmenu.frebsite.nl/examples/tooltips/css/jquery.mmenu.all.css" />
+    <!-- <link type="text/css" rel="stylesheet" href="http://mmenu.frebsite.nl/examples/tooltips/css/jquery.mmenu.all.css" /> -->
     <link type="text/css" rel="stylesheet" href="css/events.css" />
     <script type="text/javascript" src="http://jawj.github.io/OverlappingMarkerSpiderfier/bin/oms.min.js"></script>
     <link type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script src="http://use.edgefonts.net/abril-fatface;lancelot;paytone-one;passion-one;megrim;plaster;geo;codystar;geostar;monoton.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Erica+One|Monofett|Chivo:400,400italic,900|Open+Sans:400,800|Orbitron:400,900,700,500' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="http://mmenu.frebsite.nl/examples/tooltips/js/jquery.mmenu.min.all.js"></script>
+    <!-- // <script type="text/javascript" src="http://mmenu.frebsite.nl/examples/tooltips/js/jquery.mmenu.min.all.js"></script> -->
     
 
      <!-- Custom Scripts -->
@@ -229,81 +229,104 @@
     <div class="page hidden" id="events">
 
       <div class="content" id="events_content">
-         <div id="e_page">
-            <div id="e_header">
-             <a href="#event_list">
-              <span id="openSidebar"></span>
-             </a>
-             <span style="
-                margin-left: 36px;
-              padding-top: 2px;
-              color: rgba(223, 39, 39, 0.92);
-              text-shadow: .5px .5px rgba(0, 0, 0, 1);
-              font-size: 35px;
-            ">MORE</span>
-             <img src="http://willdurney.com/sandbox/assets/www/img/logo.png">
-             <div id="e_title">Events</div>
+        <div id="e_header">
+         <a href="#" class="goto_page" value="events_list">
+          <span id="openSidebar"></span>
+         </a>
+         <span style="
+            margin-left: 36px;
+          padding-top: 2px;
+          color: rgba(223, 39, 39, 0.92);
+          text-shadow: .5px .5px rgba(0, 0, 0, 1);
+          font-size: 35px;
+        ">MORE</span>
+         <img src="http://willdurney.com/sandbox/assets/www/img/logo.png">
+         <div id="e_title">Events</div>
+        </div>
+        <div id="map_area">
+            <div id="map-canvas">
             </div>
-            <div id="map_area">
-                <div id="map-canvas">
-                </div>
+        </div>
+        <div id="e_footer">
+          <a href="#" class="goto_page" value="home">
+            <div id="e_home_button">
+              <i class="fa fa-home fa-2x"></i>
+              <div>HOME</div>
             </div>
-            <div id="e_footer">
-              <a href="#" class="goto_page" value="home">
-                <div id="e_home_button">
-                  <i class="fa fa-home fa-2x"></i>
-                  <div>HOME</div>
-                </div>
-              </a>
-          </div>
-          
+          </a>
+      </div>
+      
 
-          <div id="tooltips">
-            <div id="event_list" class="tip">
-              <div>
-                <div>
-                  <a href="#page">x</a>
-                  <h4>Events List</h4>
-                  <div id="input-div">
-                    <label>Search By</label>
-                    <input type="text" id="search_input"></input>
-                  </div>
-                  <div id="filter_options">
-                    <input type="radio" name="group1" id="time" checked>Time
-                    <input type="radio" name="group1" id="category" >Category
-                    <input type="radio" name="group1" id="location">Location
-                    <input type="checkbox" name="old" id="old">Old Events
-                  </div>
-                  <ul id="events">
-                    
-                  </ul>
-                </div>
+    <!--   <div id="tooltips">
+        <div id="event_list" class="tip">
+          <div>
+            <div>
+              <a href="#" class="goto_page" value="events">
+              <h4>Events List</h4>
+              <div id="input-div">
+                <label>Search By</label>
+                <input type="text" id="search_input"></input>
               </div>
-            </div>
-            <div id="popup-1" class="tip">
-              <div>
-                <a href="#page">x</a>
-                <h4 id="name"></h4>
-                <div id="morecontent"></div>
+              <div id="filter_options">
+                <input type="radio" name="group1" id="time" checked>Time
+                <input type="radio" name="group1" id="category" >Category
+                <input type="radio" name="group1" id="location">Location
+                <input type="checkbox" name="old" id="old">Old Events
               </div>
-            <div id="tooltip-2" class="tip">
-              <div>
-                <div>
-                  <a href="#page">x</a>
-                  <h4>Tooltips on mobile devices</h4>
-                  <p><em>The tooltip is a common graphical user interface element used in conjunction with a cursor. The user hovers the cursor over an item, without clicking it, and a tooltip may appear.<br />
-                    <strong>Tooltips do not appear on mobile operating systems, since there is no cursor.</strong></em></p>
-                  <p>Wikipedia<br />
-                    http://en.wikipedia.org/wiki/Tooltip</p>
-                </div>
-              </div>
+              <ul id="events">
+              </ul>
             </div>
           </div>
         </div>
+        <div id="popup-1" class="tip">
+          <div>
+            <a href="#page">x</a>
+            <h4 id="name"></h4>
+            <div id="morecontent"></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </div> -->
     
 
+      </div>
+    </div>
+
+    <!-- ========== EVENTS_LIST PAGE =========== -->
+    <div class="page hidden" id="events_list">
+
+      <div class="content" id="events_list_content">
+         <div id="event_list" class="tip">
+          <div>
+            <div>
+              <a href="#" class="goto_page" value="events">x</a>
+              <h4>Events List</h4>
+              <div id="input-div">
+                <label>Search By</label>
+                <input type="text" id="e_search_input"></input>
+              </div>
+              <div id="filter_options">
+                <input type="radio" name="group1" id="e_time" >Time
+                <input type="radio" name="group1" id="e_category" >Category
+                <input type="radio" name="group1" id="e_location" checked>Location
+                <input type="checkbox" name="old" id="e_old">Old Events
+              </div>
+              <ul id="events_ul">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <!-- ========== EVENTS_READ_MORE PAGE =========== -->
+    <div class="page hidden" id="events_read_more">
+
+      <div class="content" id="events_read_more">
+        <a href="#" class="goto_page" value="events">x</a>
+        <h4 id="name"></h4>
+            <div id="morecontent"></div>
       </div>
     </div>
 

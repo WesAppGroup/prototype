@@ -283,15 +283,15 @@ function startEvents() {
         }
         infowindow.open(map, marker);
         currentIW = infowindow;
-        setTimeout(function() {
-            button_link = document.getElementById("bodycontent").getElementsByTagName('a')[0];
-            button_link.onclick = function() {
-              $('#popup-1').trigger("open")
-            };
-          },
-          100
-        );
-        var more = document.getElementById("popup-1");
+        // setTimeout(function() {
+        //     button_link = document.getElementById("bodycontent").getElementsByTagName('a')[0];
+        //     button_link.onclick = function() {
+        //       $('#popup-1').trigger("open")
+        //     };
+        //   },
+        //   100
+        // );
+        var more = document.getElementById("events_read_more");
         more.getElementsByTagName("h4")[0].innerHTML = ev.eventName;
         content = more.getElementsByTagName("div")[0].getElementsByTagName("div")[0]
         content.innerHTML = ""
@@ -335,7 +335,7 @@ function startEvents() {
           events[i].eventName + '</a>' +
           '<div id="bodycontent">' +
           '<p id="info_p">' + desc_short + '</p>' +
-          '<a id="readmore" href="#">read more</a>' +
+          '<a href="#" class="goto_page" value="events_read_more">Read More</a>' +
           '</div>' +
           '</div>';
 
@@ -402,7 +402,7 @@ function startEvents() {
       console.log(cats_dict)
 
       // Creating the divs for each
-      var event_list = document.getElementById("events")
+      var event_list = document.getElementById("events_ul")
       event_list.innerHTML = ""
       for (var i = 0; i < keys.length; i++) {
 
@@ -437,7 +437,7 @@ function startEvents() {
       var currenttime = new Date();
 
       for (var i = 0; i < events.length; i++) {
-        // console.log(events[i].eventLocation)
+        console.log(events[i].eventLocation)
         // console.log(locations)
         // console.log(events[i].eventLocation in locations)
         if (!(events[i].eventLocation in locations)) {
@@ -465,7 +465,7 @@ function startEvents() {
 
       // Creating the divs for each
       keys = Object.keys(locations)
-      var event_list = document.getElementById("events")
+      var event_list = document.getElementById("events_ul")
       event_list.innerHTML = ""
       for (var i = 0; i < keys.length; i++) {
 
@@ -495,7 +495,7 @@ function startEvents() {
 
     function sortTime(events, checkbox) {
 
-      var event_list = document.getElementById("events")
+      var event_list = document.getElementById("events_ul")
       event_list.innerHTML = ""
       var currenttime = new Date();
       for (var i = 0; i < events.length; i++) {
@@ -634,24 +634,24 @@ function startEvents() {
 
     // $('#category').change(function() {
     //   if (this.checked) {
-    //     //checkbox=document.getElementById('old').checked;
+    //     //checkbox=document.getElementById('e_old').checked;
     //     sortCategory(cats_dict, events, checkbox);
     //   }
     // });
 
-    $('#location').change(function() {
+    $('#e_location').change(function() {
       if (this.checked) {
-        //checkbox=document.getElementById('old').checked;
+        //checkbox=document.getElementById('e_old').checked;
         sortLocation(events, checkbox);
       }
     });
-    $('#old').change(function() {
+    $('#e_old').change(function() {
       if (this.checked) {
         checkbox = true;
         // console.log("Miu")
-        if (document.getElementById('category').checked) {
+        if (document.getElementById('e_category').checked) {
           sortCategory(cats_dict, events, checkbox);
-        } else if (document.getElementById('time').checked) {
+        } else if (document.getElementById('e_time').checked) {
           sortTime(events, checkbox);
         } else {
           sortLocation(events, checkbox);
@@ -659,9 +659,9 @@ function startEvents() {
 
       } else {
         checkbox = false;
-        if (document.getElementById('category').checked) {
+        if (document.getElementById('e_category').checked) {
           sortCategory(cats_dict, events, checkbox);
-        } else if (document.getElementById('time').checked) {
+        } else if (document.getElementById('e_time').checked) {
           sortTime(events, checkbox);
         } else {
           sortLocation(events, checkbox);
@@ -672,7 +672,7 @@ function startEvents() {
 
     $('#time').change(function() {
       if (this.checked) {
-        checkbox = document.getElementById('old').checked;
+        checkbox = document.getElementById('e_old').checked;
         sortTime(events, checkbox);
         // console.log("Miu")
       }
@@ -690,9 +690,9 @@ function startEvents() {
      */
 
     var removed = [];
-    $("#search_input").keyup(function(event) {
+    $("#e_search_input").keyup(function(event) {
       var search_re = new RegExp(this.value, "i");
-      $("#events").children("div").each(function(index) {
+      $("events_ul").children("div").each(function(index) {
         var as = this.getElementsByTagName('a')
         for (i = 0; i < this.getElementsByTagName('li').length; i++) {
           // console.log(as[i].id)

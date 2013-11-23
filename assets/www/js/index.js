@@ -3,7 +3,7 @@
 function startApp() {
 
   /* Links buttons */
-  $(".goto_page").on("click", function(e) {
+  $(document).on("click", ".goto_page",function(e) {
     e.preventDefault();
     console.log("page change");
     console.log($(this).attr('value'));
@@ -23,6 +23,14 @@ function startApp() {
     else if ($(this).attr('value') === "events") {
       $(".page").addClass("hidden");
       $("#events").removeClass("hidden");
+    }
+    else if ($(this).attr('value') === "events_list") {
+      $(".page").addClass("hidden");
+      $("#events_list").removeClass("hidden");
+    }
+    else if ($(this).attr('value') === "events_read_more") {
+      $(".page").addClass("hidden");
+      $("#events_read_more").removeClass("hidden");
     }
     else if ($(this).attr('value') === "hours") { 
       $(".page").addClass("hidden");
