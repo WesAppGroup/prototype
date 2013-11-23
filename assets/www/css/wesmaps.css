@@ -24,16 +24,6 @@
   width: 18.6%;
   margin-left: 2px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-#wm_courses li {
-  border-bottom: 1px solid #000000;
-  margin:5px;
-  padding:5px;
-}
 
 /* =========   WESMAPS SEARCH ========= */
 .wesmaps_header {
@@ -64,6 +54,63 @@ ul {
   bottom: 7%;
   background-color: #c5c7d3;
 }
+
+/* COURSE LIST */
+.wm_dep_num {
+  display: inline-block;
+  background-color: #458179;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 25%;
+  height: 100%;
+  float: left;
+  margin-left: 3%;
+}
+.wm_dep {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.wm_course_info {
+  display: inline-block;
+  background-color: #242833;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 70%;
+  height: 100%;
+  float: left;
+  margin-left: -5px;
+}
+.wm_course_title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.wm_course_prof {
+  display: inline-block;
+  font-size: 18px;
+}
+.wm_course_time {
+  display: inline-block;
+  font-size: 18px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#wm_courses li {
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-family: Raleway;
+  font-weight: 300;
+  color: #ffffff;
+  font-size: 20px;
+  height: 70px;
+  text-align: center;
+  width: 100%;
+}
+
 
 /* FOOTER */
 .wesmaps_footer {
@@ -117,16 +164,15 @@ ul {
 /* SEARCH BAR */
 #wm_search_bar {
   display: inline-block;
-  width: 90%;
+  width: 100%;
+  height: 70px;
 }
 #wm_search_bar input{
-  width: 100%;
+  width: 94%;
+  height: 70%;
+  margin-left: 3%;
+  margin-top: 2%;
   font-family: Raleway;
   font-size: 14px;
   border-radius: 5px;
-}
-#wm_search_button {
-  display: inline-block;
-  width: 9%;
-  text-align: center;
 }
