@@ -19,11 +19,14 @@ function startEvents() {
   // });
 
   function resizeMap() {
-    $('#map_area').css("height", $(window).height() - 80);
+    console.log("resizing")
+    $('#map-canvas').css("height", $(window).height() - 80);
   }
+
   $(document).ready(function() {
     resizeMap();
   });
+
   $(window).resize(function() {
     resizeMap();
   });
@@ -259,14 +262,17 @@ function startEvents() {
       'Sports': 'iconV1BLUE.png',
       'Admissions': 'iconV1GREEN.png',
       'Theater': 'iconV1PURPLE.png',
+      'Student Groups': 'iconV1BLUE.png',
       'Other': 'iconV1RED.png'
     };
 
     function markerize(pos, str, ev) {
       var marker = new google.maps.Marker({
         position: pos,
-        map: map
-        // icon: {url: "resources/"+icons[ev.eventCategory]},
+        map: map,
+        icon: {
+          url: "resources/" + icons[ev.eventCategory]
+        }
       });
       marker.id = ev.eventName;
 
@@ -356,28 +362,32 @@ function startEvents() {
       'Sports': 'rgba(203, 251, 255, 0.78)',
       'Admissions': 'rgba(108, 228, 108, 0.85)',
       'Theater': 'rgba(214, 119, 214, 0.86)',
+      'Student Groups': 'rgba(10, 100, 200, 0.85)',
       'Other': 'red'
     };
 
 
-    var cats = ['Auditions', 'Sports', 'Admissions', 'Theater', 'Other'];
+    var cats = ['Auditions', 'Sports', 'Admissions', 'Theater', 'Student Groups', 'Other'];
     var cats_dict = {
       'Auditions': [],
       'Sports': [],
       'Admissions': [],
       'Theater': [],
+      'Student Groups': [],
       'Other': []
     };
+
     //Add event label divs (like location, etc..). Default will be time. Location will be sorted 
     //either alphabetically or by number of members in the group. Category the same.
     // return
-    function sortCategory(cats, events, checkbox) {
+    function sortCategory(events, checkbox) {
       console.log("SORTING CAT")
-      cats_dict = {
+      var cats_dict = {
         'Auditions': [],
         'Sports': [],
         'Admissions': [],
         'Theater': [],
+        'Student Groups': [],
         'Other': []
       };
       keys = Object.keys(cats_dict);
@@ -418,6 +428,8 @@ function startEvents() {
           newli.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
 
           var newa = document.createElement('a')
+          console.log(ev.eventName)
+          console.log("A")
           newa.setAttribute('id', ev.eventName)
           newa.setAttribute('class', "event_name")
           newa.setAttribute('href', '#')
@@ -429,6 +441,7 @@ function startEvents() {
       }
       add_row_click();
     }
+
     //CAN probably merge sortCategory with sortLocation later...
     function sortLocation(events, checkbox) {
       var locations = {
@@ -481,7 +494,7 @@ function startEvents() {
           newli.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
 
           var newa = document.createElement('a')
-          newa.setAttribute('id', ev.name)
+          newa.setAttribute('id', ev.eventName)
           newa.setAttribute('class', "event_name")
           newa.setAttribute('href', '#')
           newa.innerHTML = ev.eventName + "<br>" + ev.eventTime
@@ -493,60 +506,94 @@ function startEvents() {
       add_row_click();
     }
 
-    function sortTime(events, checkbox) {
 
-      var event_list = document.getElementById("events_ul")
-      event_list.innerHTML = ""
+    function sortTime(events, checkbox) {
+      var event_ul = document.getElementById("events_ul")
+      event_ul.innerHTML = ""
       var currenttime = new Date();
-      for (var i = 0; i < events.length; i++) {
+      console.log(checkbox)
+
+      //sort by time, past to future, what if event has no time?
+      var event_list = events.sort(function compareTime(a, b) {
+        if (a.eventTime < b.eventTime) {
+          return -1
+        }
+        if (a.eventTime > b.eventTime) {
+          return 1
+        }
+        return 0
+      })
+
+
+      if (!checkbox) {
+        console.log("!checkbox == true")
+        var event_list = events.filter(function(obj) {
+          return (obj.eventTime > currenttime.getTime())
+        })
+        console.log(event_list.length)
+        console.log(event_list)
+        
+      }
+      console.log(event_list.length)
+      console.log(event_list)
+      // console.log(event_list.length)
+      // console.log(event_list)
+
+      
+      // console.log(event_list.length)
+
+
+      //create divs for each unique day
+      var divs = {}
+      for (i = 0; i < event_list.length; i++) {
+        // console.log(divs)
+        var i_time = event_list[i].eventTime.toString().split(" ", 3).join(" ")
+        // console.log(i_time)
+        if (!(i_time in divs)) {
+          console.log("new date div")
+          var div_i = document.createElement('div');
+          div_i.setAttribute('id', 'time_' + i_time)
+          div_i.setAttribute('class', 'time_label')
+          div_i.innerHTML = i_time
+          divs[i_time] = div_i
+        }
+        // console.log(divs)
+
+        //add events to page, 
         // var content_str = '<li>'+
         //   '<a href="' + events[i].eventLink + '" id="firstHeading" class="event_name">' +
         //    + events[i].eventName + '</a>'+'</li>';
-
-        var passed = false;
-        if (events[i].eventTime < currenttime.getTime()) {
+        // console.log(event_list[i])
+        if (event_list[i].eventTime < currenttime.getTime()) {
           passed = true;
         }
 
-        if (checkbox) {
-          var newli = document.createElement('li')
-          newli.setAttribute('style', 'background:' + colors[events[i].eventCategory]) //set color style of list here if desired
-          if (passed) {
-            newli.setAttribute('style', 'background: rgba(0, 0, 0, 0.86)')
-          }
-          var newa = document.createElement('a')
-          newa.setAttribute('id', events[i].eventName)
-          newa.setAttribute('class', "event_name")
-          newa.setAttribute('href', '#')
-          newa.innerHTML = events[i].eventName + "miu" + "<br>" + events[i].eventTime + "<br>" + events[i].date
-          newli.appendChild(newa)
-          event_list.appendChild(newli);
+        var newli = document.createElement('li')
+        if (passed) {
+          newli.setAttribute('style', 'background: rgba(162, 162, 162, 0.86)')
         } else {
-          if (!passed) {
-            var newli = document.createElement('li')
-            newli.setAttribute('style', 'background:' + colors[events[i].eventCategory]) //set color style of list here if desired
-
-            var newa = document.createElement('a')
-            newa.setAttribute('id', events[i].eventName)
-            newa.setAttribute('class', "event_name")
-            newa.setAttribute('href', '#')
-            newa.innerHTML = events[i].eventName + "miu" + "<br>" + events[i].eventTime + "<br>" + events[i].date
-            newli.appendChild(newa)
-            event_list.appendChild(newli)
-          }
+          newli.setAttribute('style', 'background:' + colors[events[i].eventCategory]) //set color style 
         }
+        var newa = document.createElement('a')
+        newa.setAttribute('id', events[i].eventName)
+        newa.setAttribute('class', "e_event_name")
+        newa.setAttribute('href', '#')
+        newa.innerHTML = events[i].eventName + "<br>" + events[i].eventTime
+        newli.appendChild(newa)
+        divs[i_time].appendChild(newli);
       }
+      for (i in divs) {
+        // console.log(divs.i)
+        event_ul.appendChild(divs[i]);
+      }
+      add_row_click();
+      // console.log(event_ul)
     }
 
+    //Need the data first to implement this feature
     function sortSource() {}
 
 
-    //Adds events to side-menu
-
-
-    // function radio_on_click(){
-    //   $('#category').onclick(function(){console.log("hi")})
-    // }
 
     function add_row_click() {
       // Adds a click listener to all the rows in the event table
@@ -567,6 +614,7 @@ function startEvents() {
         });
       });
     }
+
     add_row_click()
 
     google.maps.event.addListener(map, 'center_changed', function() {
@@ -639,18 +687,12 @@ function startEvents() {
     //   }
     // });
 
-    $('#e_location').change(function() {
-      if (this.checked) {
-        //checkbox=document.getElementById('e_old').checked;
-        sortLocation(events, checkbox);
-      }
-    });
     $('#e_old').change(function() {
       if (this.checked) {
         checkbox = true;
-        // console.log("Miu")
+        console.log("Miu...?")
         if (document.getElementById('e_category').checked) {
-          sortCategory(cats_dict, events, checkbox);
+          sortCategory(events, checkbox);
         } else if (document.getElementById('e_time').checked) {
           sortTime(events, checkbox);
         } else {
@@ -660,7 +702,7 @@ function startEvents() {
       } else {
         checkbox = false;
         if (document.getElementById('e_category').checked) {
-          sortCategory(cats_dict, events, checkbox);
+          sortCategory(events, checkbox);
         } else if (document.getElementById('e_time').checked) {
           sortTime(events, checkbox);
         } else {
@@ -670,7 +712,14 @@ function startEvents() {
       }
     });
 
-    $('#time').change(function() {
+    $('#e_location').change(function() {
+      if (this.checked) {
+        checkbox = document.getElementById('e_old').checked;
+        sortLocation(events, checkbox);
+      }
+    });
+
+    $('#e_time').change(function() {
       if (this.checked) {
         checkbox = document.getElementById('e_old').checked;
         sortTime(events, checkbox);
@@ -678,8 +727,17 @@ function startEvents() {
       }
     });
 
+    $('#e_category').change(function() {
+      if (this.checked) {
+        checkbox = document.getElementById('e_old').checked;
+        sortCategory(events, checkbox);
+        // console.log("Miu")
+      }
+    });
+
+
     var checkbox = false;
-    // sortLocation(events, checkbox);
+    sortLocation(events, checkbox);
 
 
     // console.log(events)
@@ -692,11 +750,11 @@ function startEvents() {
     var removed = [];
     $("#e_search_input").keyup(function(event) {
       var search_re = new RegExp(this.value, "i");
-      $("events_ul").children("div").each(function(index) {
-        var as = this.getElementsByTagName('a')
+      $("#events_ul").children("div").each(function(index) {
+        // console.log(as)
         for (i = 0; i < this.getElementsByTagName('li').length; i++) {
           // console.log(as[i].id)
-
+          var as = this.getElementsByTagName('a')
           var event_name = as[i].id;
           if (!search_re.test(event_name)) {
             // console.log("HIDE")
@@ -714,7 +772,8 @@ function startEvents() {
 }
 
 $(document).ready(function() {
-  $("#event_nav")[0].addEventListener("click",function(){
+  $("#event_nav")[0].addEventListener("click", function() {
     startEvents()
-    console.log("starting maps")})
+    console.log("starting maps")
+  })
 })

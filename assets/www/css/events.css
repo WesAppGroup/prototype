@@ -2,7 +2,8 @@ html, body
 {
 	padding: 0;
 	margin: 0;
-	overflow: hidden; 
+	overflow: auto; 
+	text-transform: none;
 }
 body
 {
@@ -54,9 +55,9 @@ body
 	font-size: 11px;
 }
 
-.mm-menu > .mm-panel {
+/*.mm-menu > .mm-panel {
 	font-size: 25px;
-}
+}*/
 
 #info_p {
 	font-weight: 300;
@@ -191,21 +192,23 @@ background: rgba(40, 54, 83, 0.22);
 	/*left: 4.5px;*/
 /*}*/
 
-.mm-menu
+#events_list
 {
+	font-size: 25px;
 	background: #fff;
-}
-.mm-menu, .mm-menu a
-{
 	color: #333;
 }
+/*.mm-menu, .mm-menu a
+{
+	color: #333;
+}*/
 
-.mm-page
+/*.mm-page
 {
 	box-shadow: none !important;
-}
+}*/
 
-.mm-menu h4
+#events_list h4
 {	
 	text-align: center;
 	font-size: 46px;
@@ -251,7 +254,7 @@ background: rgba(40, 54, 83, 0.22);
 	height: 20px;
 	float: right;
 }
-.mm-list * {
+.events_list {
 	font-family: MyWebFont;
 	font-size: 23px;
 	font-weight: normal;
@@ -268,43 +271,43 @@ background: rgba(40, 54, 83, 0.22);
 	font-weight: bold !important;
 }
 
-#event_name {
+#e_event_name {
 	font-weight: normal;
 }
 
-#event_list ul {
+#event_ul ul {
         margin: 0;
         padding: 0;
         width: inherit;
     }
-    #event_list ul li {
-        list-style-type: none;
-        margin: 0px 0;
-       
-    }
-    #event_list ul li a:link, #event_list ul li a:visited {
-        border-bottom: solid #333 1px;
-        
-        font-size: 14px;
-        font-family: arial;
-        text-decoration: none;
-        display: block;
-        font-weight: normal;
-        padding: 0px 0px 0px 10px;
+#event_ul ul li {
+    list-style-type: none;
+    margin: 0px 0;
+   
+}
+#event_ul ul li a:link, #events_list ul li a:visited {
+    border-bottom: solid #333 1px;
+    
+    font-size: 14px;
+    font-family: arial;
+    text-decoration: none;
+    display: block;
+    font-weight: normal;
+    padding: 0px 0px 0px 10px;
 
-    }
-   /* #event_list ul li a:hover, #event_list ul li a:active {
-        background-color: #716f6f;
-    }
-    #event_list ul li a:hover span.icon {
-        background-position: 0 -40px !important;
-    }*/
-    #event_list li a span.icon {
-        float: right;
-        width: 21px;
-        height: 20px;
-        background: transparent url('images/menu/menuIconsSprite.png') 0 0 no-repeat;
-        position: relative;
-        right: 20px;
-        top: -2px;
-    }
+}
+/* #events_list ul li a:hover, #events_list ul li a:active {
+    background-color: #716f6f;
+}
+#events_list ul li a:hover span.icon {
+    background-position: 0 -40px !important;
+}*/
+#events_list li a span.icon {
+    float: right;
+    width: 21px;
+    height: 20px;
+    background: transparent url('images/menu/menuIconsSprite.png') 0 0 no-repeat;
+    position: relative;
+    right: 20px;
+    top: -2px;
+}
