@@ -7,6 +7,7 @@ var wmScroll;
 var coursesCounter = 0;
 
 var SERVER_URL = "http://stumobile0.wesleyan.edu/courses/all"
+var SECTURNS_URL = "http://stumobile0.wesleyan.edu/sections/"
 
 function startWesmaps() {
 
@@ -48,14 +49,13 @@ function startWesmaps() {
       console.log(coursesJSON);
       for (var c in coursesJSON) {
 
-        if (coursesCounter < 50) {  //limit to 50 results
+        if (coursesCounter < 10) {  //limit to 50 results
           console.log(c);
           console.log(coursesJSON[c].value);
           console.log(coursesJSON[c].value.courseTitle);
           if (search.test(coursesJSON[c].value.courseTitle) ||
               search.test(coursesJSON[c].value.courseNumber) ||
-              search.test(coursesJSON[c].value.courseDepartment) ||
-              search.test(coursesJSON[c].value.courseProfessor)) {
+              search.test(coursesJSON[c].value.courseDepartment)) {
 
             writeCourse(coursesJSON[c]);
           }
@@ -64,8 +64,6 @@ function startWesmaps() {
           break
         }
       }
-      
-      for 
     }
   });
 
@@ -93,10 +91,8 @@ function startWesmaps() {
                               c.value.courseTitle + 
                               "</div>" +
                               "<div class='wm_course_prof'>" +
-                              c.value.courseProfessor +
                               "</div>" +
                               "<div class='wm_course_time'>" +
-                              c.value.courseTime +
                               "</div>" +
                               "</div>" + 
                               "</li>"
