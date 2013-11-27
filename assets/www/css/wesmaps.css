@@ -169,12 +169,35 @@ ul {
   width: 100%;
   height: 70px;
 }
-#wm_search_bar input{
-  width: 94%;
+#wm_bar {
+  display: inline-block;
+  width: 80%;
   height: 70%;
+  float: left;
+}
+#wm_bar:after {
+  clear: both;
+}
+#wm_bar input {
+  width: 100%;
+  height: 100%;
   margin-left: 3%;
   margin-top: 2%;
   font-family: Raleway;
   font-size: 14px;
   border-radius: 5px;
+}
+#wm_icon {
+  display: inline-block;
+  height: 70%;
+  width: 8%;
+  margin-left: 5%;
+  margin-top: 2%;
+  background: #242833;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 5.5;
+}
+#wm_bar i {
+  
 }
