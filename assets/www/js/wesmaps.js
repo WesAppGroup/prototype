@@ -34,7 +34,6 @@ function startWesmaps() {
     if (wmHttpRequest.readyState === 4) {
       if (wmHttpRequest.status === 200) {
         coursesJSON = $.parseJSON(wmHttpRequest.responseText);
-        console.log(coursesJSON);
       }
       else {
         alert("Failed")
@@ -42,39 +41,33 @@ function startWesmaps() {
     }
   }
 
-  $(document).on("keyup","#wm_search_bar > input", function() {
-    console.log(this.value);
-    if (this.value.length > 2) {
-      var search = new RegExp(this.value, 'i');
-      console.log(coursesJSON);
-      for (var c in coursesJSON) {
+  $(document).on("click","#wm_icon", function() {
+    coursesCounter = 0;
+    $("#wm_courses").empty();
 
-        if (coursesCounter < 10) {  //limit to 50 results
-          console.log(c);
-          console.log(coursesJSON[c].value);
-          console.log(coursesJSON[c].value.courseTitle);
-          if (search.test(coursesJSON[c].value.courseTitle) ||
-              search.test(coursesJSON[c].value.courseNumber) ||
-              search.test(coursesJSON[c].value.courseDepartment)) {
+    var search = $("#wm_bar > input").val();
+    console.log("SEARCH >>>>>>>>>>> " + search);
+    var searchRE = new RegExp(search, 'i');
+    console.log(coursesJSON);
+    for (var c in coursesJSON) {
 
-            writeCourse(coursesJSON[c]);
-          }
-        }
-        else {
-          break
+      if (coursesCounter < 10) {  //limit to 50 results
+        console.log(c);
+        console.log(coursesJSON[c].value);
+        console.log(coursesJSON[c].value.courseTitle);
+        if (searchRE.test(coursesJSON[c].value.courseTitle)) {
+          writeCourse(coursesJSON[c]);
+          coursesCounter++;
         }
       }
+      else {
+        break
+      }
     }
-  });
-
-  function removeCourse(c) {
-    coursesCounter--;
-
-
     setTimeout(function() {
       wmScroll.refresh();
     }, 0);
-  }
+  });
 
   function writeCourse(c) {
     coursesCounter++;
@@ -87,18 +80,11 @@ function startWesmaps() {
                               "</div>" +
                               "</div>" +
                               "<div class='wm_course_info'>" +
-                              "<div class='wm_course_title'" +
+                              "<div class='wm_course_title'>" +
                               c.value.courseTitle + 
-                              "</div>" +
-                              "<div class='wm_course_prof'>" +
-                              "</div>" +
-                              "<div class='wm_course_time'>" +
                               "</div>" +
                               "</div>" + 
                               "</li>"
                             );
-    setTimeout(function() {
-      wmScroll.refresh();
-    }, 0);
   }
 }

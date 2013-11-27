@@ -84,7 +84,6 @@
   margin-top: 5px;
   margin-bottom: 0px;
   height: 35%;
-  overflow: hidden;
 }
 .wm_course_prof {
   display: block;
@@ -190,7 +189,7 @@ ul {
 #wm_icon {
   display: inline-block;
   height: 70%;
-  width: 8%;
+  width: 50px;
   margin-left: 5%;
   margin-top: 2%;
   background: #242833;
