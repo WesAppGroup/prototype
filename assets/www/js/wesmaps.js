@@ -10,7 +10,7 @@ var SERVER_URL = "http://stumobile0.wesleyan.edu/courses/all"
 var SECTURNS_URL = "http://stumobile0.wesleyan.edu/sections/"
 
 function startWesmaps() {
-
+  courseJSON = undefined;
   var wmScroll = new iScroll('wm_wrapper', { hScrollBar : false,
                                              vScrollBar : false,
                                              hScroll    : false,
