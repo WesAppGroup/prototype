@@ -401,7 +401,7 @@ function startEvents() {
             if (checkbox) {
               cats_dict[keys[z]].push(events[i])
             } else {
-              var passed = events[i].eventTime < currenttime.getTime();
+              passed = events[i].eventTime < currenttime.getTime();
               // var passed = events[i].endtime.getTime()<currenttime.getTime();
               if (!passed) {
                 cats_dict[keys[z]].push(events[i])
@@ -458,7 +458,7 @@ function startEvents() {
           if (checkbox) {
             locations[events[i].eventLocation] = [events[i]]
           } else {
-            var passed = events[i].eventTime < currenttime.getTime();
+              passed = events[i].eventTime < currenttime.getTime();
             // var passed = events[i].endtime.getTime() < currenttime.getTime();
             if (!passed) {
               locations[events[i].eventLocation] = [events[i]]
@@ -468,7 +468,7 @@ function startEvents() {
           if (checkbox) {
             locations[events[i].eventLocation].push(events[i])
           } else {
-            var passed = events[i].eventTime < currenttime.getTime();
+              passed = events[i].eventTime < currenttime.getTime();
             // var passed = events[i].endtime.getTime() < currenttime.getTime();
             if (!passed) {
               locations[events[i].eventLocation].push(events[i])
@@ -558,13 +558,8 @@ function startEvents() {
           div_i.innerHTML = i_time
           divs[i_time] = div_i
         }
-        // console.log(divs)
 
-        //add events to page, 
-        // var content_str = '<li>'+
-        //   '<a href="' + events[i].eventLink + '" id="firstHeading" class="event_name">' +
-        //    + events[i].eventName + '</a>'+'</li>';
-        // console.log(event_list[i])
+        passed = false;
         if (event_list[i].eventTime < currenttime.getTime()) {
           passed = true;
         }
@@ -584,11 +579,9 @@ function startEvents() {
         divs[i_time].appendChild(newli);
       }
       for (i in divs) {
-        // console.log(divs.i)
         event_ul.appendChild(divs[i]);
       }
       add_row_click();
-      // console.log(event_ul)
     }
 
     //Need the data first to implement this feature

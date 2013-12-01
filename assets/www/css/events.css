@@ -77,8 +77,8 @@ p
 }
 a, a:hover
 {
-	text-decoration: underline;
 	outline: none;
+	text-decoration: none;
 }
 
 #e-div{
