@@ -1,36 +1,18 @@
 function startEvents() {
   console.log("starting events")
-  // $(function() {
-  //   var options = {
-  //     classes: 'mm-light',
-  //     modal: true
-  //   };
 
-  //   options.position = 'left';
-  //   options.zposition = 'next';
-  //   $('#event_list').mmenu(options);
+  // resizeMap = function() {
+  //   console.log("window size change")
+  //   $('#map-canvas').css("height", $(window).height() - 80);
+  // }
 
-  //   options.position = 'bottom';
-  //   options.zposition = 'front';
-  //   $('#popup-1').mmenu(options);
-
-  //   options.position = 'right';
-  //   options.zposition = 'next';
-  //   $('#tooltip-2').mmenu(options);
+  // $(document).ready(function() {
+  //   resizeMap();
   // });
 
-  resizeMap = function() {
-    console.log("window size change")
-    $('#map-canvas').css("height", $(window).height() - 80);
-  }
-
-  $(document).ready(function() {
-    resizeMap();
-  });
-
-  $(window).resize(function() {
-    resizeMap();
-  });
+  // $(window).resize(function() {
+  //   resizeMap();
+  // });
 
   function parse_events(event_obj) {
     // var events = [];
@@ -378,6 +360,18 @@ function startEvents() {
       'Other': []
     };
 
+
+    //IMPORTANT-- to remove all current event listeners in 
+    //event_list (maybe have to do this for other things as well)
+    //NOT WORKING. Current bug -- every time you call startEvents()
+    //again you bind new event listeners (I think) to these toggles
+    //or, maybe some variables aren't reset so carry over and cause
+    //havok..
+    // var old_element = document.getElementById("events_ul");
+    // var new_element = old_element.cloneNode(true);
+    // old_element.parentNode.replaceChild(new_element, old_element);
+
+
     //Add event label divs (like location, etc..). Default will be time. Location will be sorted 
     //either alphabetically or by number of members in the group. Category the same.
     // return
@@ -391,7 +385,7 @@ function startEvents() {
         'Student Groups': [],
         'Other': []
       };
-      keys = Object.keys(cats_dict);
+      var keys = Object.keys(cats_dict);
 
       var currenttime = new Date();
 
@@ -401,7 +395,7 @@ function startEvents() {
             if (checkbox) {
               cats_dict[keys[z]].push(events[i])
             } else {
-              passed = events[i].eventTime < currenttime.getTime();
+              var passed = events[i].eventTime < currenttime.getTime();
               // var passed = events[i].endtime.getTime()<currenttime.getTime();
               if (!passed) {
                 cats_dict[keys[z]].push(events[i])
@@ -423,19 +417,24 @@ function startEvents() {
         div_i.innerHTML = keys[i]
         for (var z = 0; z < cats_dict[keys[i]].length; z++) {
           var newli = document.createElement('li')
+          newli.setAttribute('id','event_li')
           var ev = cats_dict[keys[i]][z]
           console.log(ev)
-
-          newli.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
-
+          var div_cat = document.createElement('div');
+          div_cat.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
+          div_cat.setAttribute('id', 'events_cat_div')
           var newa = document.createElement('a')
           console.log(ev.eventName)
-          console.log("A")
           newa.setAttribute('id', ev.eventName)
           newa.setAttribute('class', "event_name")
           newa.setAttribute('href', '#')
-          newa.innerHTML = ev.eventName + "<br>" + ev.eventTime
+          newa.innerHTML = ev.eventName + " @ " + ev.eventTime
+          var line1 = document.createElement('hr')
+          var line2 = document.createElement('hr')
+          // newli.appendChild(line1)
+          newli.appendChild(div_cat)
           newli.appendChild(newa)
+          // newli.appendChild(line2)
           div_i.appendChild(newli);
         }
         event_list.appendChild(div_i)
@@ -445,6 +444,7 @@ function startEvents() {
 
     //CAN probably merge sortCategory with sortLocation later...
     function sortLocation(events, checkbox) {
+      console.log(events, checkbox)
       var locations = {
         'Other': []
       }
@@ -458,7 +458,7 @@ function startEvents() {
           if (checkbox) {
             locations[events[i].eventLocation] = [events[i]]
           } else {
-              passed = events[i].eventTime < currenttime.getTime();
+            passed = events[i].eventTime < currenttime.getTime();
             // var passed = events[i].endtime.getTime() < currenttime.getTime();
             if (!passed) {
               locations[events[i].eventLocation] = [events[i]]
@@ -468,7 +468,7 @@ function startEvents() {
           if (checkbox) {
             locations[events[i].eventLocation].push(events[i])
           } else {
-              passed = events[i].eventTime < currenttime.getTime();
+            passed = events[i].eventTime < currenttime.getTime();
             // var passed = events[i].endtime.getTime() < currenttime.getTime();
             if (!passed) {
               locations[events[i].eventLocation].push(events[i])
@@ -478,7 +478,7 @@ function startEvents() {
       }
 
       // Creating the divs for each
-      keys = Object.keys(locations)
+      var keys = Object.keys(locations)
       var event_list = document.getElementById("events_ul")
       event_list.innerHTML = ""
       for (var i = 0; i < keys.length; i++) {
@@ -531,17 +531,8 @@ function startEvents() {
         var event_list = events.filter(function(obj) {
           return (obj.eventTime > currenttime.getTime())
         })
-        console.log(event_list.length)
-        console.log(event_list)
-
       }
-      console.log(event_list.length)
-      console.log(event_list)
-      // console.log(event_list.length)
-      // console.log(event_list)
 
-
-      // console.log(event_list.length)
 
 
       //create divs for each unique day
@@ -559,9 +550,9 @@ function startEvents() {
           divs[i_time] = div_i
         }
 
-        passed = false;
+        var passed = false;
         if (event_list[i].eventTime < currenttime.getTime()) {
-          passed = true;
+          var passed = true;
         }
 
         var newli = document.createElement('li')
@@ -572,7 +563,7 @@ function startEvents() {
         }
         var newa = document.createElement('a')
         newa.setAttribute('id', events[i].eventName)
-        newa.setAttribute('class', "e_event_name")
+        newa.setAttribute('class', "event_name")
         newa.setAttribute('href', '#')
         newa.innerHTML = events[i].eventName + "<br>" + events[i].eventTime
         newli.appendChild(newa)
@@ -601,9 +592,9 @@ function startEvents() {
             }
           }
           if (m != undefined && m != null) {
+            $(".page").addClass("hidden");
+            $("#events").removeClass("hidden");
             google.maps.event.trigger(m, "click");
-            // console.log("SD");
-            $('#event_list').trigger("close");
           }
         });
       });
@@ -672,14 +663,6 @@ function startEvents() {
       }
     }
 
-    //var checkbox=false; 
-
-    // $('#category').change(function() {
-    //   if (this.checked) {
-    //     //checkbox=document.getElementById('e_old').checked;
-    //     sortCategory(cats_dict, events, checkbox);
-    //   }
-    // });
 
     $('#e_old').change(function() {
       if (this.checked) {
@@ -745,16 +728,12 @@ function startEvents() {
     $("#e_search_input").keyup(function(event) {
       var search_re = new RegExp(this.value, "i");
       $("#events_ul").children("div").each(function(index) {
-        // console.log(as)
         for (i = 0; i < this.getElementsByTagName('li').length; i++) {
-          // console.log(as[i].id)
           var as = this.getElementsByTagName('a')
           var event_name = as[i].id;
           if (!search_re.test(event_name)) {
-            // console.log("HIDE")
             $(as[i]).hide();
           } else {
-            // console.log("SHOW")
             $(as[i]).show();
           }
         }
@@ -772,9 +751,9 @@ function startEvents() {
 
 }
 
-$(document).ready(function() {
-  $("#event_nav")[0].addEventListener("click", function() {
-    startEvents()
-    console.log("starting maps")
-  })
-})
+// $(document).ready(function() {
+//   $("#event_nav")[0].addEventListener("click", function() {
+//     // startEvents()
+//     console.log("starting maps")
+//   })
+// })
