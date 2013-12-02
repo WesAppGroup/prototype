@@ -63,7 +63,7 @@ function startWesmaps() {
     var searchRE = new RegExp(search, 'i');
     for (var c in coursesJSON) {
 
-      if (coursesCounter < 10) {  //limit to 10 results
+      if (coursesCounter < 20) {  //limit to 10 results
         if (searchRE.test(coursesJSON[c].value.courseTitle)) {
           writeCourse(coursesJSON[c]);
           coursesCounter++;
