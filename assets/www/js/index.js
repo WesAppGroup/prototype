@@ -13,7 +13,6 @@ function startApp() {
     }
     else if ($(this).attr('value') === "wesmaps") {
       $(".page").addClass("hidden");
-      console.log($("#wesmaps"));
       $("#wesmaps").removeClass("hidden");
     }
     else if ($(this).attr('value') === "wm_schedule") {
