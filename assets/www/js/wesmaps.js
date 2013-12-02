@@ -5,22 +5,13 @@ var cHttpRequest;
 var sHttpRequest;
 var coursesJSON;
 var sectionsJSON;
-var wmScroll;
 var coursesCounter = 0;
 var COURSES_URL = 'http://stumobile0.wesleyan.edu/courses/all';
 var SECTIONS_URL = 'http://stumobile0.wesleyan.edu/sections/all';
 
 
 function startWesmaps() {
-  courseJSON = undefined;
-  var wmScroll = new iScroll('wm_wrapper', { hScrollBar : false,
-                                             vScrollBar : false,
-                                             hScroll    : false,
-                                             bounce     : true
-                                            });
   /* AJAX request for all the course and section information*/
-  console.log("search submitted");
-
   cHttpRequest = new XMLHttpRequest();
 
   if (!cHttpRequest) {
@@ -69,9 +60,7 @@ function startWesmaps() {
     $("#wm_courses").empty();
 
     var search = $("#wm_bar > input").val();
-    //console.log("SEARCH >>>>>>>>>>> " + search);
     var searchRE = new RegExp(search, 'i');
-    //console.log(coursesJSON);
     for (var c in coursesJSON) {
 
       if (coursesCounter < 10) {  //limit to 10 results
@@ -84,9 +73,6 @@ function startWesmaps() {
         break;
       }
     }
-    setTimeout(function() {
-      wmScroll.refresh();
-    }, 0);
   });
 
   function writeCourse(c) {
@@ -160,9 +146,6 @@ function startWesmaps() {
       info.children('table').addClass('hidden');
 
     }
-    setTimeout(function() {
-      wmScroll.refresh();
-    }, 0);
   });
 }
 /* Parses string from course JSON in the form
