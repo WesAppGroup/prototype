@@ -136,7 +136,13 @@ ul {
   right: 5%;
 }
 /* expanded course */
-
+.wm-table {
+  display: block;
+  width: 100%;
+}
+.wm-table table {
+  width: 100%;
+}
 .wm-info-expanded {
   height: 400px;
   margin-bottom: 10px;
