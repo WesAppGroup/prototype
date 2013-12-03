@@ -441,9 +441,9 @@ function startEvents() {
           newli.setAttribute('id', 'event_li')
           var ev = cats_dict[keys[i]][z]
           console.log(ev)
-          var div_cat = document.createElement('div');
-          div_cat.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
-          div_cat.setAttribute('id', 'events_cat_div')
+          // var div_cat = document.createElement('div');
+          // newa.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
+          // div_cat.setAttribute('id', 'events_cat_div')
           var newa = document.createElement('a')
           console.log(ev.eventName)
           newa.setAttribute('id', ev.eventName)
@@ -453,7 +453,7 @@ function startEvents() {
           var line1 = document.createElement('hr')
           var line2 = document.createElement('hr')
           // newli.appendChild(line1)
-          newli.appendChild(div_cat)
+          // newli.appendChild(div_cat)
           newli.appendChild(newa)
           // newli.appendChild(line2)
           div_i.appendChild(newli);
