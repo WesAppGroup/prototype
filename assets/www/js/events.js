@@ -237,12 +237,12 @@ function startEvents() {
     var currentIW = null;
     var infoWindow = new google.maps.InfoWindow();
     var icons = {
-      '1': 'marker_1.png',
-      '1': 'marker_2.png',
-      '2': 'marker_3.png',
-      '2': 'marker_4.png',
-      '3': 'marker_5.png',
-      '0': 'marker_6.png'
+      'Auditions': 'marker_1.png',
+      'Sports': 'marker_2.png',
+      'Admissions': 'marker_3.png',
+      'Theater': 'marker_4.png',
+      'Student Groups': 'marker_5.png',
+      'Other': 'marker_6.png'
     };
 
     function markerize(pos, str, ev) {
