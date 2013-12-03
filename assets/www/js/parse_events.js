@@ -1,4 +1,14 @@
-var event_data =
+var event_data_url = "http://stumobile0.wesleyan.edu/events/all";
+
+$.get(
+	event_data_url, function(data) {
+		event_data = data
+		console.log("got data");
+	}
+);
+console.log("finished")
+
+var event_data2 =
 	[{
 	"value": {
 		"eventLatitude": 41.5555,
