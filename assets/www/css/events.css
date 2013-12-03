@@ -211,12 +211,18 @@ a, a:hover {
     display: none;
 }
 #input-div {
-    text-align: center;
-    padding-bottom: 7%;
-    padding-right: 27%;
+    text-align: right;
+    padding-right: 2%;
+    padding-top: 1%;
+    color:#686868;
+    font-size: 14px;
 }
 #filter_options {
-    padding-bottom: 7%;
+    padding-bottom: 2%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 100;
+    color: #888;
 }
 #page > div, .mm-panel > div {
     width: 100%;
@@ -313,6 +319,7 @@ a, a:hover {
     text-align: center;
     border-right: 1px solid #dddddd;
 }
+
 .wesmaps_go_home span {
     padding-left: 20px;
     text-shadow: none;
@@ -356,6 +363,20 @@ a, a:hover {
   background-color: #242833;
   background-image: none;
   text-align: center;
+  padding-left: 25px;
+  text-shadow: none;
+  font-family: Raleway;
+  font-weight: 100;
+  font-size: 28px;
+  color: #ffffff;
+  padding-bottom:1%;
+}
+
+#events_list #events_list_header img {
+    height: 9%;
+    width: auto;
+    padding-right: 2%;
+    padding-top: 1%;
 }
 
 #events_list #events_list_stuff {
@@ -371,24 +392,29 @@ a, a:hover {
   width: 100%;
   margin: 0;
   padding: 0 5%;
+  color:#686868;
 }
 
 #events_list_stuff ul li {
   margin: 0;
   height: 20%;
+  padding-bottom: 4%;
 }
 
 #events_list_stuff ul li a[href] {
   display: block;
   position: relative;
   height: 75%;
-  background-color: #2c2e3a;
+  background-color: #fff;
   background-image: none;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   overflow: hidden;
   padding: 5px;
-  color: white;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left:2%;
+  color: #686868;
   text-shadow: none;
   font-family: Raleway;
   font-size: medium;
