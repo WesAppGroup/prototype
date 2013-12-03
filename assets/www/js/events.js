@@ -14,6 +14,7 @@ function startEvents() {
   //   resizeMap();
   // });
 
+
   function parse_events(event_obj) {
     // var events = [];
     var event_obj = event_obj.map(function(element) {
@@ -236,21 +237,28 @@ function startEvents() {
     var currentIW = null;
     var infoWindow = new google.maps.InfoWindow();
     var icons = {
-      'Auditions': 'iconV1.png',
-      'Sports': 'iconV1BLUE.png',
-      'Admissions': 'iconV1GREEN.png',
-      'Theater': 'iconV1PURPLE.png',
-      'Student Groups': 'iconV1BLUE.png',
-      'Other': 'iconV1RED.png'
+      '1': 'marker_1.png',
+      '1': 'marker_2.png',
+      '2': 'marker_3.png',
+      '2': 'marker_4.png',
+      '3': 'marker_5.png',
+      '0': 'marker_6.png'
     };
 
     function markerize(pos, str, ev) {
+      console.log(ev.eventCategory)
+      var pinIcon = new google.maps.MarkerImage(
+        'resources/' + icons[ev.eventCategory],
+        new google.maps.Size(25, 25), /* size is determined at runtime */
+        new google.maps.Point(0, 0), /* origin is 0,0 */
+        new google.maps.Point(12.5, 12.5), /* anchor is bottom center of the scaled image */
+        new google.maps.Size(25, 25) /*size want them to be.. */
+      );
+      console.log(ev.eventCategory)
       var marker = new google.maps.Marker({
         position: pos,
         map: map,
-        icon: {
-          url: "resources/" + icons[ev.eventCategory]
-        }
+        icon: pinIcon
       });
       marker.id = ev.eventName;
 
@@ -303,37 +311,54 @@ function startEvents() {
 
     /* Adds events to map
      */
-    for (var i = 0; i < events.length; i++) {
-      // console.log(events[i])
-      if (events[i].eventTime === undefined) {
-        // console.log("no event time")
-      }
-      if ((events[i].eventLatitude) != 0.0 && (events[i].eventLongitude) != 0.0) {
-        try {
-          var desc_short = events[i].eventDescription.slice(0, 140) + "...";
-        } catch (err) {
-          var desc_short = events[i].eventDescription;
+
+    //show_old is a bool indicating whether or not to show old events on the map.
+    //user selected option from map page
+    function add_markers_to_map(events, show_old) {
+      for (var i = 0; i < events.length; i++) {
+        // console.log(events[i])
+
+        if (events[i].eventTime === undefined) {
+          // console.log("no event time")
         }
-        var content_str = '<div id="infocontent">' +
-          '<a href="' + events[i].eventLink +
-          '" id="firstHeading" class="firstHeading" target="_blank">' +
-          events[i].eventName + '</a>' +
-          '<div id="bodycontent">' +
-          '<p id="info_p">' + desc_short + '</p>' +
-          '<a href="#" class="goto_page" value="events_read_more">Read More</a>' +
-          '</div>' +
-          '</div>';
+
+        if (show_old == false) {
+          var currenttime = new Date();
+          if (events[i].eventTime < currenttime) {
+            continue
+          }
+        }
+
+        if ((events[i].eventLatitude) != 0.0 && (events[i].eventLongitude) != 0.0) {
+          try {
+            var desc_short = events[i].eventDescription.slice(0, 140) + "...";
+          } catch (err) {
+            var desc_short = events[i].eventDescription;
+          }
+          var content_str = '<div id="infocontent">' +
+            '<a href="' + events[i].eventLink +
+            '" id="firstHeading" class="firstHeading" target="_blank">' +
+            events[i].eventName + '</a>' +
+            '<div id="bodycontent">' +
+            '<p id="info_p">' + desc_short + '</p>' +
+            '<a href="#" class="goto_page" value="events_read_more">Read More</a>' +
+            '</div>' +
+            '</div>';
 
 
-        var pos = new google.maps.LatLng(events[i].eventLatitude, events[i].eventLongitude);
-        var name = events[i].eventName;
-        var cat = events[i].eventCategory;
+          var pos = new google.maps.LatLng(events[i].eventLatitude, events[i].eventLongitude);
+          var name = events[i].eventName;
+          var cat = events[i].eventCategory;
 
-        var m = markerize(pos, content_str, events[i]);
+          var m = markerize(pos, content_str, events[i]);
 
-        markers.push(m);
+          markers.push(m);
+        }
       }
     }
+
+    add_markers_to_map(events, true)
+
     // console.log(markers)
 
     var colors = {
@@ -639,6 +664,9 @@ function startEvents() {
         var curr_pos = new google.maps.Marker({
           map: map,
           position: pos,
+          icon: {
+            url: "resources/marker_0.png"
+          }
           // content: 'Location found using HTML5.'
         });
 
