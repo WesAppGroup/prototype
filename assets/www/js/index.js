@@ -1,6 +1,12 @@
 /* Index page javascript
  */
 function startApp() {
+  console.log('app started');
+}
+
+var first_events_visit = true;
+
+$(document).ready(function() {
 
   /* Links buttons */
   $(document).on("click", ".goto_page",function(e) {
@@ -22,6 +28,10 @@ function startApp() {
     else if ($(this).attr('value') === "events") {
       $(".page").addClass("hidden");
       $("#events").removeClass("hidden");
+      if (first_events_visit === true) {
+        startEvents();
+        first_events_visit = false;
+      }
     }
     else if ($(this).attr('value') === "events_list") {
       $(".page").addClass("hidden");
@@ -43,7 +53,11 @@ function startApp() {
       $(".page").addClass("hidden");
       $("#landmarks").removeClass("hidden");
     }
+    else if (first_events_visit === true) {
+      // $("#event_nav")[0].addEventListener("click", function() {
+      
+      console.log("starting maps");
+    }
   });
 
-}
-
+});
