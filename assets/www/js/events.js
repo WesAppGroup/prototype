@@ -142,18 +142,14 @@ function startEvents() {
       }]
     }, {
       "featureType": "poi.school",
-      "stylers": [
-        // { "hue": "#F8F0CE" }, 
-        {
-          "saturation": 13
-        }, {
-          "lightness": -5
-        }, {
-          "gamma": 0.99
-        }, {
-          "visibility": "on"
-        }
-      ]
+      "elementType": "geometry.fill",
+      "stylers": [{
+        "saturation": 34
+      }, {
+        "lightness": 2
+      }, {
+        "hue": "#ffaa00"
+      }]
     }, {
       "featureType": "landscape",
       "stylers": [{
@@ -417,7 +413,7 @@ function startEvents() {
         div_i.innerHTML = keys[i]
         for (var z = 0; z < cats_dict[keys[i]].length; z++) {
           var newli = document.createElement('li')
-          newli.setAttribute('id','event_li')
+          newli.setAttribute('id', 'event_li')
           var ev = cats_dict[keys[i]][z]
           console.log(ev)
           var div_cat = document.createElement('div');
