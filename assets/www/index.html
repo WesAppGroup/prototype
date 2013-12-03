@@ -40,7 +40,7 @@
     <script type="text/javascript" src="js/events.js"></script>
     <script type="text/javascript" src="js/hours.js"></script>
     <script type="text/javascript" src="js/donate.js"></script>
-
+    <script type="text/javascript" src="js/landmarks.js"></script>
 
 
     <title>Prototype</title>
@@ -270,7 +270,20 @@
         <span>LANDMARKS</span>
       </div>
       <div id="landmarks_content">
-        <p>Searchable list of locations on campus</p>
+				<div id="lm_search_bar"> 
+          <div id="lm_bar">
+            <input type="search" placeholder="Search for landmarks">
+          </div>
+          <div id="wm_icon">
+            <i class="fa fa-search fa-3x"></i>
+          </div>
+        </div>
+				<div id="lm_wrapper">
+          <ul id="lm_list">
+            <li>
+            </li>
+          </ul>
+        </div>
       </div>
       <div id="landmarks_footer">
         <a href="#" class="goto_page" value="home">
