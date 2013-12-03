@@ -181,20 +181,24 @@
       <div class="content" id="events_list_content">
           <div>
             <div>
-              <a href="#" class="goto_page" value="events">BACK</a>
-              <h4>Events List</h4>
-              <div id="input-div">
-                <label>Search</label>
-                <input type="text" id="e_search_input"></input>
+              <div id="events_list_header">
+                <a href="#" class="goto_page" value="events">BACK</a>
+                <h4>Events List</h4>
               </div>
-              <div id="filter_options">
-                <input type="radio" name="group1" id="e_time" >Time
-                <input type="radio" name="group1" id="e_category" >Category
-                <input type="radio" name="group1" id="e_location" checked>Location
-                <input type="checkbox" name="old" id="e_old">Old Events
+              <div id="events_list_stuff">
+                <div id="input-div">
+                  <label>Search</label>
+                  <input type="text" id="e_search_input"></input>
+                </div>
+                <div id="filter_options">
+                  <input type="radio" name="group1" id="e_time" >Time
+                  <input type="radio" name="group1" id="e_category" >Category
+                  <input type="radio" name="group1" id="e_location" checked>Location
+                  <input type="checkbox" name="old" id="e_old">Old Events
+                </div>
+                <ul id="events_ul">
+                </ul>
               </div>
-              <ul id="events_ul">
-              </ul>
           </div>
         </div>
         <div class="events_list_footer">
