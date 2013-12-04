@@ -314,7 +314,34 @@ function startEvents() {
 
     //show_old is a bool indicating whether or not to show old events on the map.
     //user selected option from map page
+
+    // Sets the map on all markers in the array.
+    function setAllMap(map) {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+      }
+    }
+
+    // Removes the markers from the map, but keeps them in the array.
+    function clearMarkers() {
+      setAllMap(null);
+    }
+
+    // Shows any markers currently in the array.
+    function showMarkers() {
+      setAllMap(map);
+    }
+
+    // Deletes all markers in the array by removing references to them.
+    function deleteMarkers() {
+      clearMarkers();
+      markers = [];
+    }
+
+
     function add_markers_to_map(events, show_old) {
+      deleteMarkers()
+      // unspiderfy()
       for (var i = 0; i < events.length; i++) {
         // console.log(events[i])
 
@@ -357,7 +384,15 @@ function startEvents() {
       }
     }
 
-    add_markers_to_map(events, true)
+    add_markers_to_map(events, false)
+
+    $('#map_old').change(function() {
+      if (this.checked) {
+        add_markers_to_map(events, true)
+      } else {
+        add_markers_to_map(events, false)
+      }
+    })
 
     // console.log(markers)
 
@@ -691,6 +726,7 @@ function startEvents() {
     $('#e_old').change(function() {
       if (this.checked) {
         checkbox = true;
+        add_markers_to_map(events,true)
         console.log("Miu...?")
         if (document.getElementById('e_category').checked) {
           sortCategory(events, checkbox);
