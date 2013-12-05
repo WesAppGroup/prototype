@@ -170,7 +170,10 @@
       </a>
          <img src="img/logo.png">
          <div id="e_title">EVENTS</div>
-        <input type="checkbox" name="map_old" id="map_old"><font color="white">Display Old Events</font>
+          <div id="minibar">
+            <input type="checkbox" name="map_old" id="map_old"><label for="map_old">Display Old
+            Events</label>
+          </div>
         </div>
         <div id="map_area">
             <div id="map-canvas">
@@ -198,6 +201,10 @@
               <div id="events_list_header">
                 <img src="img/logo.png">EVENTS
               </div>
+              <div id="minibar">
+                <input type="checkbox" name="old" id="e_old"><label for="e_old">Display Old
+                Events</label>
+              </div>
               <div id="events_list_stuff">
                 <div id="input-div">
                   <label>Search</label>
@@ -208,9 +215,6 @@
                   <input type="radio" name="group1" id="e_category" >Category
                   <input type="radio" name="group1" id="e_location" checked>Location
                 </div>
-                <div class="filter_options">
-                  <input type="checkbox" name="old" id="e_old">Old Events
-                </div>
                 <ul id="events_ul">
                 </ul>
               </div>
@@ -219,13 +223,13 @@
         <div class="events_list_footer">
         <a href="#" class="goto_page" value="home">
           <div class="events_list_go_home">
-            <i class="fa fa-home fa-3x"></i>
+            <i class="fa fa-home fa-1x"></i>
             <span>HOME</span>
           </div>
         </a>
         <a href="#" class="goto_page" value="events">
           <div class="events_list_go_map">
-            <i class="fa fa-map-marker fa-3x"></i>
+            <i class="fa fa-map-marker fa-1x"></i>
             <span>MAP</span>
           </div>
         </a>
