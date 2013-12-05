@@ -156,8 +156,8 @@
         ">MORE</span>
       </a>
          <img src="img/logo.png">
-          <input type="checkbox" name="map_old" id="map_old" >Display Old Events
          <div id="e_title">EVENTS</div>
+        <input type="checkbox" name="map_old" id="map_old"><font color="white">Display Old Events</font>
         </div>
         <div id="map_area">
             <div id="map-canvas">
@@ -190,10 +190,12 @@
                   <label>Search</label>
                   <input type="text" id="e_search_input"></input>
                 </div>
-                <div id="filter_options">
+                <div class="filter_options">
                   <input type="radio" name="group1" id="e_time" >Time
                   <input type="radio" name="group1" id="e_category" >Category
                   <input type="radio" name="group1" id="e_location" checked>Location
+                </div>
+                <div class="filter_options">
                   <input type="checkbox" name="old" id="e_old">Old Events
                 </div>
                 <ul id="events_ul">
