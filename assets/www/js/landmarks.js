@@ -38,16 +38,16 @@ $(document).ready(function() {
     });
 
   function writeLandmarks(c) {
-    $("#lm_list").append("<li><div class='wm_c_dnum'>" +
-                              "<div class='wm_c_dep'>" +
+    $("#lm_list").append("<li><div class='lm_c_dnum'>" +
+                              "<div class='lm_c_dep'>" +
                               c.value.name +
                               "</div>" + 
-                              "<div class='wm_c_cnum'>" +
+                              "<div>" +
                               c.value.id +
                               "</div>" +
                               "</div>" +
-                              "<div class='wm_c_info'>" +
-                              "<div class='wm_c_title'>" +
+                              "<div class='lm_c_info'>" +
+                              "<div class='lm_c_title'>" +
                               c.value.description + 
                               "</div>" +
                              
