@@ -1,4 +1,6 @@
 /* LANDMARKS CSS */
+
+/* ====== Landmarks List =====*/
 #landmarks_content {
   position: absolute;
   left: 0px;
@@ -38,6 +40,41 @@ ul {
   background-color: #c5c7d3;
 }
 
+.lm_c_dnum {
+  display: inline-block;
+  background-color: #458179;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 25%;
+  height: 100%;
+  float: left;
+  margin-left: 3%;
+}
+.lm_c_dep {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.lm_c_info {
+  display: inline-block;
+  background-color: #242833;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 70%;
+  height: 100%;
+  float: left;
+  margin-left: -5px;
+}
+.lm_c_title {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 50px;
+  width: 75%;
+  float: left;
+}
+
+
+/* ====== Landmarks Search ====== */
 #lm_search_bar {
   display: inline-block;
   width: 100%;
@@ -72,6 +109,9 @@ ul {
   text-align: center;
   line-height: 5.5;
 }
+
+
+/* ====== Landmarks Footer ====== */
 
 #landmarks_footer {
   position: absolute;
