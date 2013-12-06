@@ -27,6 +27,7 @@ public class Proto extends DroidGap
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+    	super.setIntegerProperty("loadUrlTimeoutValue", 100000);
         super.onCreate(savedInstanceState);
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());

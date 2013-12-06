@@ -8,6 +8,7 @@
         Apache Cordova Team
     </author>
     <access origin="*" />
+    <access origin="http://stumobile0.wesleyan.edu" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />
     <preference name="orientation" value="portrait" />
