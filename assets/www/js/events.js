@@ -289,16 +289,18 @@ function startEvents() {
         content = $("#morecontent")[0]
         content.innerHTML = ""
         var time = document.createElement('div');
-        time.innerHTML = ev.eventTime + "<br>" + "<br>";
+        time.setAttribute('id','read_more_time');
+        time.innerHTML = ev.eventTime;
         var description = document.createElement('div');
         description.setAttribute('class', 'well');
         description.innerHTML = ev.eventDescription;
         var link = document.createElement('a');
         link.setAttribute('href', ev.eventLink);
-        link.innerHTML = "read original";
+        link.setAttribute('id', 'read_more_link');
+        link.innerHTML = "Read original";
+        description.appendChild(link);
         content.appendChild(time)
         content.appendChild(description);
-        content.appendChild(link);
       });
 
       google.maps.event.addListener(map, 'click', function() {

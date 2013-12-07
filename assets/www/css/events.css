@@ -458,13 +458,33 @@ a, a:hover {
 
 /*CSS For the read more page*/
 
+#events_read_more2{
+  margin: 7%; 
+}
+
+#read_more_title {
+  color: rgba(75, 72, 72, 0.88);
+  font-weight: normal;
+}
+
+#read_more_time {
+  font-weight: normal;
+  font-size: large;
+  padding-bottom: 5%;
+}
+
+#read_more_link {
+  display: block;
+  padding-top: inherit;
+  font-size: medium;
+  color: rgba(7, 7, 7, 0.59);
+}
+
 .well {
   background: white;
-  border-radius: 10px;
-  margin-left: 10%;
-  margin-right: 10%;
+  border-radius: 3px;
   font-size: large;
-  padding: 3%; 
+  padding: 4%; 
 }
 
 #events_read_more_header{
@@ -472,13 +492,15 @@ a, a:hover {
   background-color: #242833;
   background-image: none;
   text-align: left;
-  padding-left: 25px;
+  padding-left: 11px;
+  padding-top: 4px;
   text-shadow: none;
   font-family: Raleway;
   font-weight: 100;
   font-size: 28px;
   color: #ffffff;
-  padding-bottom:1%;
+  padding-bottom: 1%;
+  text-align: justify;
 }
 
 #events_read_more_header img {
@@ -492,20 +514,21 @@ a, a:hover {
   background: rgba(145, 145, 145, 0.34);
   color: white;
   border-radius: 5px;
-  border: 1px solid transparent;
-  border-color:rgba(145, 145, 145, 0.34);
+  border: none;
   background-size: 200px;
   padding-left: 1%;
-  padding-right: 1%;
+  padding-right: 4%;
   padding-top: .5%;
   padding-bottom: .5%;
-  height: 35px;
-  /*width: 122px;*/
+  height: 40px;
+  width: 146px;
+  margin-bottom: 5%;
   text-decoration: none;
 }
 
 #read_more_a {
   color: white;
+  padding-left: 6%;
 }
 
 .arrow-left {
