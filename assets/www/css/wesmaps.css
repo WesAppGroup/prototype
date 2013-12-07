@@ -1,29 +1,3 @@
-/* ===========  WESMAPS SCHEDULE =========== */ 
-#wesmaps_schedule {
-  position: fixed;
-  top: 10%;
-  bottom: 7%;
-  left: 0px;
-  right: 0px;
-  background-color:#c5c7d3;
-}
-.wm_day {
-  display: inline-block;
-  width:18.6%;
-  height:100%;
-  border-left: 1px solid #dddddd;
-}
-
-.wm_day_name {
-  font-size: 10px;
-  text-align: center;
-}
-
-.wm_mtg {
-  position: absolute;
-  width: 18.6%;
-  margin-left: 2px;
-}
 /* ======= WESMAPS HEADER ========= */
 .wesmaps_header {
   position: absolute;
@@ -68,6 +42,9 @@
   color: #ffffff;
 }
 /* =========   WESMAPS SEARCH ========= */
+body {
+  background-color: #c5c7d3;
+}
 .wesmaps_content {
   position: absolute;
   left: 0px;

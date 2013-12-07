@@ -109,13 +109,10 @@ function startWesmaps() {
 
   $(document).on("click",".wm_c_expand", function() {
     var that = $(this);
-    var li = $(this).parent().parent();
     var info = $(this).parent();
     var ccid = $(this).data().ccid ? $(this).data().ccid : 0;
     var sid = $(this).data().sid ? $(this).data().sid : 0;
     console.log("CCID: " + ccid + "|| SID: " + sid);
-    var sect;
-    var crse;
     var req = SECTIONS_BY_ID + ccid;
     
     /* AJAX sections request */
@@ -137,12 +134,16 @@ function startWesmaps() {
           sectionsJSON = undefined;
           sectionsJSON = $.parseJSON(sHttpRequest.responseText);
           console.log('sections json received');
+          console.log(sectionsJSON);
           console.log("sid: "+sid+" json: "+stringify(sectionsJSON));
-          if (sectionsJSON[sid]) {
+          if (sid < sectionsJSON.length) {
             expandSection(sectionsJSON[sid].value);
           }
-          else if (sectionsJSON[0]) {
-            expandSection(sectionsJSON[0].value); //sid currently acting funky
+          else if (sectionsJSON.length > 0) {
+            expandSection(sectionsJSON[sectionsJSON.length-1].value); 
+          }
+          else {
+            expandSection({"key":"NA","value":{"sectionCourseid":"NA","sectionLocation":"NA","sectionProfessors":"NA","sectionSeats_available":"NA","sectionTime":"NA"}});
           }
         }
         else {
