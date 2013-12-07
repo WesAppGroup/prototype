@@ -16,7 +16,7 @@ function startEvents() {
 
 
   function parse_events(event_obj) {
-    // var events = [];
+    console.log("parsing events")
     var event_obj = event_obj.map(function(element) {
       return element.value;
     }).map(function(element) {
@@ -26,6 +26,7 @@ function startEvents() {
     console.log(event_obj)
     return event_obj
   }
+
   var events = parse_events(event_data);
 
   var infowindow;

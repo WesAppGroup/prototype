@@ -5,10 +5,9 @@ try {
 	$.get(
 		event_data_url, function(data) {
 			event_data = data
-			console.log("got event data");
+			console.log(event_data,"event data");
 		}
 	);
-	console.log(event_data,"asd")
 	if (event_data == undefined){
 		throw err
 	}
