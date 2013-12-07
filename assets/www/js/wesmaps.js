@@ -6,151 +6,175 @@ var sHttpRequest;
 var coursesJSON;
 var sectionsJSON;
 var coursesCounter = 0;
-var COURSES_URL = 'http://stumobile0.wesleyan.edu/courses/all';
-var SECTIONS_URL = 'http://stumobile0.wesleyan.edu/sections/all';
+var COURSES_SEARCH = 'http://stumobile0.wesleyan.edu/courses/search/';
+var SECTIONS_BY_ID = 'http://stumobile0.wesleyan.edu/sections/by-id/';
 
 
 function startWesmaps() {
-  /* AJAX request for all the course and section information*/
-  cHttpRequest = new XMLHttpRequest();
-
-  if (!cHttpRequest) {
-    alert("Failed");
-    return false;
-  }
-
-  cHttpRequest.onreadystatechange = coursesAlert;
-  cHttpRequest.open("GET", COURSES_URL, true);
-  cHttpRequest.send();
-  console.log('course request sent');
-
-  sHttpRequest = new XMLHttpRequest();
-  if (!sHttpRequest) {
-    alert("Failed");
-    return false;
-  }
-  sHttpRequest.onreadystatechange = sectionsAlert;
-  sHttpRequest.open("GET", SECTIONS_URL, true);
-  sHttpRequest.send();
-  console.log('sections request sent');
-
-  function coursesAlert() {
-    if (cHttpRequest.readyState === 4) {
-      if (cHttpRequest.status === 200) {
-        coursesJSON = $.parseJSON(cHttpRequest.responseText);
-      }
-      else {
-        alert("Course request Failed");
-      }
-    }
-  }
-  function sectionsAlert() {
-    if (sHttpRequest.readyState === 4) {
-      if (sHttpRequest.status === 200) {
-        sectionsJSON = $.parseJSON(sHttpRequest.responseText);
-      }
-      else {
-        alert("Sections request Failed");
-      }
-    }
-  }
-
+  
+  /* Searches database for courses matching search and update dom */
   $(document).on("click","#wm_icon", function() {
-    coursesCounter = 0;
     $("#wm_courses").empty();
 
     var search = $("#wm_bar > input").val();
-    var searchRE = new RegExp(search, 'i');
-    for (var c in coursesJSON) {
+    var req = COURSES_SEARCH + search;
 
-      if (coursesCounter < 20) {  //limit to 10 results
-        if (searchRE.test(coursesJSON[c].value.courseTitle)) {
-          writeCourse(coursesJSON[c]);
-          coursesCounter++;
+    /* AJAX request for course search */
+    cHttpRequest = new XMLHttpRequest();
+
+    if (!cHttpRequest) {
+      alert("Failed");
+      return false;
+    }
+
+    cHttpRequest.onreadystatechange = alertCourses;
+    cHttpRequest.open("GET", req, true);
+    cHttpRequest.send();
+    console.log('course request sent');
+    
+    /* courses search callback */
+    function alertCourses() {
+      if (cHttpRequest.readyState === 4) {
+        if (cHttpRequest.status === 200) {
+          coursesJSON = undefined;
+          coursesJSON = $.parseJSON(cHttpRequest.responseText);
+          console.log("courses json received");
+          console.log(coursesJSON);
+          writeCourses();
         }
-      }
-      else {
-        break;
+        else {
+          alert("Course request Failed");
+        }
       }
     }
   });
 
-  function writeCourse(c) {
-    $("#wm_courses").append("<li><div class='wm_c_dnum'>" +
-                              "<div class='wm_c_dep'>" +
-                              c.value.courseDepartment +
-                              "</div>" + 
-                              "<div class='wm_c_cnum'>" +
-                              c.value.courseNumber +
-                              "</div>" +
-                              "</div>" +
-                              "<div class='wm_c_info'>" +
-                              "<div class='wm_c_title'>" +
-                              c.value.courseTitle + 
-                              "</div>" +
-                              "<div class='wm_c_expand' id='wm_c_" + c.key + "'>" +
-                              "<i class='fa fa-plus-square-o fa-3x'></i>" +
-                              "</div>" +
-                              "<div class='wm-table hidden'>" +
-                              "<table>" +
-                              "<tr>" +
-                              "<td class='wm_c_prof'></td>" +
-                              "<td class='wm_c_time'></td>" +
-                              "</tr>" + 
-                              "<tr>" +
-                              "<td class='wm_c_seats'></td>" +
-                              "<td class='wm_c_loc'></td>" +
-                              "</tr>" +
-                              "<tr>" + 
-                              "<td class='wm_c_desc'></td>" +
-                              "</tr>" + 
-                              "</table>" + 
-                              "</div>" +
-                              "</div>" + 
-                              "</li>"
-                            );
-    $('#wm_c_' + c.key).data('key', c.key);
+  function writeCourses() {
+    var lastCourse = 0;
+    var i = 0;
+    var c;
+
+    for (var cn in coursesJSON) {
+      if (coursesJSON[cn].value) {
+        c = coursesJSON[cn].value;
+        if (lastCourse === c.courseCourseid) {
+          i++;
+        }
+        else {
+          i = 0;
+        }
+        lastCourse = c.courseCourseid;
+        $("#wm_courses").append("<li><div class='wm_c_dnum'>" +
+                                  "<div class='wm_c_dep'>" +
+                                  c.courseDepartment +
+                                  "</div>" + 
+                                  "<div class='wm_c_cnum'>" +
+                                  c.courseNumber +
+                                  "</div>" +
+                                  "</div>" +
+                                  "<div class='wm_c_info'>" +
+                                  "<div class='wm_c_title'>" +
+                                  c.courseTitle + 
+                                  "</div>" +
+                                  "<div class='wm_c_expand' id='wm_c_" + c.courseCourseid + "'>" +
+                                  "<i class='fa fa-plus-square-o fa-3x'></i>" +
+                                  "</div>" +
+                                  "<div class='wm-table hidden'>" +
+                                  "<table>" +
+                                  "<tr>" +
+                                  "<td class='wm_c_prof'></td>" +
+                                  "<td class='wm_c_time'></td>" +
+                                  "</tr>" + 
+                                  "<tr>" +
+                                  "<td class='wm_c_seats'></td>" +
+                                  "<td class='wm_c_loc'></td>" +
+                                  "</tr>" +
+                                  "<tr>" +
+                                  "<td class='wm_c_sem'>" + c.courseSemester + "</td>" +
+                                  "<td class='wm_c_gea'>" + c.courseGenEdArea + "</td>" +
+                                  "</tr>" +
+                                  "<tr>" + 
+                                  "<td class='wm_c_desc'>" + c.courseDescription + "</td>" +
+                                  "</tr>" + 
+                                  "</table>" + 
+                                  "</div>" +
+                                  "</div>" + 
+                                  "</li>"
+                                );
+        $('#wm_c_' + c.courseCourseid).data('ccid', c.courseCourseid);
+        $('#wm_c_' + c.courseCourseid).data('sid', i);
+      }
+    }
   }
 
   $(document).on("click",".wm_c_expand", function() {
+    var that = $(this);
     var li = $(this).parent().parent();
     var info = $(this).parent();
-    var key = $(this).data().key;
+    var ccid = $(this).data().ccid ? $(this).data().ccid : 0;
+    var sid = $(this).data().sid ? $(this).data().sid : 0;
+    console.log("CCID: " + ccid + "|| SID: " + sid);
     var sect;
     var crse;
-    if ($(this).parent().children('.wm_c_expand').children('i').hasClass('fa-plus-square-o')) {
-      console.log($(this).data());
-      for (var s in sectionsJSON) {
-        if (sectionsJSON[s].key === key) {
-          sect = sectionsJSON[s].value;
-          break;
-        }
-      }
-      for (var c in coursesJSON) {
-        if (coursesJSON[c].key === key) {
-          crse = coursesJSON[c].value;
-          break;
-        }
-      }
-      info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_desc').html(crse.courseDescription);
-      info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_prof').html(parseProf(sect.sectionProfessors)); 
-      info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_time').html(sect.sectionTime);
-      info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_loc').html(sect.sectionLocation);
-      info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_seats').html('seats: ' + sect.sectionSeats_available);
-
-      info.children('.wm-table').removeClass('hidden');
-
-      info.children('.wm_c_expand').html("<i class='fa fa-minus-square-o fa-3x'></i>");
-      info.addClass('wm-info-expanded');
+    var req = SECTIONS_BY_ID + ccid;
+    
+    /* AJAX sections request */
+    sHttpRequest = new XMLHttpRequest();
+    if (!sHttpRequest) {
+      alert("Failed");
+      return false;
     }
-    else {
-      info.children('.wm_c_expand').html("<i class='fa fa-plus-square-o fa-3x'></i>");
-      info.removeClass('wm-info-expanded');
-      info.children('.wm-table').addClass('hidden');
 
+    sHttpRequest.onreadystatechange = showSection;
+    sHttpRequest.open("GET", req, true);
+    sHttpRequest.send();
+    console.log('sections request sent');
+
+    /* Section request callback */
+    function showSection() {
+      if (sHttpRequest.readyState === 4) {
+        if (sHttpRequest.status === 200) {
+          sectionsJSON = undefined;
+          sectionsJSON = $.parseJSON(sHttpRequest.responseText);
+          console.log('sections json received');
+          console.log("sid: "+sid+" json: "+stringify(sectionsJSON));
+          if (sectionsJSON[sid]) {
+            expandSection(sectionsJSON[sid].value);
+          }
+          else if (sectionsJSON[0]) {
+            expandSection(sectionsJSON[0].value); //sid currently acting funky
+          }
+        }
+        else {
+          alert("Sections request Failed");
+        }
+      }
+    } 
+    /* expands a course to show its section information */
+    function expandSection(s) {
+      if (that.children('i').hasClass('fa-plus-square-o')) {
+        console.log("expanding course");
+        info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_prof').html(parseProf(s.sectionProfessors)); 
+        info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_time').html(s.sectionTime);
+        info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_loc').html(s.sectionLocation);
+        info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_seats').html('seats: ' + s.sectionSeats_available);
+
+        info.children('.wm-table').removeClass('hidden');
+
+        that.html("<i class='fa fa-minus-square-o fa-3x'></i>");
+        info.addClass('wm-info-expanded');
+          
+      }
+      else {
+        console.log("collapsing course");
+        that.html("<i class='fa fa-plus-square-o fa-3x'></i>");
+        info.removeClass('wm-info-expanded');
+        info.children('.wm-table').addClass('hidden');
+      }
     }
   });
 }
+
 /* Parses string from course JSON in the form
   {instructor=\u003eemoran, first_name=\u003eEdward, last_name=\u003eMoran}
 */
@@ -158,7 +182,7 @@ function parseProf (prof) {
   var fName;
   var lName;
   var m;
-  var re = /.*?\u003e(.*?),.*?\u003e(.*?),.*?\u003e(.*?)\}/
+  var re = /.*?\u003e(.*?),.*?\u003e(.*?),.*?\u003e(.*?)\}/;
   if (re.test(prof)) {
     m = re.exec(prof);
     fName = m[2];
@@ -167,5 +191,25 @@ function parseProf (prof) {
   }
   else {
     return prof;
+  }
+}
+
+function stringify(obj) {
+ var t = typeof (obj);
+  if (t != "object" || obj === null) {
+    //simple data type
+    if (t == "string") obj = '"'+obj+'"';
+      return String(obj);
+  }
+  else {
+    // recurse array or object
+    var n, v, json = [], arr = (obj && obj.constructor == Array);
+    for (n in obj) {
+      v = obj[n]; t = typeof(v);
+      if (t == "string") v = '"'+v+'"';
+      else if (t == "object" && v !== null) v = JSON.stringify(v);
+      json.push((arr ? "" : '"' + n + '":') + String(v));
+    }
+    return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
   }
 }

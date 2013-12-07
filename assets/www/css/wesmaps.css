@@ -185,6 +185,24 @@ ul {
   border-top: 1px solid #555555;
   padding: 5px 0px 5px 0px;
 }
+.wm_c_sem {
+  font-size: 15px;
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  overflow: hidden;
+  border-top: 1px solid #555555;
+  padding: 5px 0px 5px 0px;
+}
+.wm_c_gea {
+  font-size: 15px;
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  overflow: hidden;
+  border-top: 1px solid #555555;
+  padding: 5px 0px 5px 0px;
+}
 .wm_c_desc {
   font-size: 15px;
   text-align: justify;

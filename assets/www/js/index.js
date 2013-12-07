@@ -28,10 +28,6 @@ $(document).ready(function() {
     else if ($(this).attr('value') === "events") {
       $(".page").addClass("hidden");
       $("#events").removeClass("hidden");
-      if (first_events_visit === true) {
-        startEvents();
-        first_events_visit = false;
-      }
     }
     else if ($(this).attr('value') === "events_list") {
       $(".page").addClass("hidden");
