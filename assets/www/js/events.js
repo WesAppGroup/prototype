@@ -284,9 +284,9 @@ function startEvents() {
         //   },
         //   100
         // );
-        var more = document.getElementById("events_read_more");
+        var more = document.getElementById("events_read_more2");
         more.getElementsByTagName("h4")[0].innerHTML = ev.eventName;
-        content = more.getElementsByTagName("div")[0].getElementsByTagName("div")[0]
+        content = $("#morecontent")[0]
         content.innerHTML = ""
         var time = document.createElement('div');
         time.innerHTML = ev.eventTime + "<br>" + "<br>";
