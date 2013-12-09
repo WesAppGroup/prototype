@@ -51,6 +51,11 @@ body {
 #firstHeading {
     font-weight: 300;
     font-size: 11px;
+    font-weight: 600;
+    font-size: small;
+    text-decoration: none;
+    color: rgba(51, 51, 51, 0.77);
+    font-family: Raleway;
 }
 /*.mm-menu > .mm-panel {
     font-size: 25px;
@@ -58,6 +63,7 @@ body {
  #info_p {
     font-weight: 300;
     font-size: 11px;
+    padding-top: 3px;
 }
 h1, h2, h3, h4, h5, h6 {
     line-height: 1;
@@ -66,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 0 20px 0;
 }
 p {
-    margin: 0 0 20px 0;
+    /*margin: 0 0 20px 0;*/
 }
 a, a:hover {
     outline: none;
@@ -415,8 +421,13 @@ a, a:hover {
     font-size: large;
 }
 .goto_page span, i {
-    text-decoration: none;
-    color: #ffffff;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.goto_page {
+  text-decoration: none;
+  color: rgba(83, 83, 83, 0.78);
 }
 
 #events_list,
