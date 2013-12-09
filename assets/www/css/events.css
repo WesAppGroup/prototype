@@ -195,35 +195,13 @@ a, a:hover {
     top: 6px;
     left: 6px;
 }
-/*#openSidebar:before{*/
-
-/*border: 16px solid rgba(255, 255, 255, 1);*/
-
-/*border-left-color: rgba(255, 255, 255, 0.67);*/
-
-/*border-top-color: rgba(115, 123, 216, 0.39);*/
-
-/*top: 4.5px;*/
-
-/*left: 4.5px;*/
-
-/*}*/
- #events_list {
+#events_list {
     font-size: 25px;
     background: #fff;
     color: #333;
 }
-/*.mm-menu, .mm-menu a
-{
-    color: #333;
-}*/
-
-/*.mm-page
-{
-    box-shadow: none !important;
-}*/
- #events_ul {
-    padding-bottom: 15%;
+#events_ul {
+    padding-bottom: 20%;
 }
 #events_cat_div {
     width: .5%;
@@ -238,21 +216,6 @@ a, a:hover {
     display: none;
 }
 
-/*
-background: rgba(145, 145, 145, 0.34);
-  color: white;
-  border-radius: 5px;
-  border: none;
-  background-size: 200px;
-  padding-left: 1%;
-  padding-right: 4%;
-  padding-top: .5%;
-  padding-bottom: .5%;
-  height: 40px;
-  width: 146px;
-  margin-bottom: 5%;
-  text-decoration: none;
-*/
 
 ::-webkit-input-placeholder { /* WebKit browsers */
   color: rgba(0,0,0,0.4);
@@ -293,6 +256,7 @@ background: rgba(145, 145, 145, 0.34);
   border: none;
   color: rgba(0,0,0,0.7);
   padding-right: 10px;
+  padding-left: 10px;
 }
 
 #e_search_input:focus {
@@ -316,9 +280,11 @@ background: rgba(145, 145, 145, 0.34);
   border: none;
   color: rgba(100, 100, 100, 0.91);
   font-weight: bold;
+  padding-left: 8px;
 }
 
 .filter_options {
+    padding-right: 2%;
     padding-bottom: 0%;
     text-align: center;
     font-size: 16px;
@@ -512,7 +478,10 @@ background: rgba(145, 145, 145, 0.34);
   height: 95%;
   width: 100%;
   margin: 0;
-  padding: 0 5%;
+  /*padding: 0 5%;*/
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
   color:#686868;
 }
 
