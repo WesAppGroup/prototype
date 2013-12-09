@@ -605,7 +605,7 @@ function startEvents() {
           var div_i = document.createElement('div');
           div_i.setAttribute('id', 'time_' + i_time)
           div_i.setAttribute('class', 'time_label')
-          div_i.innerHTML = i_time
+          div_i.innerHTML = "<div class='time_label'>" + i_time + "</div>";
           divs[i_time] = div_i
         }
 
