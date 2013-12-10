@@ -11,12 +11,11 @@ function get_events_main(callback) {
 		);
 		if (event_data == undefined) {
 			throw err
-		}
-		else {
+		} else {
 			callback(event_data)
 		}
 	} catch (err) {
-		console.log(err,"error")
+		console.log(err, "error")
 		console.log("get event data attempt failed")
 		//backup dummy data
 		var event_data =

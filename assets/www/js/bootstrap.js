@@ -3,7 +3,7 @@
   var onDeviceReady = function() {
 		console.log('device ready');
     startApp();
-    startEvents();
+    // startEvents();
     startWesmaps();
     startHours();
     startDonate();

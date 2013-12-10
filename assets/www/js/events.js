@@ -12,7 +12,7 @@ function startEvents() {
     })
     console.log(events,"events")
     console.log("initialize called")
-    initialize(events)
+    return initialize(events)
   }
 
   function initialize(events) {
