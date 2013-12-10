@@ -10,9 +10,9 @@ function startEvents() {
       element.eventTime = new Date(element.eventTime * 1000);
       return element
     })
-    console.log(events)
+    console.log(events,"events")
     console.log("initialize called")
-    return initialize(events)
+    initialize(events)
   }
 
   function initialize(events) {

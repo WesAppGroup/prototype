@@ -7,14 +7,16 @@ function get_events_main(callback) {
 			event_data_url, function(data) {
 				event_data = data
 				console.log(event_data, " = event data");
-				return callback(event_data)
 			}
 		);
 		if (event_data == undefined) {
 			throw err
 		}
+		else {
+			callback(event_data)
+		}
 	} catch (err) {
-		console.log(err)
+		console.log(err,"error")
 		console.log("get event data attempt failed")
 		//backup dummy data
 		var event_data =
@@ -176,5 +178,5 @@ function get_events_main(callback) {
 			"key": 13
 		}]
 	}
-	return callback(event_data)
+	callback(event_data)
 }
