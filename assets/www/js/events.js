@@ -1,36 +1,23 @@
 function startEvents() {
   console.log("starting events")
 
-  // resizeMap = function() {
-  //   console.log("window size change")
-  //   $('#map-canvas').css("height", $(window).height() - 80);
-  // }
 
-  // $(document).ready(function() {
-  //   resizeMap();
-  // });
-
-  // $(window).resize(function() {
-  //   resizeMap();
-  // });
-
-
-  function parse_events(event_obj) {
-    // var events = [];
-    var event_obj = event_obj.map(function(element) {
+  function parse_events(event_data) {
+    console.log("parsing events")
+    var events = event_data.map(function(element) {
       return element.value;
     }).map(function(element) {
       element.eventTime = new Date(element.eventTime * 1000);
       return element
     })
-    console.log(event_obj)
-    return event_obj
+    console.log(events,"events")
+    console.log("initialize called")
+    initialize(events)
   }
-  var events = parse_events(event_data);
 
-  var infowindow;
+  function initialize(events) {
 
-  function initialize() {
+    var infowindow;
 
     var styles_array =
       [{
@@ -246,7 +233,6 @@ function startEvents() {
     };
 
     function markerize(pos, str, ev) {
-      console.log(ev.eventCategory)
       var pinIcon = new google.maps.MarkerImage(
         'resources/' + icons[ev.eventCategory],
         new google.maps.Size(25, 25), /* size is determined at runtime */
@@ -254,7 +240,6 @@ function startEvents() {
         new google.maps.Point(12.5, 12.5), /* anchor is bottom center of the scaled image */
         new google.maps.Size(25, 25) /*size want them to be.. */
       );
-      console.log(ev.eventCategory)
       var marker = new google.maps.Marker({
         position: pos,
         map: map,
@@ -283,21 +268,23 @@ function startEvents() {
         //   },
         //   100
         // );
-        var more = document.getElementById("events_read_more");
+        var more = document.getElementById("events_read_more2");
         more.getElementsByTagName("h4")[0].innerHTML = ev.eventName;
-        content = more.getElementsByTagName("div")[0].getElementsByTagName("div")[0]
+        content = $("#morecontent")[0]
         content.innerHTML = ""
         var time = document.createElement('div');
-        time.innerHTML = ev.eventTime + "<br>" + "<br>";
+        time.setAttribute('id', 'read_more_time');
+        time.innerHTML = ev.eventTime;
         var description = document.createElement('div');
         description.setAttribute('class', 'well');
         description.innerHTML = ev.eventDescription;
         var link = document.createElement('a');
         link.setAttribute('href', ev.eventLink);
-        link.innerHTML = "read original";
+        link.setAttribute('id', 'read_more_link');
+        link.innerHTML = "Read original";
+        description.appendChild(link);
         content.appendChild(time)
         content.appendChild(description);
-        content.appendChild(link);
       });
 
       google.maps.event.addListener(map, 'click', function() {
@@ -460,7 +447,6 @@ function startEvents() {
           }
         }
       }
-      console.log(cats_dict)
 
       // Creating the divs for each
       var event_list = document.getElementById("events_ul")
@@ -475,12 +461,10 @@ function startEvents() {
           var newli = document.createElement('li')
           newli.setAttribute('id', 'event_li')
           var ev = cats_dict[keys[i]][z]
-          console.log(ev)
           // var div_cat = document.createElement('div');
           // newa.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
           // div_cat.setAttribute('id', 'events_cat_div')
           var newa = document.createElement('a')
-          console.log(ev.eventName)
           newa.setAttribute('id', ev.eventName)
           newa.setAttribute('class', "event_name")
           newa.setAttribute('href', '#')
@@ -500,16 +484,12 @@ function startEvents() {
 
     //CAN probably merge sortCategory with sortLocation later...
     function sortLocation(events, checkbox) {
-      console.log(events, checkbox)
       var locations = {
         'Other': []
       }
       var currenttime = new Date();
 
       for (var i = 0; i < events.length; i++) {
-        console.log(events[i].eventLocation)
-        // console.log(locations)
-        // console.log(events[i].eventLocation in locations)
         if (!(events[i].eventLocation in locations)) {
           if (checkbox) {
             locations[events[i].eventLocation] = [events[i]]
@@ -568,7 +548,6 @@ function startEvents() {
       var event_ul = document.getElementById("events_ul")
       event_ul.innerHTML = ""
       var currenttime = new Date();
-      console.log(checkbox)
 
       //sort by time, past to future, what if event has no time?
       var event_list = events.sort(function compareTime(a, b) {
@@ -583,7 +562,6 @@ function startEvents() {
 
 
       if (!checkbox) {
-        console.log("!checkbox == true")
         var event_list = events.filter(function(obj) {
           return (obj.eventTime > currenttime.getTime())
         })
@@ -598,11 +576,10 @@ function startEvents() {
         var i_time = event_list[i].eventTime.toString().split(" ", 3).join(" ")
         // console.log(i_time)
         if (!(i_time in divs)) {
-          console.log("new date div")
           var div_i = document.createElement('div');
           div_i.setAttribute('id', 'time_' + i_time)
           div_i.setAttribute('class', 'time_label')
-          div_i.innerHTML = i_time
+          div_i.innerHTML = "<div class='time_label'>" + i_time + "</div>";
           divs[i_time] = div_i
         }
 
@@ -726,52 +703,42 @@ function startEvents() {
     $('#e_old').change(function() {
       if (this.checked) {
         checkbox = true;
-        add_markers_to_map(events,true)
-        console.log("Miu...?")
-        if (document.getElementById('e_category').checked) {
-          sortCategory(events, checkbox);
-        } else if (document.getElementById('e_time').checked) {
+        add_markers_to_map(events, true)
+        if ($('#events_select')[0].selectedIndex == 0) {
           sortTime(events, checkbox);
-        } else {
+        } else if ($('#events_select')[0].selectedIndex == 1) {
+          sortCategory(events, checkbox);
+        } else if ($('#events_select')[0].selectedIndex == 2) {
           sortLocation(events, checkbox);
         }
 
       } else {
         checkbox = false;
-        if (document.getElementById('e_category').checked) {
-          sortCategory(events, checkbox);
-        } else if (document.getElementById('e_time').checked) {
+        if ($('#events_select')[0].selectedIndex == 0) {
           sortTime(events, checkbox);
-        } else {
+        } else if ($('#events_select')[0].selectedIndex == 1) {
+          sortCategory(events, checkbox);
+        } else if ($('#events_select')[0].selectedIndex == 2) {
           sortLocation(events, checkbox);
         }
 
       }
     });
 
-    $('#e_location').change(function() {
-      if (this.checked) {
+    $('#events_select').change(function() {
+      if ($('#events_select')[0].selectedIndex == 0) {
+        checkbox = document.getElementById('e_old').checked;
+        sortTime(events, checkbox);
+      }
+
+      if ($('#events_select')[0].selectedIndex == 1) {
+        checkbox = document.getElementById('e_old').checked;
+        sortCategory(events, checkbox);
+      } else if ($('#events_select')[0].selectedIndex == 2) {
         checkbox = document.getElementById('e_old').checked;
         sortLocation(events, checkbox);
       }
-    });
-
-    $('#e_time').change(function() {
-      if (this.checked) {
-        checkbox = document.getElementById('e_old').checked;
-        sortTime(events, checkbox);
-        // console.log("Miu")
-      }
-    });
-
-    $('#e_category').change(function() {
-      if (this.checked) {
-        checkbox = document.getElementById('e_old').checked;
-        sortCategory(events, checkbox);
-        // console.log("Miu")
-      }
-    });
-
+    })
 
     var checkbox = false;
     sortLocation(events, checkbox);
@@ -799,16 +766,22 @@ function startEvents() {
         }
       });
     });
-  }
-  // google.maps.event.addDomListener(window, 'load', initialize);
-  initialize();
-  setTimeout(function() {
+    // RESIZE MAP
+    console.log("RESIZING MAP")
     google.maps.event.trigger(map, 'resize');
     center = new google.maps.LatLng(41.5526833, -72.6612454);
     map.setCenter(center);
-  }, 100);
+  }
 
+  // google.maps.event.addDomListener(window, 'load', initialize);
+  // initialize();
+  // setTimeout(function() {
+  //   google.maps.event.trigger(map, 'resize');
+  //   center = new google.maps.LatLng(41.5526833, -72.6612454);
+  //   map.setCenter(center);
+  // }, 100);
 
+  get_events_main(parse_events);
 }
 
 // $(document).ready(function() {
