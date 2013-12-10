@@ -1,37 +1,23 @@
 function startEvents() {
   console.log("starting events")
 
-  // resizeMap = function() {
-  //   console.log("window size change")
-  //   $('#map-canvas').css("height", $(window).height() - 80);
-  // }
 
-  // $(document).ready(function() {
-  //   resizeMap();
-  // });
-
-  // $(window).resize(function() {
-  //   resizeMap();
-  // });
-
-
-  function parse_events(event_obj) {
+  function parse_events(event_data) {
+    console.log(event_data)
     console.log("parsing events")
-    var event_obj = event_obj.map(function(element) {
+    var events = event_data.map(function(element) {
       return element.value;
     }).map(function(element) {
       element.eventTime = new Date(element.eventTime * 1000);
       return element
     })
-    console.log(event_obj)
-    return event_obj
+    console.log(events)
+    return initialize(events)
   }
 
-  var events = parse_events(event_data);
+  function initialize(events) {
 
-  var infowindow;
-
-  function initialize() {
+    var infowindow;
 
     var styles_array =
       [{
@@ -753,59 +739,66 @@ function startEvents() {
     });
 
     $('#events_select').change(function() {
-        if ($('#events_select')[0].selectedIndex == 0) {
-          checkbox = document.getElementById('e_old').checked;
-          sortTime(events, checkbox);
-        }
+      if ($('#events_select')[0].selectedIndex == 0) {
+        checkbox = document.getElementById('e_old').checked;
+        sortTime(events, checkbox);
+      }
 
-        if ($('#events_select')[0].selectedIndex == 1) {
-          checkbox = document.getElementById('e_old').checked;
-          sortCategory(events, checkbox);
-        } else if ($('#events_select')[0].selectedIndex == 2) {
-            checkbox = document.getElementById('e_old').checked;
-            sortLocation(events, checkbox);
-        }
-      })
+      if ($('#events_select')[0].selectedIndex == 1) {
+        checkbox = document.getElementById('e_old').checked;
+        sortCategory(events, checkbox);
+      } else if ($('#events_select')[0].selectedIndex == 2) {
+        checkbox = document.getElementById('e_old').checked;
+        sortLocation(events, checkbox);
+      }
+    })
 
-      var checkbox = false; sortLocation(events, checkbox);
+    var checkbox = false;
+    sortLocation(events, checkbox);
 
 
-      // console.log(events)
-      /* Logic for instant search of events list. It removes events
-       * that do not match the search bar from the DOM and keeps
-       * them in an array. It adds them back into the DOM when the
-       * do match the text in the search bar.
-       */
+    // console.log(events)
+    /* Logic for instant search of events list. It removes events
+     * that do not match the search bar from the DOM and keeps
+     * them in an array. It adds them back into the DOM when the
+     * do match the text in the search bar.
+     */
 
-      var removed = []; $("#e_search_input").keyup(function(event) {
-        var search_re = new RegExp(this.value, "i");
-        $("#events_ul").children("div").each(function(index) {
-          for (i = 0; i < this.getElementsByTagName('li').length; i++) {
-            var as = this.getElementsByTagName('a')
-            var event_name = as[i].id;
-            if (!search_re.test(event_name)) {
-              $(as[i]).hide();
-            } else {
-              $(as[i]).show();
-            }
+    var removed = [];
+    $("#e_search_input").keyup(function(event) {
+      var search_re = new RegExp(this.value, "i");
+      $("#events_ul").children("div").each(function(index) {
+        for (i = 0; i < this.getElementsByTagName('li').length; i++) {
+          var as = this.getElementsByTagName('a')
+          var event_name = as[i].id;
+          if (!search_re.test(event_name)) {
+            $(as[i]).hide();
+          } else {
+            $(as[i]).show();
           }
-        });
+        }
       });
-    }
-    // google.maps.event.addDomListener(window, 'load', initialize);
-    initialize();
-    setTimeout(function() {
-      google.maps.event.trigger(map, 'resize');
-      center = new google.maps.LatLng(41.5526833, -72.6612454);
-      map.setCenter(center);
-    }, 100);
-
-
+    });
+    // RESIZE MAP
+    google.maps.event.trigger(map, 'resize');
+    center = new google.maps.LatLng(41.5526833, -72.6612454);
+    map.setCenter(center);
   }
 
-  // $(document).ready(function() {
-  //   $("#event_nav")[0].addEventListener("click", function() {
-  //     // startEvents()
-  //     console.log("starting maps")
-  //   })
-  // })
+  // google.maps.event.addDomListener(window, 'load', initialize);
+  // initialize();
+  // setTimeout(function() {
+  //   google.maps.event.trigger(map, 'resize');
+  //   center = new google.maps.LatLng(41.5526833, -72.6612454);
+  //   map.setCenter(center);
+  // }, 100);
+  
+  get_events_main(parse_events);
+}
+
+// $(document).ready(function() {
+//   $("#event_nav")[0].addEventListener("click", function() {
+//     // startEvents()
+//     console.log("starting maps")
+//   })
+// })
