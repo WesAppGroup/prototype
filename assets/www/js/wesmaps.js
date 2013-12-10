@@ -5,10 +5,8 @@ var cHttpRequest;
 var sHttpRequest;
 var coursesJSON;
 var sectionsJSON;
-var coursesCounter = 0;
 var COURSES_SEARCH = 'http://stumobile0.wesleyan.edu/courses/search/';
 var SECTIONS_BY_ID = 'http://stumobile0.wesleyan.edu/sections/by-id/';
-
 
 function startWesmaps() {
   
@@ -94,7 +92,7 @@ function startWesmaps() {
                                   "<td class='wm_c_gea'>" + c.courseGenEdArea + "</td>" +
                                   "</tr>" +
                                   "<tr>" + 
-                                  "<td class='wm_c_desc'>" + c.courseDescription + "</td>" +
+                                  "<td><textarea class='wm_c_desc'>"+ c.courseDescription + "</textarea></td>" +
                                   "</tr>" + 
                                   "</table>" + 
                                   "</div>" +
@@ -109,7 +107,11 @@ function startWesmaps() {
 
   $(document).on("click",".wm_c_expand", function() {
     var that = $(this);
+    var li = $(this).parent().parent();
     var info = $(this).parent();
+    var tbody = info.children('.wm-table').children('table').children('tbody');
+    var liHeight = li.height();
+
     var ccid = $(this).data().ccid ? $(this).data().ccid : 0;
     var sid = $(this).data().sid ? $(this).data().sid : 0;
     console.log("CCID: " + ccid + "|| SID: " + sid);
@@ -155,22 +157,26 @@ function startWesmaps() {
     function expandSection(s) {
       if (that.children('i').hasClass('fa-plus-square-o')) {
         console.log("expanding course");
-        info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_prof').html(parseProf(s.sectionProfessors)); 
-        info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_time').html(s.sectionTime);
-        info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_loc').html(s.sectionLocation);
-        info.children('.wm-table').children('table').children('tbody').children('tr').children('.wm_c_seats').html('seats: ' + s.sectionSeats_available);
+        tbody.children('tr').children('.wm_c_prof').html(parseProf(s.sectionProfessors)); 
+        tbody.children('tr').children('.wm_c_time').html(s.sectionTime);
+        tbody.children('tr').children('.wm_c_loc').html(s.sectionLocation);
+        tbody.children('tr').children('.wm_c_seats').html('seats: ' + s.sectionSeats_available);
 
         info.children('.wm-table').removeClass('hidden');
 
         that.html("<i class='fa fa-minus-square-o fa-3x'></i>");
         info.addClass('wm-info-expanded');
-          
+
+        li.addClass('wm-li-expanded');  
+        $('.wm_c_desc').height(400-2.5*liHeight);
       }
       else {
         console.log("collapsing course");
         that.html("<i class='fa fa-plus-square-o fa-3x'></i>");
         info.removeClass('wm-info-expanded');
         info.children('.wm-table').addClass('hidden');
+        li.removeClass('wm-li-expanded');
+        li.children('.wm_c_dnum').height('100%');
       }
     }
   });
