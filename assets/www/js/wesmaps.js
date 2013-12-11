@@ -137,7 +137,6 @@ function startWesmaps() {
           sectionsJSON = $.parseJSON(sHttpRequest.responseText);
           console.log('sections json received');
           console.log(sectionsJSON);
-          console.log("sid: "+sid+" json: "+stringify(sectionsJSON));
           if (sid < sectionsJSON.length) {
             expandSection(sectionsJSON[sid].value);
           }
@@ -166,7 +165,7 @@ function startWesmaps() {
 
         that.html("<i class='fa fa-minus-square-o fa-3x'></i>");
         info.addClass('wm-info-expanded');
-
+        li.children('.wm_c_dnum').height(liHeight);
         li.addClass('wm-li-expanded');  
         $('.wm_c_desc').height(400-2.5*liHeight);
       }
@@ -198,25 +197,5 @@ function parseProf (prof) {
   }
   else {
     return prof;
-  }
-}
-
-function stringify(obj) {
- var t = typeof (obj);
-  if (t != "object" || obj === null) {
-    //simple data type
-    if (t == "string") obj = '"'+obj+'"';
-      return String(obj);
-  }
-  else {
-    // recurse array or object
-    var n, v, json = [], arr = (obj && obj.constructor == Array);
-    for (n in obj) {
-      v = obj[n]; t = typeof(v);
-      if (t == "string") v = '"'+v+'"';
-      else if (t == "object" && v !== null) v = JSON.stringify(v);
-      json.push((arr ? "" : '"' + n + '":') + String(v));
-    }
-    return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
   }
 }
