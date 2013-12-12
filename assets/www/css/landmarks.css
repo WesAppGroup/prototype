@@ -24,8 +24,8 @@ ul {
   font-family: Raleway;
   font-weight: 300;
   color: #ffffff;
-  font-size: 20px;
-  height: 70px;
+  font-size: 15px;
+  height: 60px;
   text-align: center;
   width: 100%;
 }
@@ -45,7 +45,7 @@ ul {
   background-color: #458179;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  width: 25%;
+  width: 40%;
   height: 100%;
   float: left;
   margin-left: 3%;
@@ -54,12 +54,17 @@ ul {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+.lm_c_cnum {
+  font-size: 10px;
+}
+
 .lm_c_info {
   display: inline-block;
   background-color: #242833;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  width: 70%;
+  width: 50%;
   height: 100%;
   float: left;
   margin-left: -5px;
@@ -68,9 +73,30 @@ ul {
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 10px;
-  height: 50px;
-  width: 75%;
+  height: 40px;
+  width: 60%;
   float: left;
+}
+
+/* expanded landmarks */
+.lm-table {
+  display: block;
+  width: 100%;
+}
+.lm-table table {
+  width: 100%;
+}
+.lm-info-expanded {
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.lm_c_desc {
+  font-size: 13px;
+  text-align: justify;
+  border-top: 1px solid #555555;
+  overflow: hidden;
+  padding: 5px 5px 0px 5px;
 }
 
 
@@ -82,7 +108,7 @@ ul {
 }
 #lm_bar {
   display: inline-block;
-  width: 75%;
+  width: 70%;
   height: 70%;
   float: left;
 }
