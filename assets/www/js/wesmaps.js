@@ -7,9 +7,13 @@ var coursesJSON;
 var sectionsJSON;
 var COURSES_SEARCH = 'http://stumobile0.wesleyan.edu/courses/search/';
 var SECTIONS_BY_ID = 'http://stumobile0.wesleyan.edu/sections/by-id/';
+var dim;
+var liHeight;
+var liH;
 
 function startWesmaps() {
-  
+  dim = getWindowSizes();
+  console.log(dim[0] + '\t' + dim[1]);
   /* Searches database for courses matching search and update dom */
   $(document).on("click","#wm_icon", function() {
     $("#wm_courses").empty();
@@ -37,7 +41,6 @@ function startWesmaps() {
           coursesJSON = undefined;
           coursesJSON = $.parseJSON(cHttpRequest.responseText);
           console.log("courses json received");
-          console.log(coursesJSON);
           writeCourses();
         }
         else {
@@ -104,13 +107,15 @@ function startWesmaps() {
       }
     }
   }
+  function getLiHeight() {
+    return $($('li')[0]).height();
+  }
 
   $(document).on("click",".wm_c_expand", function() {
     var that = $(this);
     var li = $(this).parent().parent();
     var info = $(this).parent();
     var tbody = info.children('.wm-table').children('table').children('tbody');
-    var liHeight = li.height();
 
     var ccid = $(this).data().ccid ? $(this).data().ccid : 0;
     var sid = $(this).data().sid ? $(this).data().sid : 0;
@@ -136,8 +141,6 @@ function startWesmaps() {
           sectionsJSON = undefined;
           sectionsJSON = $.parseJSON(sHttpRequest.responseText);
           console.log('sections json received');
-          console.log(sectionsJSON);
-          console.log("sid: "+sid+" json: "+stringify(sectionsJSON));
           if (sid < sectionsJSON.length) {
             expandSection(sectionsJSON[sid].value);
           }
@@ -155,6 +158,12 @@ function startWesmaps() {
     } 
     /* expands a course to show its section information */
     function expandSection(s) {
+      var text = tbody.children('tr').children('td').children('.wm_c_desc');
+      var scH = 0;
+      var taH = 0;
+      var loops = 0;
+      liH = getLiHeight();
+      liHeight = getLiHeight();
       if (that.children('i').hasClass('fa-plus-square-o')) {
         console.log("expanding course");
         tbody.children('tr').children('.wm_c_prof').html(parseProf(s.sectionProfessors)); 
@@ -167,16 +176,44 @@ function startWesmaps() {
         that.html("<i class='fa fa-minus-square-o fa-3x'></i>");
         info.addClass('wm-info-expanded');
 
-        li.addClass('wm-li-expanded');  
-        $('.wm_c_desc').height(400-2.5*liHeight);
+        console.log("liH: "+liH+"\t");
+        li.children('.wm_c_dnum').height(dim[1] / 10);
+
+        scH = text[0].scrollHeight;
+        taH = text.innerHeight();
+        
+        if (li.data().liHeight) {
+          li.height(li.data().liHeight);
+        }
+        else {
+          while (scH > (text.innerHeight())) {
+            console.log('liH: '+liH+'\t');
+            console.log('taH: '+taH+'\t');
+            console.log('The scrollHeight '+text[0].scrollHeight+' is bigger than the textheight '+text.innerHeight());
+            console.log("liHeight "+li.height());
+            li.height(liHeight + 10);
+            liHeight += 10;
+            text.height(taH + 10);
+            taH += 10;
+            loops += 1;
+            if (loops > 300) {
+              console.log("<<<<<<<<<<<<<<<<<<<<<<SHSIIIIIT>>>>>>>>>>>>>>>>>");
+              break;
+            }
+            console.log("liH: "+liH+"\t");
+          }
+          li.height(li.height() + dim[1] / 2.5);
+          li.data("liHeight", li.height());
+        }
       }
       else {
         console.log("collapsing course");
+        console.log("liH: "+liH+"\t");
         that.html("<i class='fa fa-plus-square-o fa-3x'></i>");
         info.removeClass('wm-info-expanded');
         info.children('.wm-table').addClass('hidden');
-        li.removeClass('wm-li-expanded');
-        li.children('.wm_c_dnum').height('100%');
+        console.log('collapsing liH: '+liH+'\t');
+        li.height(dim[1] / 10);
       }
     }
   });
@@ -201,22 +238,20 @@ function parseProf (prof) {
   }
 }
 
-function stringify(obj) {
- var t = typeof (obj);
-  if (t != "object" || obj === null) {
-    //simple data type
-    if (t == "string") obj = '"'+obj+'"';
-      return String(obj);
+/* Gets screen dimensions */
+function getWindowSizes() {
+  var windowHeight = 0, windowWidth = 0;
+  if (typeof (window.innerWidth) == 'number') {
+    windowHeight = window.innerHeight;
+    windowWidth = window.innerWidth;
+  } 
+  else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+    windowHeight = document.documentElement.clientHeight;
+    windowWidth = document.documentElement.clientWidth;
+  } 
+  else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+    windowHeight = document.body.clientHeight;
+    windowWidth = document.body.clientWidth;
   }
-  else {
-    // recurse array or object
-    var n, v, json = [], arr = (obj && obj.constructor == Array);
-    for (n in obj) {
-      v = obj[n]; t = typeof(v);
-      if (t == "string") v = '"'+v+'"';
-      else if (t == "object" && v !== null) v = JSON.stringify(v);
-      json.push((arr ? "" : '"' + n + '":') + String(v));
-    }
-    return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
-  }
+  return [windowWidth, windowHeight];
 }
