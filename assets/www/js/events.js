@@ -10,7 +10,7 @@ function startEvents() {
       element.eventTime = new Date(element.eventTime * 1000);
       return element
     })
-    console.log(events,"events")
+    console.log(events, "events")
     console.log("initialize called")
     return initialize(events)
   }
@@ -750,6 +750,12 @@ function startEvents() {
      * them in an array. It adds them back into the DOM when the
      * do match the text in the search bar.
      */
+
+
+    // EVENT LISTENER FOR BACK TO MAP BUTTON IN READ MORE
+    $('#read_more_button')[0].onclick = function() {
+      $('#read_more_a')[0].click()
+    }
 
     var removed = [];
     $("#e_search_input").keyup(function(event) {

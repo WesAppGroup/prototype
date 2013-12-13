@@ -15,8 +15,8 @@ function get_events_main(callback) {
 				return callback(event_data);
 			}
 		});
-	console.log("error");
 	console.log("get event data attempt failed");
+	alert("Unable to fetch events data, reverting to backup data")
 	//backup dummy data
 	var event_data =
 		[{
