@@ -14,6 +14,7 @@ var liH;
 function startWesmaps() {
   dim = getWindowSizes();
   console.log(dim[0] + '\t' + dim[1]);
+
   /* Searches database for courses matching search and update dom */
   $(document).on("click","#wm_icon", function() {
     $("#wm_courses").empty();

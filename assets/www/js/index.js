@@ -2,11 +2,7 @@
  */
 function startApp() {
   console.log('app started');
-}
-
-var first_events_visit = true;
-
-$(document).ready(function() {
+  var first_events_visit = true;
 
   /* Links buttons */
   $(document).on("click", ".goto_page",function(e) {
@@ -28,7 +24,7 @@ $(document).ready(function() {
     else if ($(this).attr('value') === "events") {
       $(".page").addClass("hidden");
       $("#events").removeClass("hidden");
-      if (first_events_visit == true){
+      if (first_events_visit === true){
         startEvents();
         first_events_visit = false;
       }
@@ -60,4 +56,12 @@ $(document).ready(function() {
     }
   });
 
-});
+  /* Back button listener */
+  var backListen = function() {
+    console.log("back button hit");
+    $($(".wm-go-home > a")[0]).click();
+  };
+  document.addEventListener("backbutton", backListen, false);
+
+  console.log("===========================================");
+}
