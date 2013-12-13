@@ -1,18 +1,18 @@
 function startEvents() {
-  console.log("starting events")
+  console.log("starting events");
 
 
   function parse_events(event_data) {
-    console.log("parsing events")
+    console.log("parsing events");
     var events = event_data.map(function(element) {
       return element.value;
     }).map(function(element) {
       element.eventTime = new Date(element.eventTime * 1000);
-      return element
-    })
-    console.log(events, "events")
-    console.log("initialize called")
-    return initialize(events)
+      return element;
+    });
+    console.log(events, "events");
+    console.log("initialize called");
+    return initialize(events);
   }
 
   function initialize(events) {
@@ -189,9 +189,9 @@ function startEvents() {
       "stylers": [{
         "lightness": 20
       }]
-    }]
+    }];
 
-    l2 = google.maps.MapTypeId.ROADMAP
+    l2 = google.maps.MapTypeId.ROADMAP;
     mapOptions = {
       center: new google.maps.LatLng(41.5526833, -72.6612454),
       zoom: 15,
@@ -228,8 +228,8 @@ function startEvents() {
       'Sports': 'marker_2.png',
       'Admissions': 'marker_3.png',
       'Theater': 'marker_4.png',
-      'Student Groups': 'marker_5.png',
-      'Other': 'marker_6.png'
+      'Student Groups': 'marker_8.png',
+      'Other': 'marker_9.png'
     };
 
     function markerize(pos, str, ev) {
@@ -270,8 +270,8 @@ function startEvents() {
         // );
         var more = document.getElementById("events_read_more2");
         more.getElementsByTagName("h4")[0].innerHTML = ev.eventName;
-        content = $("#morecontent")[0]
-        content.innerHTML = ""
+        content = $("#morecontent")[0];
+        content.innerHTML = "";
         var time = document.createElement('div');
         time.setAttribute('id', 'read_more_time');
         time.innerHTML = ev.eventTime;
@@ -283,7 +283,7 @@ function startEvents() {
         link.setAttribute('id', 'read_more_link');
         link.innerHTML = "Read original";
         description.appendChild(link);
-        content.appendChild(time)
+        content.appendChild(time);
         content.appendChild(description);
       });
 
@@ -327,7 +327,7 @@ function startEvents() {
 
 
     function add_markers_to_map(events, show_old) {
-      deleteMarkers()
+      deleteMarkers();
       // unspiderfy()
       for (var i = 0; i < events.length; i++) {
         // console.log(events[i])
@@ -339,7 +339,7 @@ function startEvents() {
         if (show_old == false) {
           var currenttime = new Date();
           if (events[i].eventTime < currenttime) {
-            continue
+            continue;
           }
         }
 
@@ -371,26 +371,34 @@ function startEvents() {
       }
     }
 
-    add_markers_to_map(events, false)
+    add_markers_to_map(events, false);
 
     $('#map_old').change(function() {
       if (this.checked) {
-        add_markers_to_map(events, true)
+        add_markers_to_map(events, true);
       } else {
-        add_markers_to_map(events, false)
+        add_markers_to_map(events, false);
       }
-    })
+    });
 
     // console.log(markers)
 
     var colors = {
-      'Auditions': 'rgba(255, 255, 255, 0.6)',
-      'Sports': 'rgba(203, 251, 255, 0.78)',
-      'Admissions': 'rgba(108, 228, 108, 0.85)',
-      'Theater': 'rgba(214, 119, 214, 0.86)',
-      'Student Groups': 'rgba(10, 100, 200, 0.85)',
-      'Other': 'red'
+      'Auditions': 'rgba(132, 59, 62, 1)',
+      'Sports': 'rgba(69, 129, 120, 1)',
+      'Admissions': 'rgba(69, 82, 129, 1)',
+      'Theater': 'rgba(129, 69, 103, 1)',
+      'Student Groups': 'rgba(158, 108, 68, 1)',
+      'Other': 'rgba(127, 158, 68, 1)'
     };
+
+    // 'Auditions': 'marker_1.png',
+    //       'Sports': 'marker_2.png',
+    //       'Admissions': 'marker_3.png',
+    //       'Theater': 'marker_4.png',
+    //       'Student Groups': 'marker_5.png',
+    //       'Other': 'marker_6.png'
+
 
 
     var cats = ['Auditions', 'Sports', 'Admissions', 'Theater', 'Student Groups', 'Other'];
@@ -419,7 +427,7 @@ function startEvents() {
     //either alphabetically or by number of members in the group. Category the same.
     // return
     function sortCategory(events, checkbox) {
-      console.log("SORTING CAT")
+      console.log("SORTING BY CATEGORY");
       var cats_dict = {
         'Auditions': [],
         'Sports': [],
@@ -436,12 +444,13 @@ function startEvents() {
         for (var z = 0; z < keys.length; z++) {
           if (events[i].eventCategory == keys[z]) {
             if (checkbox) {
-              cats_dict[keys[z]].push(events[i])
+              cats_dict[keys[z]].push(events[i]);
             } else {
               var passed = events[i].eventTime < currenttime.getTime();
+              // console.log(passed)
               // var passed = events[i].endtime.getTime()<currenttime.getTime();
               if (!passed) {
-                cats_dict[keys[z]].push(events[i])
+                cats_dict[keys[z]].push(events[i]);
               }
             }
           }
@@ -449,35 +458,47 @@ function startEvents() {
       }
 
       // Creating the divs for each
-      var event_list = document.getElementById("events_ul")
-      event_list.innerHTML = ""
+      var event_list = document.getElementById("events_ul");
+      event_list.innerHTML = "";
       for (var i = 0; i < keys.length; i++) {
 
         var div_i = document.createElement('div');
-        div_i.setAttribute('id', 'cat_' + keys[i])
-        div_i.setAttribute('class', 'cat_label')
-        div_i.innerHTML = keys[i]
+        div_i.setAttribute('id', 'cat_' + keys[i]);
+        div_i.setAttribute('class', 'cat_label');
+        div_i.innerHTML = keys[i];
         for (var z = 0; z < cats_dict[keys[i]].length; z++) {
-          var newli = document.createElement('li')
-          newli.setAttribute('id', 'event_li')
-          var ev = cats_dict[keys[i]][z]
+          var newli = document.createElement('li');
+          newli.setAttribute('id', 'event_li');
+          var ev = cats_dict[keys[i]][z];
           // var div_cat = document.createElement('div');
-          // newa.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
+          if (checkbox) {
+            var passed = events[i].eventTime < currenttime.getTime();
+            console.log(passed,events[i].eventTime,currenttime.getTime())
+            if (passed) {
+              newli.setAttribute('style', 'background: rgba(162, 162, 162, 0.86)');
+            } else {
+              newli.setAttribute('style', 'background:' + colors[events[i].eventCategory]); //set color style 
+            }
+          }
+          else {
+            newli.setAttribute('style', 'background:' + colors[events[i].eventCategory]); //set color style 
+          }
+          // newli.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
           // div_cat.setAttribute('id', 'events_cat_div')
-          var newa = document.createElement('a')
-          newa.setAttribute('id', ev.eventName)
-          newa.setAttribute('class', "event_name")
-          newa.setAttribute('href', '#')
-          newa.innerHTML = ev.eventName + " @ " + ev.eventTime
-          var line1 = document.createElement('hr')
-          var line2 = document.createElement('hr')
+          var newa = document.createElement('a');
+          newa.setAttribute('id', ev.eventName);
+          newa.setAttribute('class', "event_name");
+          newa.setAttribute('href', '#');
+          newa.innerHTML = ev.eventName + " @ " + ev.eventTime;
+          var line1 = document.createElement('hr');
+          var line2 = document.createElement('hr');
           // newli.appendChild(line1)
           // newli.appendChild(div_cat)
-          newli.appendChild(newa)
+          newli.appendChild(newa);
           // newli.appendChild(line2)
           div_i.appendChild(newli);
         }
-        event_list.appendChild(div_i)
+        event_list.appendChild(div_i);
       }
       add_row_click();
     }
@@ -486,120 +507,125 @@ function startEvents() {
     function sortLocation(events, checkbox) {
       var locations = {
         'Other': []
-      }
+      };
       var currenttime = new Date();
 
       for (var i = 0; i < events.length; i++) {
         if (!(events[i].eventLocation in locations)) {
           if (checkbox) {
-            locations[events[i].eventLocation] = [events[i]]
+            locations[events[i].eventLocation] = [events[i]];
           } else {
             passed = events[i].eventTime < currenttime.getTime();
             // var passed = events[i].endtime.getTime() < currenttime.getTime();
             if (!passed) {
-              locations[events[i].eventLocation] = [events[i]]
+              locations[events[i].eventLocation] = [events[i]];
             }
           }
         } else {
           if (checkbox) {
-            locations[events[i].eventLocation].push(events[i])
+            locations[events[i].eventLocation].push(events[i]);
           } else {
             passed = events[i].eventTime < currenttime.getTime();
             // var passed = events[i].endtime.getTime() < currenttime.getTime();
             if (!passed) {
-              locations[events[i].eventLocation].push(events[i])
+              locations[events[i].eventLocation].push(events[i]);
             }
           }
         }
       }
 
       // Creating the divs for each
-      var keys = Object.keys(locations)
-      var event_list = document.getElementById("events_ul")
-      event_list.innerHTML = ""
+      var keys = Object.keys(locations);
+      var event_list = document.getElementById("events_ul");
+      event_list.innerHTML = "";
       for (var i = 0; i < keys.length; i++) {
 
         //console.log("ii")
         var div_i = document.createElement('div');
-        div_i.setAttribute('id', 'cat_' + keys[i])
-        div_i.setAttribute('class', 'cat_label')
-        div_i.innerHTML = keys[i]
+        div_i.setAttribute('id', 'cat_' + keys[i]);
+        div_i.setAttribute('class', 'cat_label');
+        div_i.innerHTML = keys[i];
         for (var z = 0; z < locations[keys[i]].length; z++) {
-          var newli = document.createElement('li')
-          var ev = locations[keys[i]][z]
+          var newli = document.createElement('li');
+          var ev = locations[keys[i]][z];
+          console.log(passed)
+          if (passed) {
+            console.log("passed")
+            newli.setAttribute('style', 'background: rgba(162, 162, 162, 0.86)');
+          } else {
+            newli.setAttribute('style', 'background:' + colors[events[i].eventCategory]); //set color style 
+          }
 
-          newli.setAttribute('style', 'background:' + colors[ev.eventCategory]) //set color style of list here if desired
-
-          var newa = document.createElement('a')
-          newa.setAttribute('id', ev.eventName)
-          newa.setAttribute('class', "event_name")
-          newa.setAttribute('href', '#')
-          newa.innerHTML = ev.eventName + "<br>" + ev.eventTime
-          newli.appendChild(newa)
+          var newa = document.createElement('a');
+          newa.setAttribute('id', ev.eventName);
+          newa.setAttribute('class', "event_name");
+          newa.setAttribute('href', '#');
+          newa.innerHTML = ev.eventName + "<br>" + ev.eventTime;
+          newli.appendChild(newa);
           div_i.appendChild(newli);
         }
-        event_list.appendChild(div_i)
+        event_list.appendChild(div_i);
       }
       add_row_click();
     }
 
 
     function sortTime(events, checkbox) {
-      var event_ul = document.getElementById("events_ul")
-      event_ul.innerHTML = ""
+      var event_ul = document.getElementById("events_ul");
+      event_ul.innerHTML = "";
       var currenttime = new Date();
 
       //sort by time, past to future, what if event has no time?
       var event_list = events.sort(function compareTime(a, b) {
         if (a.eventTime < b.eventTime) {
-          return -1
+          return -1;
         }
         if (a.eventTime > b.eventTime) {
-          return 1
+          return 1;
         }
-        return 0
-      })
+        return 0;
+      });
 
 
       if (!checkbox) {
         var event_list = events.filter(function(obj) {
-          return (obj.eventTime > currenttime.getTime())
-        })
+          return (obj.eventTime > currenttime.getTime());
+        });
       }
 
 
 
       //create divs for each unique day
-      var divs = {}
+      var divs = {};
       for (i = 0; i < event_list.length; i++) {
         // console.log(divs)
-        var i_time = event_list[i].eventTime.toString().split(" ", 3).join(" ")
+        var i_time = event_list[i].eventTime.toString().split(" ", 3).join(" ");
         // console.log(i_time)
         if (!(i_time in divs)) {
           var div_i = document.createElement('div');
-          div_i.setAttribute('id', 'time_' + i_time)
-          div_i.setAttribute('class', 'time_label')
+          div_i.setAttribute('id', 'time_' + i_time);
+          div_i.setAttribute('class', 'time_label');
           div_i.innerHTML = "<div class='time_label'>" + i_time + "</div>";
-          divs[i_time] = div_i
+          divs[i_time] = div_i;
         }
 
         var passed = false;
         if (event_list[i].eventTime < currenttime.getTime()) {
           var passed = true;
         }
-
-        var newli = document.createElement('li')
+        console.log(passed)
+        var newli = document.createElement('li');
         if (passed) {
-          newli.setAttribute('style', 'background: rgba(162, 162, 162, 0.86)')
+          newli.setAttribute('style', 'background: rgba(162, 162, 162, 0.86)');
         } else {
-          newli.setAttribute('style', 'background:' + colors[events[i].eventCategory]) //set color style 
+          newli.setAttribute('style', 'background:' + colors[events[i].eventCategory]); //set color style 
         }
-        var newa = document.createElement('a')
-        newa.setAttribute('id', events[i].eventName)
-        newa.setAttribute('class', "event_name")
-        newa.setAttribute('href', '#')
-        newa.innerHTML = events[i].eventName + "<br>" + events[i].eventTime
-        newli.appendChild(newa)
+        var newa = document.createElement('a');
+        newa.setAttribute('id', events[i].eventName);
+        newa.setAttribute('class', "event_name");
+        newa.setAttribute('href', '#');
+        newa.innerHTML = events[i].eventName + "<br>" + events[i].eventTime;
+        newli.appendChild(newa);
         divs[i_time].appendChild(newli);
       }
       for (i in divs) {
@@ -633,7 +659,7 @@ function startEvents() {
       });
     }
 
-    add_row_click()
+    add_row_click();
 
     google.maps.event.addListener(map, 'center_changed', function() {
 
@@ -703,7 +729,7 @@ function startEvents() {
     $('#e_old').change(function() {
       if (this.checked) {
         checkbox = true;
-        add_markers_to_map(events, true)
+        add_markers_to_map(events, true);
         if ($('#events_select')[0].selectedIndex == 0) {
           sortTime(events, checkbox);
         } else if ($('#events_select')[0].selectedIndex == 1) {
@@ -738,7 +764,7 @@ function startEvents() {
         checkbox = document.getElementById('e_old').checked;
         sortLocation(events, checkbox);
       }
-    })
+    });
 
     var checkbox = false;
     sortLocation(events, checkbox);
@@ -754,15 +780,15 @@ function startEvents() {
 
     // EVENT LISTENER FOR BACK TO MAP BUTTON IN READ MORE
     $('#read_more_button')[0].onclick = function() {
-      $('#read_more_a')[0].click()
-    }
+      $('#read_more_a')[0].click();
+    };
 
     var removed = [];
     $("#e_search_input").keyup(function(event) {
       var search_re = new RegExp(this.value, "i");
       $("#events_ul").children("div").each(function(index) {
         for (i = 0; i < this.getElementsByTagName('li').length; i++) {
-          var as = this.getElementsByTagName('a')
+          var as = this.getElementsByTagName('a');
           var event_name = as[i].id;
           if (!search_re.test(event_name)) {
             $(as[i]).hide();
@@ -773,7 +799,7 @@ function startEvents() {
       });
     });
     // RESIZE MAP
-    console.log("RESIZING MAP")
+    console.log("RESIZING MAP");
     google.maps.event.trigger(map, 'resize');
     center = new google.maps.LatLng(41.5526833, -72.6612454);
     map.setCenter(center);
