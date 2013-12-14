@@ -199,26 +199,21 @@ ul {
 /* SEARCH BAR */
 #wm_search_bar {
   display: block;
-  width: 80%;
+  width: 100%;
   height: 70px;
-  margin: 10px auto;
+  margin: 10px;
   position: relative;
 }
 #wm_bar {
   display: block;
-  width: 75%;
+  width: 50%;
   height: 70%;
   float: left;
-  margin: 5px auto;
-}
-#wm_bar:after {
-  clear: both;
+  vertical-align: top;
 }
 #wm_bar input {
   width: 100%;
   height: 100%;
-  margin-left: 3%;
-  margin-top: 2%;
   font-family: Raleway;
   font-size: 14px;
   border-radius: 5px;
@@ -227,64 +222,37 @@ ul {
   display: inline-block;
   height: 70%;
   width: 50px;
-  margin-left: 5%;
-  margin-top: 3%;
   background: #242833;
   border-radius: 10px;
   text-align: center;
   line-height: 5.5;
-  position: absolute;
-  vertical-align: middle;
-  right: 0px;
+  vertical-align: top;
 }
 
 /* SEMESTER SEARCH FILTER */
-#wm_s_filter {
-  margin: 10px auto;
+#wm-s-f {
   position: relative;
-  width: 80%;
-  height: 5%;
-  box-shadow: inset 0 1px 0 white,
-                    0 0 8px rgba(0,0,0,0.3),
-                    0 5px 5px rgba(0,0,0,0.2);
+  width: auto;
+  height: auto;
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  margin-left: 3px;
+}
+#wm-s-f select {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 2px #242833 solid;
   border-radius: 5px;
-}
-
-#wm_s_filter input {
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 100;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  display: inline-block;
-}
-
-#wm_s_filter label {
-  width: 49%;
-  height: 100%;
-  position: relative;
-  display: inline-block;
-  text-align: center;
-}
-#wm_s_filter div {
-  opacity: 0.3;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
+  font-size: 25px;
   font-style: normal;
   font-weight: bold;
-  color: rgba(0,0,0,1);
+  color: #242833;
   text-shadow: 0 1px 0 #bcb8ae, 0 -1px 0 #97958e;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 20px;
-  padding-top: 2%;
-}
-#wm_s_filter input:checked ~ div {
-  opacity: 1;
+  padding: 5px 4px;
+  background:#c5c7d3;
+  width: 100%;
 }
 
 /* HIDDEN LINKS */
