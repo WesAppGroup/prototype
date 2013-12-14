@@ -11,7 +11,15 @@ var sem;
 var dim;
 var liHeight;
 var liH;
-
+var cDep = [];
+var colorGEA = {'NSM'  : '#458179', 'NA'   : '#838584', 'GTWY' : '#47FF00',
+                'AMP1' : '#43909B', 'LAB'  : '#82DFEC', 'SBS'  : '#025561', 
+                'GCAT' : '#610259', 'HA'   : '#610202', 'ZAMS' : '#EBEB7D',
+                'TIER' : '#EB7DA9', 'ZWMS' : '#FF0000', 'ZGLC' : '#FFD600'};
+/* GenEdAreas
+ *
+ * NSM, NA, GTWY, AMP1, LAB, SBS, GCAT, HA, ZAMS, TIER, AMP2, ZWMS, ZGLC
+ */
 function startWesmaps() {
   dim = getWindowSizes();
   console.log(dim[0] + '\t' + dim[1]);
@@ -53,15 +61,18 @@ function startWesmaps() {
       }
     }
   });
-
   function writeCourses() {
     var lastCourse = 0;
     var i = 0;
+    var color;
     var c;
 
     for (var cn in coursesJSON) {
       if (coursesJSON[cn].value) {
         console.log("JSON sem: "+coursesJSON[cn].value.courseSemester+"\t searched sem: "+sem);
+        if (cDep.indexOf(coursesJSON[cn].value.courseDepartment) < 0) {
+          cDep.push(coursesJSON[cn].value.courseDepartment);
+        }
         if (coursesJSON[cn].value.courseSemester.toLowerCase() === sem) {
           c = coursesJSON[cn].value;
           if (lastCourse === c.courseCourseid) {
@@ -110,9 +121,13 @@ function startWesmaps() {
                                   );
           $('#wm_c_' + c.courseCourseid).data('ccid', c.courseCourseid);
           $('#wm_c_' + c.courseCourseid).data('sid', i);
+          
+          color = colorGEA[c.courseGenEdArea];
+          $('#wm_c_' + c.courseCourseid).parent().parent().children('.wm_c_dnum').css('background-color', color);
         }
       }
     }
+    console.log(cDep);
   }
   function getLiHeight() {
     return $($('li')[0]).height();
@@ -202,7 +217,6 @@ function startWesmaps() {
             taH += 10;
             loops += 1;
             if (loops > 300) {
-              console.log("<<<<<<<<<<<<<<<<<<<<<<SHSIIIIIT>>>>>>>>>>>>>>>>>");
               break;
             }
             console.log("liH: "+liH+"\t");
