@@ -7,6 +7,7 @@ var coursesJSON;
 var sectionsJSON;
 var COURSES_SEARCH = 'http://stumobile0.wesleyan.edu/courses/search/';
 var SECTIONS_BY_ID = 'http://stumobile0.wesleyan.edu/sections/by-id/';
+var sem;
 var dim;
 var liHeight;
 var liH;
@@ -18,6 +19,8 @@ function startWesmaps() {
   /* Searches database for courses matching search and update dom */
   $(document).on("click","#wm_icon", function() {
     $("#wm_courses").empty();
+    
+    sem = $("#wm-s-f > select :selected").text().toLowerCase();
 
     var search = $("#wm_bar > input").val();
     var req = COURSES_SEARCH + search;
@@ -33,7 +36,7 @@ function startWesmaps() {
     cHttpRequest.onreadystatechange = alertCourses;
     cHttpRequest.open("GET", req, true);
     cHttpRequest.send();
-    console.log('course request sent');
+    console.log('course request sent for sem '+sem);
     
     /* courses search callback */
     function alertCourses() {
@@ -58,53 +61,56 @@ function startWesmaps() {
 
     for (var cn in coursesJSON) {
       if (coursesJSON[cn].value) {
-        c = coursesJSON[cn].value;
-        if (lastCourse === c.courseCourseid) {
-          i++;
+        console.log("JSON sem: "+coursesJSON[cn].value.courseSemester+"\t searched sem: "+sem);
+        if (coursesJSON[cn].value.courseSemester.toLowerCase() === sem) {
+          c = coursesJSON[cn].value;
+          if (lastCourse === c.courseCourseid) {
+            i++;
+          }
+          else {
+            i = 0;
+          }
+          lastCourse = c.courseCourseid;
+          $("#wm_courses").append("<li><div class='wm_c_dnum'>" +
+                                    "<div class='wm_c_dep'>" +
+                                    c.courseDepartment +
+                                    "</div>" + 
+                                    "<div class='wm_c_cnum'>" +
+                                    c.courseNumber +
+                                    "</div>" +
+                                    "</div>" +
+                                    "<div class='wm_c_info'>" +
+                                    "<div class='wm_c_title'>" +
+                                    c.courseTitle + 
+                                    "</div>" +
+                                    "<div class='wm_c_expand' id='wm_c_" + c.courseCourseid + "'>" +
+                                    "<i class='fa fa-plus-square-o fa-3x'></i>" +
+                                    "</div>" +
+                                    "<div class='wm-table hidden'>" +
+                                    "<table>" +
+                                    "<tr>" +
+                                    "<td class='wm_c_prof'></td>" +
+                                    "<td class='wm_c_time'></td>" +
+                                    "</tr>" + 
+                                    "<tr>" +
+                                    "<td class='wm_c_seats'></td>" +
+                                    "<td class='wm_c_loc'></td>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                    "<td class='wm_c_sem'>" + c.courseSemester + "</td>" +
+                                    "<td class='wm_c_gea'>" + c.courseGenEdArea + "</td>" +
+                                    "</tr>" +
+                                    "<tr>" + 
+                                    "<td><textarea class='wm_c_desc'>"+ c.courseDescription + "</textarea></td>" +
+                                    "</tr>" + 
+                                    "</table>" + 
+                                    "</div>" +
+                                    "</div>" + 
+                                    "</li>"
+                                  );
+          $('#wm_c_' + c.courseCourseid).data('ccid', c.courseCourseid);
+          $('#wm_c_' + c.courseCourseid).data('sid', i);
         }
-        else {
-          i = 0;
-        }
-        lastCourse = c.courseCourseid;
-        $("#wm_courses").append("<li><div class='wm_c_dnum'>" +
-                                  "<div class='wm_c_dep'>" +
-                                  c.courseDepartment +
-                                  "</div>" + 
-                                  "<div class='wm_c_cnum'>" +
-                                  c.courseNumber +
-                                  "</div>" +
-                                  "</div>" +
-                                  "<div class='wm_c_info'>" +
-                                  "<div class='wm_c_title'>" +
-                                  c.courseTitle + 
-                                  "</div>" +
-                                  "<div class='wm_c_expand' id='wm_c_" + c.courseCourseid + "'>" +
-                                  "<i class='fa fa-plus-square-o fa-3x'></i>" +
-                                  "</div>" +
-                                  "<div class='wm-table hidden'>" +
-                                  "<table>" +
-                                  "<tr>" +
-                                  "<td class='wm_c_prof'></td>" +
-                                  "<td class='wm_c_time'></td>" +
-                                  "</tr>" + 
-                                  "<tr>" +
-                                  "<td class='wm_c_seats'></td>" +
-                                  "<td class='wm_c_loc'></td>" +
-                                  "</tr>" +
-                                  "<tr>" +
-                                  "<td class='wm_c_sem'>" + c.courseSemester + "</td>" +
-                                  "<td class='wm_c_gea'>" + c.courseGenEdArea + "</td>" +
-                                  "</tr>" +
-                                  "<tr>" + 
-                                  "<td><textarea class='wm_c_desc'>"+ c.courseDescription + "</textarea></td>" +
-                                  "</tr>" + 
-                                  "</table>" + 
-                                  "</div>" +
-                                  "</div>" + 
-                                  "</li>"
-                                );
-        $('#wm_c_' + c.courseCourseid).data('ccid', c.courseCourseid);
-        $('#wm_c_' + c.courseCourseid).data('sid', i);
       }
     }
   }
@@ -120,8 +126,9 @@ function startWesmaps() {
 
     var ccid = $(this).data().ccid ? $(this).data().ccid : 0;
     var sid = $(this).data().sid ? $(this).data().sid : 0;
-    console.log("CCID: " + ccid + "|| SID: " + sid);
-    var req = SECTIONS_BY_ID + ccid;
+    
+    var sn = sem === "fall" ? 1 : sem === "spring" ? 2 : 0;
+    var req = SECTIONS_BY_ID + ccid + "/" + sn;
     
     /* AJAX sections request */
     sHttpRequest = new XMLHttpRequest();
@@ -133,7 +140,7 @@ function startWesmaps() {
     sHttpRequest.onreadystatechange = showSection;
     sHttpRequest.open("GET", req, true);
     sHttpRequest.send();
-    console.log('sections request sent');
+    console.log('sections request sent: '+req);
 
     /* Section request callback */
     function showSection() {
@@ -145,11 +152,8 @@ function startWesmaps() {
           if (sid < sectionsJSON.length) {
             expandSection(sectionsJSON[sid].value);
           }
-          else if (sectionsJSON.length > 0) {
-            expandSection(sectionsJSON[sectionsJSON.length-1].value); 
-          }
           else {
-            expandSection({"key":"NA","value":{"sectionCourseid":"NA","sectionLocation":"NA","sectionProfessors":"NA","sectionSeats_available":"NA","sectionTime":"NA"}});
+            expandSection(sectionsJSON[0].value); 
           }
         }
         else {
