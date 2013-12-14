@@ -7,7 +7,7 @@ $(document).ready(function() {
       $.get(menus_url, function(data) {
           var json_data = data;
           if (json_data === undefined){
-            json_data = '[{"meal":"Breakfast","category":"classics","food":"CAGE FREE SCRAMBLED EGGS","description":null},{"meal":"Breakfast","category":"classics","food":"CAGE FREE SCRAMBLED EGGS","description":"with cheddar and monterey jack cheeses"},{"meal":"Lunch","category":"STOCKPOT","food":"CREAMY POTATO LEEK SOUP","description":null},{"meal":"Lunch","category":"MONGOLIAN GRILL","food":"roasted chicken ","description":"white wine velouté"},{"meal":"Dinner","category":"mongolian grill","food":"slider night! ","description":"beef sliders vegetable wraps made without gluten wraps available upon request seasoned house made potato chips"},{"meal":"Dinner","category":"pastabilities","food":"fresh made pasta ","description":"farfalle whole grain penne"},{"meal":"Brunch","category":"classics","food":"buttermilk pancakes ","description":null}]';
+            throw err;
           }
           
           $.each($.parseJSON(json_data), function() {         
