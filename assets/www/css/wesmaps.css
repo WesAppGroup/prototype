@@ -206,7 +206,7 @@ ul {
 }
 #wm_bar {
   display: block;
-  width: 80%;
+  width: 75%;
   height: 70%;
   float: left;
   margin: 5px auto;
@@ -234,6 +234,7 @@ ul {
   text-align: center;
   line-height: 5.5;
   position: absolute;
+  vertical-align: middle;
   right: 0px;
 }
 
