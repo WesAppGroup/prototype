@@ -1,49 +1,82 @@
-var menus_url = "http://stumobile0.wesleyan.edu/static/usdan.json";
+/* Javascript for rss feeds
+*/
+function startHours() {
+};
 
-function startMenus() { 
-    console.log("Loading menus...");
-    try{
-      $.get(menus_url, function(data) {
-          var json_data = data;
-          if (json_data === undefined){
-            throw err;
-          }
-          
-          $.each($.parseJSON(json_data), function() {         
-            var current_item = this;
-            if (current_item.description == null){
-              current_item.description = '';
-            }
-            var html_to_append = '<li><span class="menu_item_heading">[';
-            html_to_append += current_item.category.toUpperCase() + '] ' + current_item.food;
-            html_to_append += '</span><span class="menu_item_details">';
-            html_to_append += current_item.description + '</span></li>';
-            
-            switch(current_item.meal.toLowerCase()){
-              case "breakfast":
-                $("#menu_breakfast > ul").append(html_to_append);
-                $("#menu_breakfast").removeClass("hidden");
-                break;
-              case "brunch":
-                $("#menu_brunch > ul").append(html_to_append);
-                $("#menu_brunch").removeClass("hidden");
-                break;
-              case "lunch":
-                $("#menu_lunch > ul").append(html_to_append);
-                $("#menu_lunch").removeClass("hidden");
-                break;
-              case "dinner":
-                $("#menu_dinner > ul").append(html_to_append);
-                $("#menu_dinner").removeClass("hidden");
-                break;
-              default:
-                console.log("Something went wrong");
-            }
-          });                
+var menusUrl = "http://stumobile0.wesleyan.edu/static/usdan.json";
+var mHttpReq;
+
+$(document).ready(function() {
+  /*
+  mHttpReq = new XMLHttpRequest();
+
+  if (!mHttpReq) {
+    alert('Server request failed');
+    return false;
+  }
+
+  mHttpReq.onreadystatechange = alertMenu;
+  mHttpReq.open("GET", menusUrl, true);
+  mHttpReq.send();
+  console.log("Loading menus...");
+
+  function alertMenu() {
+    if (mHttpReq.readyState === 4) {
+      if (mHttpReq.status === 200) {
+        console.log('menus JSON received');
+        writeMenu($.parseJSON(mHttpReq.responseText));
+      }
+      else {
+        alert("menus request failed");
+      }
+    }
+  }
+  */
+  function writeMenu(json) {
+    var html = "<div>";
+    console.log(json);
+    var bHtml = "";
+    if (json.breakfast) {
+      html += "<h4>Breakfast</h4>";
+      for (var p in json.breakfast) {
+        if (json.breakfast.hasOwnProperty(p)) {
+          html += "<p>"+json.breakfast[p]+"</p>";
         }
-      );
+      }
     }
-    catch(err){
-      console.log("Something went wrong");
+    console.log(html);
+    if (json.brunch) {
+      html += "<h4>Brunch</h4>";
+      for (var p in json.brunch) {
+        if (json.lunch.hasOwnProperty(p)) {
+          html += "<p>"+json.brunch[p]+"</p>";
+        }
+      }
     }
-}
+    console.log(html);
+    if (json.lunch) {
+      html += "<h4>Lunch</h4>";
+      for (var p in json.lunch) {
+        if (json.lunch.hasOwnProperty(p)) {
+          if (json.lunch[p][0] === 'Dinner') {
+            break;
+          }
+          html += "<p>"+json.lunch[p]+"</p>";
+        }
+      }
+    }
+    console.log(html);
+    if (json.dinner) {
+      html += "<h4>Dinner</h4>";
+      for (var p in json.dinner) {
+        if (json.dinner.hasOwnProperty(p)) {
+          html += "<p>"+json.dinner[p]+"</p>";
+        }
+      }
+    }
+    console.log(html);
+
+
+    $('#menus_content').html(html);
+  }
+});
