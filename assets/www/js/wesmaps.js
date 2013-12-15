@@ -11,15 +11,73 @@ var sem;
 var dim;
 var liHeight;
 var liH;
-var cDep = [];
-var colorGEA = {'NSM'  : '#458179', 'NA'   : '#838584', 'GTWY' : '#47FF00',
-                'AMP1' : '#43909B', 'LAB'  : '#82DFEC', 'SBS'  : '#025561', 
-                'GCAT' : '#610259', 'HA'   : '#610202', 'ZAMS' : '#EBEB7D',
-                'TIER' : '#EB7DA9', 'ZWMS' : '#FF0000', 'ZGLC' : '#FFD600'};
-/* GenEdAreas
- *
- * NSM, NA, GTWY, AMP1, LAB, SBS, GCAT, HA, ZAMS, TIER, AMP2, ZWMS, ZGLC
- */
+var colorDep = {
+  'ASTR' : '#000000',
+  'BIOL' : '#458179',
+  'CHEM' : '#792200',
+  'LAST' : '#790000',
+  'ARCP' : '#795200',
+  'CCIV' : '#7A5D00',
+  'AMST' : '#707A00',
+  'ARST' : '#497A00',
+  'ECON' : '#307A36',
+  'MATH' : '#307A51',
+  'HIST' : '#307A6B',
+  'GOVT' : '#30687A',
+  'HEBR' : '#30517A',
+  'ITAL' : '#30337A',
+  'JAPN' : '#4B307A',
+  'KREA' : '#62307A',
+  'NS'   : '#77307A',
+  'PHED' : '#7A3062',
+  'SISP' : '#7A3051',
+  'SPAN' : '#7A3030',
+  'RUSS' : '#E00000',
+  'THEA' : '#E06C00',
+  'RELI' : '#E0BC00',
+  'SOC'  : '#CEE000',
+  'COL'  : '#86E000',
+  'ARHA' : '#48E000',
+  'EAST' : '#12E000',
+  'E'    : '#00E024',
+  'MB'   : '#00E063',
+  'ANTH' : '#00E086',
+  'GRST' : '#00E0D7',
+  'COMP' : '#00AAE0',
+  'CSS'  : '#006CE0',
+  'DANC' : '#0012E0',
+  'REES' : '#3600E0',
+  'CHIN' : '#7D00E0',
+  'CHUM' : '#BC00E0',
+  'FREN' : '#E000CE',
+  'CSPL' : '#E000A1',
+  'GRK'  : '#E00500',
+  'FIST' : '#790000',
+  'SOCS' : '#790027',
+  'PYSC' : '#79003F',
+  'PHYS' : '#79005C',
+  'HEST' : '#790079',
+  'MDST' : '#610079',
+  'RLIT' : '#3F0079',
+  'FRST' : '#270079',
+  'WRCT' : '#130079',
+  'HUMS' : '#000A79',
+  'ARAB' : '#001D79',
+  'ALIT' : '#003579',
+  'UNIV' : '#004D79',
+  'SCIE' : '#005779',
+  'IBST' : '#006679',
+  'AFAM' : '#00796F',
+  'ARTS' : '#007957',
+  'PHIL' : '#007935',
+  'LAT'  : '#00791D',
+  'LANG' : '#00790A',
+  'PRT'  : '#0F7900',
+  'QAC'  : '#357900',
+  'ENGL' : '#497900',
+  'FILM' : '#617900',
+  'FGSS' : '#797900'};
+ 
 function startWesmaps() {
   dim = getWindowSizes();
   console.log(dim[0] + '\t' + dim[1]);
@@ -70,9 +128,6 @@ function startWesmaps() {
     for (var cn in coursesJSON) {
       if (coursesJSON[cn].value) {
         console.log("JSON sem: "+coursesJSON[cn].value.courseSemester+"\t searched sem: "+sem);
-        if (cDep.indexOf(coursesJSON[cn].value.courseDepartment) < 0) {
-          cDep.push(coursesJSON[cn].value.courseDepartment);
-        }
         if (coursesJSON[cn].value.courseSemester.toLowerCase() === sem) {
           c = coursesJSON[cn].value;
           if (lastCourse === c.courseCourseid) {
@@ -122,12 +177,11 @@ function startWesmaps() {
           $('#wm_c_' + c.courseCourseid).data('ccid', c.courseCourseid);
           $('#wm_c_' + c.courseCourseid).data('sid', i);
           
-          color = colorGEA[c.courseGenEdArea];
+          color = colorDep[c.courseDepartment] ? colorDep[c.courseDepartment] : '#458179';
           $('#wm_c_' + c.courseCourseid).parent().parent().children('.wm_c_dnum').css('background-color', color);
         }
       }
     }
-    console.log(cDep);
   }
   function getLiHeight() {
     return $($('li')[0]).height();
