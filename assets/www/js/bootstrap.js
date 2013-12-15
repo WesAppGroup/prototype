@@ -18,8 +18,6 @@
     startApp();
     // startEvents();
     startWesmaps();
-    startMenus();
-    startDonate();
     /* Search bar listener */
     document.addEventListener("searchbutton", searchListen, false);
   };

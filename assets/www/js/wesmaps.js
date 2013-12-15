@@ -95,7 +95,7 @@ function startWesmaps() {
     cHttpRequest = new XMLHttpRequest();
 
     if (!cHttpRequest) {
-      alert("Failed");
+      alert("Server Request failed");
       return false;
     }
 

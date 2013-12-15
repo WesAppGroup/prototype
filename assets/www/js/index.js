@@ -3,6 +3,7 @@
 function startApp() {
   console.log('app started');
   var first_events_visit = true;
+  var firstMenusVisit = true;
 
   /* Links buttons */
   $(document).on("click", ".goto_page",function(e) {
@@ -38,6 +39,8 @@ function startApp() {
       $("#events_read_more").removeClass("hidden");
     }
     else if ($(this).attr('value') === "menus") { 
+      firstMenusVisit ? startMenus() : function(){};
+      firstMenusVisit = false;
       $(".page").addClass("hidden");
       $("#menus").removeClass("hidden");
     }

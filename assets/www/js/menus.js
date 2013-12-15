@@ -1,13 +1,9 @@
-/* Javascript for rss feeds
+/* Javascript Menus
 */
-function startHours() {
-};
-
 var menusUrl = "http://stumobile0.wesleyan.edu/static/usdan.json";
 var mHttpReq;
 
-$(document).ready(function() {
-  /*
+function startMenus() { 
   mHttpReq = new XMLHttpRequest();
 
   if (!mHttpReq) {
@@ -31,11 +27,10 @@ $(document).ready(function() {
       }
     }
   }
-  */
+
   function writeMenu(json) {
-    var html = "<div>";
     console.log(json);
-    var bHtml = "";
+    var html = "<div>";
     if (json.breakfast) {
       html += "<h4>Breakfast</h4>";
       for (var p in json.breakfast) {
@@ -74,9 +69,5 @@ $(document).ready(function() {
         }
       }
     }
-    console.log(html);
-
-
-    $('#menus_content').html(html);
   }
-});
+}
