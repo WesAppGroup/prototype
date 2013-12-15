@@ -18,7 +18,7 @@
     startApp();
     // startEvents();
     startWesmaps();
-    startHours();
+    startMenus();
     startDonate();
     /* Search bar listener */
     document.addEventListener("searchbutton", searchListen, false);

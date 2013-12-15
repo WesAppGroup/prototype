@@ -1,6 +1,6 @@
 var menus_url = "http://stumobile0.wesleyan.edu/static/usdan.json";
 
-function startHours() { 
+function startMenus() { 
     console.log("Loading menus...");
     try{
       $.get(menus_url, function(data) {

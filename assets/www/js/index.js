@@ -37,9 +37,9 @@ function startApp() {
       $(".page").addClass("hidden");
       $("#events_read_more").removeClass("hidden");
     }
-    else if ($(this).attr('value') === "hours") { 
+    else if ($(this).attr('value') === "menus") { 
       $(".page").addClass("hidden");
-      $("#hours").removeClass("hidden");
+      $("#menus").removeClass("hidden");
     }
     else if ($(this).attr('value') === "donate") {
       $(".page").addClass("hidden");

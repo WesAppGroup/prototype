@@ -1,0 +1,10 @@
+/* MENUS CSS */
+#menus_content {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 10%;
+  background-color:#c5c7d3;
+  height: 83%;
+  width: 100%;
+}
