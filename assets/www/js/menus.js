@@ -69,5 +69,6 @@ function startMenus() {
         }
       }
     }
+    $("#menus_content").html(html);
   }
 }
