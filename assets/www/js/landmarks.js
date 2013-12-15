@@ -14,7 +14,7 @@ function startLandmarks() {
   lHttpReq.onreadystatechange = alertLandmarks;
   lHttpReq.open("GET", LANDMARKS, true);
   lHttpReq.send();
-  console.log("attempting to fetch landmarks")
+  console.log("attempting to fetch landmarks");
 
   function alertLandmarks() {
     if (lHttpReq.readyState === 4) {
@@ -44,7 +44,7 @@ function startLandmarks() {
 
     for (var c in lJSON) {
       console.log(lJSON[c]);        
-      if (counter < 5 && lJSON.hasOwnProperty(c)) {  //limit to 5 results
+      if (counter < 25 && lJSON.hasOwnProperty(c)) {  //limit to 5 results
         if (searchRE.test(lJSON[c].search_terms)) {
           writeLandmarks(lJSON[c]);
           counter++;
@@ -59,7 +59,7 @@ function startLandmarks() {
   function writeLandmarks(c) {
     $("#lm_list").append("<li><div class='lm_c_dnum'>" +
                               "<div class='lm_c_dep'>" +
-                              c.value.name +
+                              c.name +
                               "</div>" + 
                               "<div class='lm_c_cnum'>" +
                               //c.id +
@@ -67,9 +67,9 @@ function startLandmarks() {
                               "</div>" +
                               "<div class='lm_c_info'>" +
                               "<div class='lm_c_title'>" +
-                              c.value.address + 
+                              c.address + 
                               "</div>" +
-															"<div class='lm_c_expand' id='lm_c_" + c.key + "'>" +
+															"<div class='lm_c_expand' id='lm_c_" + c.facility_id + "'>" +
                               "<i class='fa fa-plus-square-o fa-3x'></i>" +
                               "</div>" +
                               "<div class='lm-table hidden'>" +
@@ -83,38 +83,15 @@ function startLandmarks() {
                               "</div>" +
                               "</li>"
                             );
-		$('#lm_c_' + c.key).data('key', c.key);
+		$('#lm_c_' + c.facility_id).data('facility_id', c.facility_id);
   }
 	
 	$(document).on("click",".lm_c_expand", function() {
-			//console.log(this);
 			var li = $(this).parent().parent();
-			//console.log(li);
       var info = $(this).parent();
-      var key = $(this).data().key;
-      var sect;
-      var crse;
-
-		 if ($(this).parent().children('.lm_c_expand').children('i').hasClass('fa-plus-square-o')) {
-      //console.log($(this).data());
-      console.log("miu "+key);
-      for (var c in lJSON) {
-				console.log(c);
-        if (lJSON[c].key === key) {
-					//console.log("miu"+key);
-          crse = lJSON[c].value;
-					console.log("miu"+crse);
-          break;
-        }
-      }
-      info.children('.lm-table').children('table').children('tbody').children('tr').children('.lm_c_desc').html(crse.description);
-
-      info.children('.lm-table').children('table').children('tbody').children('tr').children('.lm_c_prof').html(crse.url); 
-
+    if ($(this).hasClass('fa-plus-square-o')) {
       info.children('.lm-table').removeClass('hidden');
-
       info.children('.lm_c_expand').html("<i class='fa fa-minus-square-o fa-3x'></i>");
-
       info.addClass('lm-info-expanded');
     }
     else {
