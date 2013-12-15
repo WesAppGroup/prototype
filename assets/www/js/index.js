@@ -4,6 +4,7 @@ function startApp() {
   console.log('app started');
   var first_events_visit = true;
   var firstMenusVisit = true;
+  var firstLandmarksVisit = true;
 
   /* Links buttons */
   $(document).on("click", ".goto_page",function(e) {
@@ -49,6 +50,8 @@ function startApp() {
       $("#donate").removeClass("hidden");
     }
     else if ($(this).attr('value') === "landmarks") {
+      firstLandmarksVisit ? startLandmarks() : function(){};
+      firstLandmarksVisit = false;
       $(".page").addClass("hidden");
       $("#landmarks").removeClass("hidden");
     }
