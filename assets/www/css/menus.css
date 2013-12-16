@@ -57,3 +57,40 @@ p{
   padding: 3px; 
 	margin: 2px;
 }
+
+/* Food categoies */
+.kosher{
+	color: #F0E68C;
+}
+
+.classics{
+	color: #833b3e;
+}
+
+.vegan{
+	color: #9ACD32;
+}
+
+.stockpot{
+	color: blue;
+}
+
+.pastabilities{
+  color: purple;
+}
+
+.stockpot{
+ color: #DAA520;
+}
+
+.cardinal{
+ color: #4B0082;
+}
+
+.mongolian{
+	color: #8B008B;
+}
+
+.hearth{
+	color: #46647c
+}
