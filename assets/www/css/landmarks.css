@@ -11,127 +11,81 @@
   background-color: #c5c7d3;
 }
 
-ul {
+#lm_list ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
 #lm_list li {
-  margin: 0px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px 5% 20px 5%;
   font-family: Raleway;
   font-weight: 300;
   color: #ffffff;
-  font-size: 15px;
-  height: 60px;
+  font-size: 20px;
   text-align: center;
-  width: 100%;
+  width: 89%;
 }
-
-
-.landmarks_content {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 10%;
-  bottom: 0px;
-  background-color: #c5c7d3;
-}
-
-.lm_c_dnum {
-  display: inline-block;
-  background-color: #458179;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  width: 40%;
-  height: 100%;
-  float: left;
-  margin-left: 3%;
-}
-.lm_c_dep {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.lm_c_cnum {
-  font-size: 10px;
-}
-
-.lm_c_info {
-  display: inline-block;
-  background-color: #242833;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  width: 50%;
-  height: 100%;
-  float: left;
-  margin-left: -5px;
-}
-.lm_c_title {
-  display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  height: 40px;
-  width: 60%;
-  float: left;
-}
-
-/* expanded landmarks */
-.lm-table {
+.lm-info {
   display: block;
-  width: 100%;
+  background-color: #242833;
+  border-left: 15px solid #458179;
+  width:100%;
 }
-.lm-table table {
+
+.lm-name {
   width: 100%;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px solid #ffffff;
 }
-.lm-info-expanded {
+
+.lm-also {
+  width: 98%;
+  padding: 10px 5px 10px 5px;
+  font-size: 10px;
   height: auto;
-  margin-bottom: 10px;
+  border-bottom: 1px solid #ffffff;
 }
 
-.lm_c_desc {
-  font-size: 13px;
+.lm-desc {
+  width: 100%;
+  font-size: 15px;
+  padding: 10px 5px 10px 5px;
+  height: auto;
   text-align: justify;
-  border-top: 1px solid #555555;
-  overflow: hidden;
-  padding: 5px 5px 0px 5px;
 }
-
 
 /* ====== Landmarks Search ====== */
 #lm_search_bar {
-  display: inline-block;
-  width: 100%;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: block;
+  width: 97%;
   height: 70px;
+  position: relative;
 }
 #lm_bar {
-  display: inline-block;
+  display: block;
   width: 70%;
   height: 70%;
   float: left;
-}
-#lm_bar:after {
-  clear: both;
+  vertical-align: middle;
 }
 #lm_bar input {
   width: 100%;
   height: 100%;
-  margin-left: 3%;
-  margin-top: 2%;
   font-family: Raleway;
   font-size: 14px;
   border-radius: 5px;
 }
 #landmarks_icon {
+  margin-left: 20px;
   display: inline-block;
   height: 70%;
   width: 50px;
-  margin-left: 5%;
-  margin-top: 2%;
   background: #242833;
   border-radius: 10px;
   text-align: center;
   line-height: 5.5;
+  vertical-align: middle;
 }

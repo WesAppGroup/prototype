@@ -1,4 +1,3 @@
-var counter = 0;
 var LANDMARKS = "http://stumobile0.wesleyan.edu/static/json/locations.json";
 var lHttpReq;
 
@@ -31,7 +30,6 @@ function startLandmarks() {
     }
   }
   $(document).on("click","#landmarks_icon", function() {
-    counter = 0;
     $("#lm_list").empty();
 
     if (!lJSON) {
@@ -44,62 +42,21 @@ function startLandmarks() {
 
     for (var c in lJSON) {
       console.log(lJSON[c]);        
-      if (counter < 25 && lJSON.hasOwnProperty(c)) {  //limit to 5 results
+      if (lJSON.hasOwnProperty(c)) {  //limit to 5 results
         if (searchRE.test(lJSON[c].search_terms)) {
           writeLandmarks(lJSON[c]);
-          counter++;
         }
-      }
-      else {
-        break;
       }
     }
   });
 
   function writeLandmarks(c) {
-    $("#lm_list").append("<li><div class='lm_c_dnum'>" +
-                              "<div class='lm_c_dep'>" +
-                              c.name +
-                              "</div>" + 
-                              "<div class='lm_c_cnum'>" +
-                              //c.id +
-                              "</div>" +
-                              "</div>" +
-                              "<div class='lm_c_info'>" +
-                              "<div class='lm_c_title'>" +
-                              c.address + 
-                              "</div>" +
-															"<div class='lm_c_expand' id='lm_c_" + c.facility_id + "'>" +
-                              "<i class='fa fa-plus-square-o fa-3x'></i>" +
-                              "</div>" +
-                              "<div class='lm-table hidden'>" +
-                              "<table>" +
-
-                              "<tr>" + 
-                              "<td class='lm_c_desc'></td>" +
-                              "</tr>" + 
-                              "</table>" + 
-                              "</div>" +
-                              "</div>" +
-                              "</li>"
-                            );
-		$('#lm_c_' + c.facility_id).data('facility_id', c.facility_id);
+    $("#lm_list").append("<li><div class='lm-info'>"+
+                              "<div class='lm-name'>"+c.name+"</div>"+
+                              "<div class='lm-also'>"+c.search_terms+"</div>"+
+                              "<div class='lm-desc'>"+c.description+"</div>"+
+                              "</div></li>");
   }
-	
-	$(document).on("click",".lm_c_expand", function() {
-			var li = $(this).parent().parent();
-      var info = $(this).parent();
-    if ($(this).hasClass('fa-plus-square-o')) {
-      info.children('.lm-table').removeClass('hidden');
-      info.children('.lm_c_expand').html("<i class='fa fa-minus-square-o fa-3x'></i>");
-      info.addClass('lm-info-expanded');
-    }
-    else {
-      info.children('.lm_c_expand').html("<i class='fa fa-plus-square-o fa-3x'></i>");
-      info.removeClass('lm-info-expanded');
-      info.children('.lm-table').addClass('hidden');
-    }
-  });
 }
 
 
