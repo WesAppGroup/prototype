@@ -35,7 +35,11 @@ function startMenus() {
       html += "<div><h4 class = 'menu_meal'>Breakfast</h4><div class='menu_items'>";
       for (var p in json.breakfast) {
         if (json.breakfast.hasOwnProperty(p)) {
-          html += "<p>"+json.breakfast[p]+"</p>";
+          //html += "<p>"+json.breakfast[p]+"</p>";
+          var item = (json.breakfast[p]+"").split("] ");				
+					var cat = item[0].substring(1);
+					var food = item[1];
+          html += "<p class = '"+cat+"'>"+json.breakfast[p]+"</p>";
         }
       }
       html += "</div></div>";
@@ -45,30 +49,42 @@ function startMenus() {
       html += "<div><h4 class = 'menu_meal'>Brunch</h4><div class='menu_items'>";
       for (var p in json.brunch) {
         if (json.lunch.hasOwnProperty(p)) {
-          html += "<p>"+json.brunch[p]+"</p>";
+          //html += "<p>"+json.brunch[p]+"</p>";
+          var item = (json.brunch[p]+"").split("] ");				
+					var cat = item[0].substring(1);
+					var food = item[1];
+          html += "<p class = '"+cat+"'>"+json.brunch[p]+"</p>";
         }
       }
       html += "</div></div>";
     }
     console.log(html);
     if (json.lunch) {
-      html += "<div><h4 class = 'menu_meal'>Lunch</h4><div class='menu_items'";
+      html += "<div><h4 class = 'menu_meal'>Lunch</h4><div class='menu_items'>";
       for (var p in json.lunch) {
         if (json.lunch.hasOwnProperty(p)) {
           if (json.lunch[p][0] === 'Dinner') {
             break;
           }
-          html += "<p>"+json.lunch[p]+"</p>";
+          //html += "<p>"+json.lunch[p]+"</p>";
+          var item = (json.lunch[p]+"").split("] ");				
+					var cat = item[0].substring(1);;
+					var food = item[1];
+          html += "<p class = '"+cat+"'>"+json.lunch[p]+"</p>";
         }
       }
       html += "</div></div>";
     }
     console.log(html);
     if (json.dinner) {
-      html += "<div><h4 class = 'menu_meal'>Dinner</h4><div class='menu_items'";
+      html += "<div><h4 class = 'menu_meal'>Dinner</h4><div class='menu_items'>";
       for (var p in json.dinner) {
         if (json.dinner.hasOwnProperty(p)) {
-          html += "<p>"+json.dinner[p]+"</p>";
+          //html += "<p>"+json.dinner[p]+"</p>";
+          var item = (json.dinner[p]+"").split("] ");				
+					var cat = item[0].substring(1);
+					var food = item[1];
+          html += "<p class = '"+cat+"'>"+json.dinner[p]+"</p>";
         }
       }
       html += "</div></div>";

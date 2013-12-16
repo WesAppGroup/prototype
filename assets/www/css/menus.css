@@ -22,38 +22,75 @@
   display: inline-block;
   background-color: #242833;
   border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
   
   width: 95%;
   height: auto;
   float: left;
   margin-left: 3%;
-	margin-right: 3%;
-	margin-top: 5px;
+  margin-right: 3%;
+  margin-top: 5px;
   margin-bottom: 0px;
-	font-size: 30px;
-	color: white;
-	text-align: center;
+  font-size: 30px;
+  color: white;
+  text-align: center;
 }
 .menu_items {
   display: inline-block;
   background-color: #458179;
   
   border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   width: 95%;
   min-height: 50%;
-	height: auto;
+  height: auto;
   float: left;
   margin-left: 3%;
-	margin-right: 3%;
-	margin-top: 0px;
+  margin-right: 3%;
+  margin-top: 0px;
   margin-bottom: 5px;
-	font-size: 15px;
-	color: white;
+  font-size: 15px;
+  color: white;
 }
 
 p{
   padding: 3px; 
-	margin: 2px;
+  margin: 2px;
+}
+
+/* Food categoies */
+.kosher{
+  color: #F0E68C;
+}
+
+.classics{
+  color: #833b3e;
+}
+
+.vegan{
+  color: #9ACD32;
+}
+
+.stockpot{
+  color: blue;
+}
+
+.pastabilities{
+  color: purple;
+}
+
+.stockpot{
+ color: #DAA520;
+}
+
+.cardinal{
+ color: #4B0082;
+}
+
+.mongolian{
+  color: #8B008B;
+}
+
+.hearth{
+  color: #46647c
 }
