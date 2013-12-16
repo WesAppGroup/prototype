@@ -7,3 +7,53 @@
   background-color:#c5c7d3;
   width: 100%;
 }
+
+/* MENUS CONTENT*/
+#menus_content {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 10%;
+  background-color:#c5c7d3;
+  width: 100%;
+}
+
+.menu_meal {
+  display: inline-block;
+  background-color: #242833;
+  border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+  
+  width: 95%;
+  height: auto;
+  float: left;
+  margin-left: 3%;
+	margin-right: 3%;
+	margin-top: 5px;
+  margin-bottom: 0px;
+	font-size: 30px;
+	color: white;
+	text-align: center;
+}
+.menu_items {
+  display: inline-block;
+  background-color: #458179;
+  
+  border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+  width: 95%;
+  min-height: 50%;
+	height: auto;
+  float: left;
+  margin-left: 3%;
+	margin-right: 3%;
+	margin-top: 0px;
+  margin-bottom: 5px;
+	font-size: 15px;
+	color: white;
+}
+
+p{
+  padding: 3px; 
+	margin: 2px;
+}
