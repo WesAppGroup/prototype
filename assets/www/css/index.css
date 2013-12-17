@@ -179,6 +179,11 @@ body {
 #home_content ul li a[href] .fance.menus {
   background-color: #457380;
 }
+#home_content ul li a[href] .fance.menus i {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
 #home_content ul li a[href] .fance.landmarks {
   background-color: #46647c;
 }

@@ -1,4 +1,4 @@
-
+/*
 #home {
   height: 100%;
 }
@@ -59,8 +59,8 @@
   width: 100%;
   margin: 0;
   padding: 0 5%;
-}
-
+}*/
+/*
 #home_content ul li {
   margin: 0;
   height: 20%;
@@ -97,8 +97,8 @@
   top: 50%;
   margin-top: -21px;
   left: 20px;
-}
-
+}*/
+/*
 #home_content ul li .ui-li .ui-btn-text .fance#wesmaps {
   background-color: #833b3e;
 }
@@ -107,6 +107,10 @@
 }
 #home_content ul li .ui-li .ui-btn-text .fance#menus {
   background-color: #457380;
+  text-align: center;
+}
+#home_content ul li .ui-li .ui-btn-text .fance#menus i {
+  padding-top: 20%;
 }
 #home_content ul li .ui-li .ui-btn-text .fance#landmarks {
   background-color: #46647c;
@@ -126,3 +130,4 @@
   left: 100px;
   margin-top: -9px;
 }
+*/
