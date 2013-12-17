@@ -25,6 +25,8 @@
   font-size: 20px;
   text-align: center;
   width: 89%;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
 }
 .lm-info {
   display: block;
@@ -37,6 +39,7 @@
   width: 100%;
   padding: 10px 0px 10px 0px;
   border-bottom: 1px solid #ffffff;
+  border-top-right-radius: 5px;
 }
 
 .lm-also {
@@ -53,6 +56,7 @@
   padding: 10px 5px 10px 5px;
   height: auto;
   text-align: justify;
+  border-bottom-right-radius: 5px;
 }
 
 /* ====== Landmarks Search ====== */

@@ -76,8 +76,6 @@ ul {
 .wm_c_dnum {
   display: inline-block;
   background-color: #458179;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
   width: 25%;
   height: 100%;
   float: left;
