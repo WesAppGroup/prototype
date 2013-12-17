@@ -27,6 +27,10 @@ function startMenus() {
       }
     }
   }
+  var menu_header = $("#header_link1_m")[0];
+  var hours_header = $("#header_link2_m")[0];
+  hours_header.style.color = "rgba(126, 126, 126, 0.62)";
+  menu_header.style.color = "white";
 
   function writeMenu(json) {
     console.log(json);

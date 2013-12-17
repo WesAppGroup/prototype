@@ -45,6 +45,10 @@ function startApp() {
       $(".page").addClass("hidden");
       $("#menus").removeClass("hidden");
     }
+    else if ($(this).attr('value') === "hours") { 
+      $(".page").addClass("hidden");
+      $("#hours").removeClass("hidden");
+    } 
     else if ($(this).attr('value') === "donate") {
       $(".page").addClass("hidden");
       $("#donate").removeClass("hidden");
@@ -55,11 +59,11 @@ function startApp() {
       $(".page").addClass("hidden");
       $("#landmarks").removeClass("hidden");
     }
-    else if (first_events_visit === true) {
-      // $("#event_nav")[0].addEventListener("click", function() {
+    // else if (first_events_visit === true) {
+    //   // $("#event_nav")[0].addEventListener("click", function() {
       
-      console.log("starting maps");
-    }
+    //   console.log("starting maps");
+    // }
   });
 
   /* Back button listener */
