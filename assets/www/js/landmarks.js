@@ -44,17 +44,21 @@ function startLandmarks() {
       console.log(lJSON[c]);        
       if (lJSON.hasOwnProperty(c)) {  //limit to 5 results
         if (searchRE.test(lJSON[c].search_terms)) {
-          writeLandmarks(lJSON[c]);
+          writeLandmark(lJSON[c]);
         }
       }
     }
   });
 
-  function writeLandmarks(c) {
+  function writeLandmark(c) {
+    var oTag = /<a\b[^>]*>/i;
+    var cTag = /<\/a>/i;
+    var cd = c.description.replace(oTag,"").replace(cTag,"");
+
     $("#lm_list").append("<li><div class='lm-info'>"+
                               "<div class='lm-name'>"+c.name+"</div>"+
                               "<div class='lm-also'>"+c.search_terms+"</div>"+
-                              "<div class='lm-desc'>"+c.description+"</div>"+
+                              "<div class='lm-desc'>"+cd+"</div>"+
                               "</div></li>");
   }
 }
