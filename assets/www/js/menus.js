@@ -34,61 +34,77 @@ function startMenus() {
 
   function writeMenu(json) {
     console.log(json);
-    var html = "<div>";
+    var html = "";
+    var oldCat = "";
     if (json.breakfast) {
-      html += "<div><h4 class = 'menu_meal'>Breakfast</h4><div class='menu_items'>";
+      html += "<div class='meal'><div class='menu_meal'>Breakfast</div><div class='menu_items'>";
       for (var p in json.breakfast) {
         if (json.breakfast.hasOwnProperty(p)) {
-          //html += "<p>"+json.breakfast[p]+"</p>";
           var item = (json.breakfast[p]+"").split("] ");				
 					var cat = item[0].substring(1);
 					var food = item[1];
-          html += "<p class = '"+cat+"'>"+json.breakfast[p]+"</p>";
+          if (cat !== oldCat) {
+            html +="<span class='"+cat+" m-station'>"+cat+"</span>";
+            oldCat = cat;
+          }
+          html += "<span class='menu-item'>"+food+"</span>";
         }
       }
       html += "</div></div>";
     }
+    oldCat = "";
     console.log(html);
     if (json.brunch) {
-      html += "<div><h4 class = 'menu_meal'>Brunch</h4><div class='menu_items'>";
+      html += "<div class='meal'><div class='menu_meal'>Brunch</div><div class='menu_items'>";
       for (var p in json.brunch) {
         if (json.lunch.hasOwnProperty(p)) {
-          //html += "<p>"+json.brunch[p]+"</p>";
           var item = (json.brunch[p]+"").split("] ");				
 					var cat = item[0].substring(1);
 					var food = item[1];
-          html += "<p class = '"+cat+"'>"+json.brunch[p]+"</p>";
+          if (oldCat !== cat) {
+            html +="<span class='"+cat+" m-station'>"+cat+"</span>";
+            oldCat = cat;
+          }
+          html += "<span class='menu-item'>"+food+"</span>";
         }
       }
       html += "</div></div>";
     }
+    oldCat = "";
     console.log(html);
     if (json.lunch) {
-      html += "<div><h4 class = 'menu_meal'>Lunch</h4><div class='menu_items'>";
+      html += "<div class='meal'><div class='menu_meal'>Lunch</div><div class='menu_items'>";
       for (var p in json.lunch) {
         if (json.lunch.hasOwnProperty(p)) {
           if (json.lunch[p][0] === 'Dinner') {
             break;
           }
-          //html += "<p>"+json.lunch[p]+"</p>";
           var item = (json.lunch[p]+"").split("] ");				
 					var cat = item[0].substring(1);;
 					var food = item[1];
-          html += "<p class = '"+cat+"'>"+json.lunch[p]+"</p>";
+          if (oldCat !== cat) {
+            html +="<span class='"+cat+" m-station'>"+cat+"</span>";
+            oldCat = cat;
+          }
+          html += "<span class='menu-item'>"+food+"</span>";
         }
       }
       html += "</div></div>";
     }
+    oldCat = "";
     console.log(html);
     if (json.dinner) {
-      html += "<div><h4 class = 'menu_meal'>Dinner</h4><div class='menu_items'>";
+      html += "<div class='meal'><div class='menu_meal'>Dinner</div><div class='menu_items'>";
       for (var p in json.dinner) {
         if (json.dinner.hasOwnProperty(p)) {
-          //html += "<p>"+json.dinner[p]+"</p>";
           var item = (json.dinner[p]+"").split("] ");				
 					var cat = item[0].substring(1);
 					var food = item[1];
-          html += "<p class = '"+cat+"'>"+json.dinner[p]+"</p>";
+          if (oldCat !== cat) {
+            html +="<span class='"+cat+" m-station'>"+cat+"</span>";
+            oldCat = cat;
+          }
+          html += "<span class='menu-item'>"+food+"</span>";
         }
       }
       html += "</div></div>";
