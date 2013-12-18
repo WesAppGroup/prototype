@@ -24,6 +24,6 @@
   };
 
   // IF DEVELOPING ON LOCAL ENABLE FIRST THING HERE
-  // $(document).ready(onDeviceReady)
+   //$(document).ready(onDeviceReady)
   document.addEventListener("deviceready", onDeviceReady, false);
 })();
