@@ -1,21 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 * {
   -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
   -webkit-box-sizing: border-box;
@@ -27,9 +9,9 @@ html {
 }
 
 body {
- -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
- -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
- -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+ -webkit-touch-callout: none;
+ -webkit-text-size-adjust: none;
+ -webkit-user-select: none;    
  background-attachment:fixed;
  font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
  font-size:12px;
@@ -41,30 +23,19 @@ body {
 }
 
 
-/* Portrait layout (default) */
-.app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
+.goto_page span, i {
+  text-decoration: none;
+  color: #ffffff;
 }
 
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
-    }
+.goto_page {
+  text-decoration: none;
+  color: rgba(83, 83, 83, 0.78);
 }
 
+
+
+/* ================= HOME PAGE ===============  */
 #home {
   height: 100%;
 }
@@ -87,36 +58,6 @@ body {
   width: 100%;
   background-color: #c5c7d3;
 }
-
-/*
-#home_content #user_info {
-  position: relative;
-  height: 10%;
-  margin: 0 5%;
-}
-
-#home_content #user_info #username {
-  position: absolute;
-  left: 0;
-  top: 25%;
-  height: 50%;
-  font-size: large;
-  padding: 3px 0;
-}
-
-#home_content #user_info #signout {
-  position: absolute;
-  right: 0;
-  top: 25%;
-  height: 50%;
-  background-color: #abadba;
-  color: #878b97;
-  padding: 5px 10px;
-  font-size: small;
-  text-align: center;
-  -webkit-border-radius: 5px;
-}
-*/
 
 #home_content ul {
   position: relative;
@@ -203,49 +144,12 @@ h1 {
     text-align:center;
 }
 
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
-}
-
-.event.listening {
-    background-color:#333333;
-    display:block;
-}
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
-}
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
-
-
 .hidden {
   display: none !important;
 }
 
 
-/* DONATE CSS */
+/* =============== DONATE ================= */
 #donate_content iframe {
   position: absolute;
   left: 0px;
@@ -255,41 +159,22 @@ h1 {
   width: 100%;
   height: 100%;
 }
+
+/* =============== EVENTS MAIN ================= */
 html, body {
     padding: 0;
     margin: 0;
-    /*overflow: auto; */
     text-transform: none;
 }
 body {
-    /*font-family: 'monoton', sans-serif;*/
-    /*font-family: MyWebFont;*/
-    /*font-family: 'Erica One', cursive;*/
-    /*font-family: 'Chivo', sans-serif;*/
-    /*font-family: 'Open Sans', sans-serif;*/
-    /*font-family: 'Orbitron', sans-serif;*/
     font-style: 700;
     font-family: Raleway;
-    /*font-size: 16px;*/
-    /*font-size: light;*/
-    /*line-height: 22px;*/
-    /*-webkit-text-size-adjust: none;*/
 }
-/*
-@font-face{ 
-    font-family: 'MyWebFont';
-    src: url('fonts/bebas-neue/BebasNeue.otf');
-}
-*/
- .pull-right {
+#events .pull-right {
     float: right;
 }
 #map-canvas {
     position: absolute;
-    /*left: 0;*/
-    /*right: 0;*/
-    /*top: 10%;*/
-    /*bottom: 10%;*/
     top: 10%;
     bottom: 10%;
     width: 100%;
@@ -303,7 +188,6 @@ body {
     padding-top: .5%;
     font-size: 30px;
     color: rgba(223, 39, 39, 0.92);
-    ;
 }
 #firstHeading {
     font-weight: 300;
@@ -314,24 +198,21 @@ body {
     color: rgba(51, 51, 51, 0.77);
     font-family: Raleway;
 }
-/*.mm-menu > .mm-panel {
-    font-size: 25px;
-}*/
  #info_p {
     font-weight: 300;
     font-size: 11px;
     padding-top: 3px;
 }
-h1, h2, h3, h4, h5, h6 {
+#events h1, #events h2, #events h3, #events h4, #events h5, #events h6 {
     line-height: 1;
     font-weight: bold;
     font-size: 40px;
     margin: 0 0 20px 0;
 }
-p {
+#events p {
     /*margin: 0 0 20px 0;*/
 }
-a, a:hover {
+#events a {
     outline: none;
     text-decoration: none;
 }
@@ -393,7 +274,7 @@ a, a:hover {
 #fixer {
   height: 5px;
 }
-
+/* Events List */
 #minibar {
   height: 23px;
   background-color: #b04343;
@@ -415,18 +296,16 @@ a, a:hover {
 
 
 #openSidebar {
-    /*background-color: #333;*/
     height: 30px;
     position: relative;
     width: 30px;
 }
 #openSidebar2 {
-    /*background-color: #333;*/
     height: 30px;
     position: relative;
     width: 30px;
 }
-.mm-ismenu.mm-light {
+#events_list .mm-ismenu.mm-light {
     background: rgba(40, 54, 83, 0.22);
 }
 #openSidebar:after {
@@ -434,7 +313,6 @@ a, a:hover {
     height: 0;
     position: absolute;
     width: 0;
-    /*border-radius: 40px;*/
 }
 #openSidebar:after {
     border: 14.5px solid rgba(90, 90, 90, 0);
@@ -448,7 +326,6 @@ a, a:hover {
     height: 0;
     position: absolute;
     width: 0;
-    /*border-radius: 40px;*/
 }
 #openSidebar2:after {
     border: 14.5px solid rgba(90, 90, 90, 0);
@@ -479,27 +356,10 @@ a, a:hover {
     display: none;
 }
 
-
-::-webkit-input-placeholder { /* WebKit browsers */
+#events_list ::-webkit-input-placeholder { 
   color: rgba(0,0,0,0.4);
   font-style: italic;
 }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color: rgba(0,0,0,0.4);
-  font-style: italic;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: rgba(0,0,0,0.4);
-  font-style: italic;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-  color: rgba(0,0,0,0.4);
-  font-style: italic;
-}
-
-
-
-
 
 #input-div {
     text-align: right;
@@ -546,7 +406,7 @@ a, a:hover {
   padding-left: 8px;
 }
 
-.filter_options {
+#events_list .filter_options {
     padding-right: 2%;
     padding-bottom: 0%;
     text-align: center;
@@ -555,12 +415,9 @@ a, a:hover {
     color: #888;
     display: inline-block;
 }
-#page > div, .mm-panel > div {
+#page > div {
     width: 100%;
     margin: 0 auto;
-}
-.mm-panel > div {
-    padding: 0px 0;
 }
 .tip a[href="#page"] {
     /*border-radius: 10px;*/
@@ -618,13 +475,7 @@ a, a:hover {
     font-weight: normal;
     padding: 0px 0px 0px 10px;
 }
-/* #events_list ul li a:hover, #events_list ul li a:active {
-    background-color: #716f6f;
-}
-#events_list ul li a:hover span.icon {
-    background-position: 0 -40px !important;
-}*/
- #events_list li a span.icon {
+#events_list li a span.icon {
     float: right;
     width: 21px;
     height: 20px;
@@ -677,16 +528,6 @@ a, a:hover {
     font-weight: 300;
     font-size: large;
 }
-.goto_page span, i {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-.goto_page {
-  text-decoration: none;
-  color: rgba(83, 83, 83, 0.78);
-}
-
 #events_list,
 #events_list_content {
   height: 100%;
@@ -779,7 +620,7 @@ a, a:hover {
   font-weight: 300;
 }
 
-/*CSS For the read more page*/
+/* events read more page*/
 
 #events_read_more2{
   margin: 7%; 
@@ -838,6 +679,8 @@ a, a:hover {
   display: inline-block;
   border-right: 8px solid white;
 }
+
+/* ============== MENUS AND HOURS ============== */
 #menus-link {
   color: white;
   display: inline-block;
@@ -956,9 +799,9 @@ color: rgba(15, 15, 15, 0.74);
 #library {
   border-color: rgba(255, 133, 0, 0.39);
 }
-/* LANDMARKS CSS */
+/* ================ LANDMARKS CSS =============== */
 
-/* ====== Landmarks List =====*/
+/* Landmarks List  */
 #landmarks_content {
   position: absolute;
   left: 0px;
@@ -1017,7 +860,7 @@ color: rgba(15, 15, 15, 0.74);
   border-bottom-right-radius: 5px;
 }
 
-/* ====== Landmarks Search ====== */
+/*  Landmarks Search  */
 #lm_search_bar {
   margin-top: 10px;
   margin-left: 10px;
@@ -1174,7 +1017,8 @@ padding-top: 10px;
 .m-station {
   font-weight: bold;
 }
-/* ======= WESMAPS HEADER ========= */
+
+/* ================ WESMAPS ================= */
 .wesmaps_header {
   position: absolute;
   left: 0px;
@@ -1220,7 +1064,7 @@ padding-top: 10px;
   font-size: 30px;
   color: #ffffff;
 }
-/* =========   WESMAPS SEARCH ========= */
+/* WESMAPS SEARCH  */
 body {
   background-color: #c5c7d3;
 }
@@ -1373,10 +1217,6 @@ ul {
   padding: 5px 0px 5px 0px;
 }
 
-.goto_page span, i {
-  text-decoration: none;
-  color: #ffffff;
-}
 /* SEARCH BAR */
 #wm_search_bar {
   display: block;
@@ -1442,3 +1282,4 @@ ul {
 .hidden-link {
   display: none;
 }
+
