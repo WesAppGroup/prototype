@@ -6,22 +6,26 @@
 
 html {
   height: 100%;
+  padding: 0;
+  margin: 0;
+  text-transform: none;
 }
 
 body {
- -webkit-touch-callout: none;
- -webkit-text-size-adjust: none;
- -webkit-user-select: none;    
- background-attachment:fixed;
- font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
- font-size:12px;
- height:100%;
- margin:0px;
- padding:0px;
- text-transform:uppercase;
- width:100%;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-user-select: none;    
+  background-attachment:fixed;
+  font-size:12px;
+  height:100%;
+  margin:0px;
+  padding:0px;
+  text-transform:uppercase;
+  width:100%;
+  font-style: 700;
+  font-family: Raleway;
+  background-color: #c5c7d3;
 }
-
 
 .goto_page span, i {
   text-decoration: none;
@@ -34,6 +38,61 @@ body {
 }
 
 
+
+.hidden {
+  display: none !important;
+}
+.hidden-link {
+  display: none;
+}
+
+/* ----- default header styling ---- */
+.d-header {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  height: 10%;
+  background-color: #242833;
+  text-align: center;
+  min-height: 50px;
+  max-height: 150px;
+}
+
+.d-bird {
+  display: inline-block;
+  float: left;
+  width: 10%;
+  height: 100%;
+  padding: 0px 0px 0px 0px;
+}
+.d-bird img {
+  height: 70%;
+  margin-top: 5px;
+  width: auto;
+}
+.d-title {
+  display: inline-block;
+  float: left;
+  width: 30%;
+  padding-top: 10px;
+  margin-left: 30px;
+  font-family: Raleway;
+  font-size: 30px;
+  color: #ffffff;
+}
+.d-go-home {
+  position: relative;
+  height: 100%;
+  display: inline-block;
+  float: right;
+  border-left: 1px solid #ffffff;
+  text-align: center;
+  min-width: 40px;
+  max-width: 100px;
+  width: 20%;
+  padding-top: 3%;
+}
 
 /* ================= HOME PAGE ===============  */
 #home {
@@ -135,7 +194,7 @@ body {
   margin-top: -11px;
 }
 
-h1 {
+#home h1 {
     font-size:24px;
     font-weight:normal;
     margin:0px;
@@ -143,11 +202,6 @@ h1 {
     padding:0px;
     text-align:center;
 }
-
-.hidden {
-  display: none !important;
-}
-
 
 /* =============== DONATE ================= */
 #donate_content iframe {
@@ -161,15 +215,6 @@ h1 {
 }
 
 /* =============== EVENTS MAIN ================= */
-html, body {
-    padding: 0;
-    margin: 0;
-    text-transform: none;
-}
-body {
-    font-style: 700;
-    font-family: Raleway;
-}
 #events .pull-right {
     float: right;
 }
@@ -1019,55 +1064,7 @@ padding-top: 10px;
 }
 
 /* ================ WESMAPS ================= */
-.wesmaps_header {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  height: 10%;
-  background-color: #242833;
-  text-align: center;
-}
-.wm-go-home {
-  position: relative;
-  height: 100%;
-  display: inline-block;
-  padding: 10px 10px 10px 10px;
-  float: right;
-  border-left: 1px solid #ffffff;
-  text-align: center;
-}
-.wm-bird {
-  display: inline-block;
-  float: left;
-  width: 10%;
-  height: 100%;
-  padding: 0px 0px 0px 0px;
-}
-.wm-bird img {
-  height: 70%;
-}
-.wm-name {
-  display: inline-block;
-  float: left;
-  width: 30%;
-  padding-top: 10px;
-}
-.wesmaps_header img {
-  margin-top: 5px;
-  height: 70%;
-  width: auto;
-}
-.wesmaps_header span {
-  margin-left: 30px;
-  font-family: Raleway;
-  font-size: 30px;
-  color: #ffffff;
-}
 /* WESMAPS SEARCH  */
-body {
-  background-color: #c5c7d3;
-}
 .wesmaps_content {
   position: absolute;
   left: 0px;
@@ -1278,8 +1275,4 @@ ul {
   width: 100%;
 }
 
-/* HIDDEN LINKS */
-.hidden-link {
-  display: none;
-}
 
